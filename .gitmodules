@@ -5,3 +5,6 @@
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/commune-ai/Tree-Bulder.git
+[submodule "subtensor"]
+	path = subtensor
+	url = https://github.com/commune-ai/subtensor.git
