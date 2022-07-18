@@ -1,0 +1,11 @@
+module: contract.market.base.module.ContractModule
+name: "Market"
+
+contract: 
+  name: "MarketBase"
+  address: null
+
+refresh: True
+
+read: get_cfg(contract.base.module,read)
+write: get_cfg(contract.base.module,write)

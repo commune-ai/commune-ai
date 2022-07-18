@@ -1,0 +1,10 @@
+module: model.complete.residual.xgboost
+target : profit
+categorical_features :
+  - signal_type
+  - weekday
+  - timescale
+  - coin
+  - signal_type
+
+ignore_features: [mode, time, month_time, week_time, gt, gt_signal]

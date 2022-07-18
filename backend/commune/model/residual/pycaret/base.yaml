@@ -1,0 +1,16 @@
+module: model.complete.residual.base
+
+setup:
+  target : profit
+  numeric_imputation : mean
+  categorical_features :
+    - signal_type
+    - weekday
+    - timescale
+    - coin
+  silent : True
+  ignore_features: [mode]
+predict:
+  compare_models:
+    n_select: 2
+    fold: 2

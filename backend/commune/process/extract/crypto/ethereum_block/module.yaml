@@ -1,0 +1,40 @@
+module: 'process.extract.crypto.ethereum_block.module.Process'
+
+client: get_cfg(client.manager)
+
+start_time: "2021-06-01T00:00"
+end_time: "utcnow"
+timestamp_step: 900
+queries_per_worker: 100
+queue_size: 20
+
+url:
+  ethereum_blocks: 'https://api.thegraph.com/subgraphs/name/blocklytics/ethereum-blocks'
+
+run: True
+refresh: False
+
+read:
+  timestamp_block:
+    client: postgres
+    params:
+      table_name: extract_crypto_ethereum_block_timestamp
+    ignore: True
+
+write:
+  timestamp_block:
+    client: postgres
+    params:
+      table_name: extract_crypto_ethereum_block_timestamp
+    ignore: True
+
+  cfg: 
+    client: mongo
+    params:
+      database: commune
+      collection: config
+      query:
+        module: local_copy(module)
+
+
+

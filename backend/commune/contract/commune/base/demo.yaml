@@ -1,0 +1,25 @@
+module: contract.commune.portfolio.demo.DemoModule
+name: "CommuneDemo"
+contract: 
+  name: "ModelCommune"
+  address: null
+
+sub_module:
+  commune: get_cfg(contract.model.portfolio.module)
+
+refresh: False
+run: True
+
+
+network:
+  name: dev
+  launch_rpc: False
+
+account: 
+  key: 0
+  mode: index
+
+# read: get_cfg(contract.base.module,read)
+# write: get_cfg(contract.base.module,write)
+
+client: get_cfg(client.manager)

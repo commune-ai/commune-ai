@@ -1,0 +1,52 @@
+
+network:
+  name: dev
+  launch_rpc: False
+
+account: 
+  key: 0
+  mode: index
+
+read:
+  cfg: 
+    client: mongo
+    params:
+      database: commune
+      collection: config
+      remove_query: False
+      return_one: True
+      query:
+        module: local_copy(module)
+        name: local_copy(name)
+  abi:
+    client: mongo
+    params:
+      database: commune
+      collection: contract.abi
+      remove_query: True
+      return_one: True
+      root_key: abi
+      query:
+        module: local_copy(contract.name)
+        name: local_copy(name)
+      
+write:
+  cfg: 
+    client: mongo
+    params:
+      database: commune
+      collection: config
+      add_query: True
+      query:
+        module: local_copy(module)
+        name: local_copy(name)
+  abi:
+    client: mongo
+    params:
+      database: commune
+      collection: contract.abi
+      add_query: True
+      root_key: abi
+      query:
+        module: local_copy(contract.name)
+        name: local_copy(name)

@@ -1,0 +1,54 @@
+
+module: "model.complete.regression.GP_Encoder"
+predicted_columns: null # list of column names to be predicted
+# get the periods from the data
+periods: copy(data.periods)
+device: copy(trainer.device)
+gp:
+  input_dim: 10
+  output_dim: 1
+  batch_size: null
+  device: copy(trainer.device)
+  use_ard: False
+  num_training_steps: 30
+  reset_training_state: False
+  periods:  {}
+  targets: []
+
+  optimizer:
+    lr: 0.1
+    weight_decay: 1.e-4
+    amsgrad: True
+
+encoder:
+  module: "model.block.transformer.Time2VecTransformer"
+  d_model: 16
+  attn_heads: 4
+  dropout: 0.1
+  d_ff: 8
+  num_layers: 4
+  positional: True
+  output_dim: 8
+
+  temporal_features:  []
+  categorical_features: {}
+  known_future_features: []
+  embedding_sizes: {}
+  embedding_size: 4
+  embedding_paddings: []
+  targets: ["EncoderEmbedding"]
+
+encoder_attn_heads: 4
+predict_past: False
+optimizer:
+  lr: 0.001
+  weight_decay: 1.e-4
+  amsgrad: True
+
+metric:
+  module: model.metric.bundle.regression.base.v0
+  time_modes: ['future']
+  loss_weight:
+    s1: 1
+    root: 1
+    log_prob: 1

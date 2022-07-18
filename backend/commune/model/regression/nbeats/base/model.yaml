@@ -1,0 +1,49 @@
+
+module: model.regression.nbeats.base.model.CompleteModel
+
+predicted_columns:  ["tokenPriceUSD"] 
+periods:
+  # the input period
+  input: 128
+  output: 12
+device: cuda
+
+nbeats:
+  temporal_features:  []
+  categorical_features: {}
+  known_future_features: []
+  embedding_sizes: {}
+  embedding_size: 8
+
+  blocks:
+    trend:
+      block: NBEATSTrendBlock
+      units: 16
+      thetas_dim: 4
+      num_block_layers: 4
+      dropout: 0.3
+    seasonal:
+      block: NBEATSSeasonalBlock
+      units: 16
+      num_block_layers: 4
+      dropout: 0.3
+optimizer:
+  lr: 0.01
+  weight_decay: 1.e-3
+  amsgrad: True
+
+metric:
+  module: model.metric.bundle.regression.base.v0
+  time_modes: ['past', 'future']
+  loss_weight:
+    s1: 1
+    root: 1
+    log_prob: 1
+
+inference:
+  mc_dropout:
+    num_samples: 100
+    output_mode: "bounds"
+
+
+client: get_cfg(client.manager)

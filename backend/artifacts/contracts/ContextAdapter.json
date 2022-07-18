@@ -1,0 +1,308 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "contextAddress",
+          "type": "address"
+        }
+      ],
+      "name": "connectContext",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "context",
+      "outputs": [
+        {
+          "internalType": "contract Context",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "20": "contracts/utils/context/Context.sol",
+    "21": "contracts/utils/context/ContextAdapter.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/utils/context/ContextAdapter.sol",
+    "exportedSymbols": {
+      "Context": [
+        3163
+      ],
+      "ContextAdapter": [
+        3696
+      ]
+    },
+    "id": 3697,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3679,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "85:23:21"
+      },
+      {
+        "absolutePath": "contracts/utils/context/Context.sol",
+        "file": "contracts/utils/context/Context.sol",
+        "id": 3680,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 3697,
+        "sourceUnit": 3164,
+        "src": "110:45:21",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "canonicalName": "ContextAdapter",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 3696,
+        "linearizedBaseContracts": [
+          3696
+        ],
+        "name": "ContextAdapter",
+        "nameLocation": "175:14:21",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "d0496d6a",
+            "id": 3683,
+            "mutability": "mutable",
+            "name": "context",
+            "nameLocation": "211:7:21",
+            "nodeType": "VariableDeclaration",
+            "scope": 3696,
+            "src": "196:22:21",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_Context_$3163",
+              "typeString": "contract Context"
+            },
+            "typeName": {
+              "id": 3682,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 3681,
+                "name": "Context",
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 3163,
+                "src": "196:7:21"
+              },
+              "referencedDeclaration": 3163,
+              "src": "196:7:21",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Context_$3163",
+                "typeString": "contract Context"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 3694,
+              "nodeType": "Block",
+              "src": "279:51:21",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 3692,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 3688,
+                      "name": "context",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3683,
+                      "src": "289:7:21",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_Context_$3163",
+                        "typeString": "contract Context"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 3690,
+                          "name": "contextAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3685,
+                          "src": "308:14:21",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        ],
+                        "id": 3689,
+                        "name": "Context",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3163,
+                        "src": "300:7:21",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_Context_$3163_$",
+                          "typeString": "type(contract Context)"
+                        }
+                      },
+                      "id": 3691,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "300:23:21",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_Context_$3163",
+                        "typeString": "contract Context"
+                      }
+                    },
+                    "src": "289:34:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_Context_$3163",
+                      "typeString": "contract Context"
+                    }
+                  },
+                  "id": 3693,
+                  "nodeType": "ExpressionStatement",
+                  "src": "289:34:21"
+                }
+              ]
+            },
+            "functionSelector": "4b1492e5",
+            "id": 3695,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "connectContext",
+            "nameLocation": "233:14:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3686,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3685,
+                  "mutability": "mutable",
+                  "name": "contextAddress",
+                  "nameLocation": "256:14:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3695,
+                  "src": "248:22:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3684,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "248:7:21",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "247:24:21"
+            },
+            "returnParameters": {
+              "id": 3687,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "279:0:21"
+            },
+            "scope": 3696,
+            "src": "224:106:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 3697,
+        "src": "157:175:21",
+        "usedErrors": []
+      }
+    ],
+    "src": "85:248:21"
+  },
+  "bytecode": "",
+  "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.13+commit.abaa5c0e"
+  },
+  "contractName": "ContextAdapter",
+  "coverageMap": {
+    "branches": {},
+    "statements": {}
+  },
+  "dependencies": [
+    "Context"
+  ],
+  "deployedBytecode": "",
+  "deployedSourceMap": "",
+  "language": "Solidity",
+  "natspec": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "offset": [
+    157,
+    332
+  ],
+  "opcodes": "",
+  "pcMap": {},
+  "sha1": "ea47b5b8ed4a55266d4f0b38963143bcaf04d453",
+  "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts v4.4.1 (utils/Context.sol)\npragma solidity ^0.8.0;\n\nimport \"contracts/utils/context/Context.sol\";\n\nabstract contract ContextAdapter {\n    Context public context;\n    function connectContext(address contextAddress) public {\n        context =  Context(contextAddress);\n    }\n}\n",
+  "sourceMap": "",
+  "sourcePath": "contracts/utils/context/ContextAdapter.sol",
+  "type": "contract"
+}

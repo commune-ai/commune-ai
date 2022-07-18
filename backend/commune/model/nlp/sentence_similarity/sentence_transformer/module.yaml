@@ -1,0 +1,11 @@
+
+module: model.nlp.sentence_similarity.sentence_transformer.ModelModule
+
+transformer: all-MiniLM-L6-v2
+device: cuda
+
+actor:
+  name: local_copy(module)
+  refresh: False
+
+client: get_cfg(client.manager)

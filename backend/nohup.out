@@ -1,0 +1,15 @@
+nohup: ignoring input
+python commune/experiment/runs/regression/crypto/multiscale.py --trials 300 --experiment BOBBEH --data sushiswap --refresh
+python: can't open file 'commune/experiment/runs/regression/crypto/multiscale.py': [Errno 2] No such file or directory
+make: *** [Makefile:8: train] Error 2
+INFO:     Will watch for changes in these directories: ['/app']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [28707] using statreload
+INFO:     Started server process [28710]
+2022-05-23 18:40:49.725 INFO    uvicorn.error: Started server process [28710]
+INFO:     Waiting for application startup.
+2022-05-23 18:40:49.726 INFO    uvicorn.error: Waiting for application startup.
+INFO:     Application startup complete.
+2022-05-23 18:40:49.726 INFO    uvicorn.error: Application startup complete.
+INFO:     Will watch for changes in these directories: ['/app']
+ERROR:    [Errno 98] Address already in use

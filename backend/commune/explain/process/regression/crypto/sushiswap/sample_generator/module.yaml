@@ -1,0 +1,32 @@
+module: 'explain.process.regression.crypto.sushiswap.sample_generator.module.Process'
+
+client: get_cfg(client.manager)
+
+end_time: utcnow
+look_back_period: {days: 10}
+
+# sub_module: 
+#   process: get_cfg(process.regression.crypto.sushiswap.sample_generator)
+# features that span both the input and output
+
+refresh: True
+run: True 
+
+read:
+  explain:
+    client: ipfs
+    params:
+      meta:
+          module: local_copy(module)
+          tag: "{token}"
+
+write:
+  explain:
+    client: ipfs
+    params:
+      meta:
+        module: local_copy(module)
+        tag: "{token}"
+  
+  
+  

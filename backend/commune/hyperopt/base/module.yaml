@@ -1,0 +1,9 @@
+
+module: hyperopt.base.module.BaseHyperopt
+type: bayes
+smoke_test: False
+
+num_samples: 3000
+resources_per_trial:
+  cpu: 8
+  gpu: 0.4

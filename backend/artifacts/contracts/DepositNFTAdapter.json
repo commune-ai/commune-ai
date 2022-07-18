@@ -1,0 +1,1295 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenAddress",
+          "type": "address"
+        }
+      ],
+      "name": "connectNFT",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "depositNFT",
+      "outputs": [
+        {
+          "internalType": "contract IDepositNFT",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "13": "contracts/model/portfolio/token/DepositNFTAdapter.sol",
+    "14": "contracts/model/portfolio/token/Structs.sol",
+    "25": "interfaces/model/portfolio/token/IDepositNFT.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/model/portfolio/token/DepositNFTAdapter.sol",
+    "exportedSymbols": {
+      "DepositNFTAdapter": [
+        1821
+      ],
+      "IDepositNFT": [
+        3242
+      ],
+      "IERC721": [
+        3902
+      ],
+      "NFTContractState": [
+        1834
+      ],
+      "NFTOwnerState": [
+        1829
+      ],
+      "NFTState": [
+        1844
+      ]
+    },
+    "id": 1822,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1803,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "92:23:13"
+      },
+      {
+        "absolutePath": "interfaces/model/portfolio/token/IDepositNFT.sol",
+        "file": "interfaces/model/portfolio/token/IDepositNFT.sol",
+        "id": 1804,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1822,
+        "sourceUnit": 3243,
+        "src": "116:58:13",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "DepositNFTAdapter",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 1805,
+          "nodeType": "StructuredDocumentation",
+          "src": "176:246:13",
+          "text": " @dev Implementation of https://eips.ethereum.org/EIPS/eip-721[ERC721] Non-Fungible Token Standard, including\n the Metadata extension, but not including the Enumerable extension, which is available separately as\n {ERC721Enumerable}."
+        },
+        "fullyImplemented": true,
+        "id": 1821,
+        "linearizedBaseContracts": [
+          1821
+        ],
+        "name": "DepositNFTAdapter",
+        "nameLocation": "432:17:13",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "67e3c4d4",
+            "id": 1808,
+            "mutability": "mutable",
+            "name": "depositNFT",
+            "nameLocation": "476:10:13",
+            "nodeType": "VariableDeclaration",
+            "scope": 1821,
+            "src": "457:29:13",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_IDepositNFT_$3242",
+              "typeString": "contract IDepositNFT"
+            },
+            "typeName": {
+              "id": 1807,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 1806,
+                "name": "IDepositNFT",
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 3242,
+                "src": "457:11:13"
+              },
+              "referencedDeclaration": 3242,
+              "src": "457:11:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IDepositNFT_$3242",
+                "typeString": "contract IDepositNFT"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1819,
+              "nodeType": "Block",
+              "src": "541:55:13",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1817,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 1813,
+                      "name": "depositNFT",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1808,
+                      "src": "551:10:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IDepositNFT_$3242",
+                        "typeString": "contract IDepositNFT"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 1815,
+                          "name": "tokenAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1810,
+                          "src": "576:12:13",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        ],
+                        "id": 1814,
+                        "name": "IDepositNFT",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3242,
+                        "src": "564:11:13",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_IDepositNFT_$3242_$",
+                          "typeString": "type(contract IDepositNFT)"
+                        }
+                      },
+                      "id": 1816,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "564:25:13",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IDepositNFT_$3242",
+                        "typeString": "contract IDepositNFT"
+                      }
+                    },
+                    "src": "551:38:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IDepositNFT_$3242",
+                      "typeString": "contract IDepositNFT"
+                    }
+                  },
+                  "id": 1818,
+                  "nodeType": "ExpressionStatement",
+                  "src": "551:38:13"
+                }
+              ]
+            },
+            "functionSelector": "e017b589",
+            "id": 1820,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "connectNFT",
+            "nameLocation": "501:10:13",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1811,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1810,
+                  "mutability": "mutable",
+                  "name": "tokenAddress",
+                  "nameLocation": "520:12:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1820,
+                  "src": "512:20:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1809,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "512:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "511:22:13"
+            },
+            "returnParameters": {
+              "id": 1812,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "541:0:13"
+            },
+            "scope": 1821,
+            "src": "492:104:13",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1822,
+        "src": "423:175:13",
+        "usedErrors": []
+      }
+    ],
+    "src": "92:507:13"
+  },
+  "bytecode": "608060405234801561001057600080fd5b5060f88061001f6000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c806367e3c4d4146037578063e017b589146065575b600080fd5b6000546049906001600160a01b031681565b6040516001600160a01b03909116815260200160405180910390f35b609260703660046094565b600080546001600160a01b0319166001600160a01b0392909216919091179055565b005b60006020828403121560a557600080fd5b81356001600160a01b038116811460bb57600080fd5b939250505056fea26469706673582212208d37281523d3de9a72682b01e59d69875a982b1d4bbb037945297b8530540a9964736f6c634300080d0033",
+  "bytecodeSha1": "14c30a28b9ca877530628b1aa32ba2bf0b573289",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.13+commit.abaa5c0e"
+  },
+  "contractName": "DepositNFTAdapter",
+  "coverageMap": {
+    "branches": {
+      "13": {},
+      "14": {},
+      "25": {}
+    },
+    "statements": {
+      "13": {
+        "DepositNFTAdapter.connectNFT": {
+          "0": [
+            551,
+            589
+          ]
+        }
+      },
+      "14": {},
+      "25": {}
+    }
+  },
+  "dependencies": [
+    "IDepositNFT"
+  ],
+  "deployedBytecode": "6080604052348015600f57600080fd5b506004361060325760003560e01c806367e3c4d4146037578063e017b589146065575b600080fd5b6000546049906001600160a01b031681565b6040516001600160a01b03909116815260200160405180910390f35b609260703660046094565b600080546001600160a01b0319166001600160a01b0392909216919091179055565b005b60006020828403121560a557600080fd5b81356001600160a01b038116811460bb57600080fd5b939250505056fea26469706673582212208d37281523d3de9a72682b01e59d69875a982b1d4bbb037945297b8530540a9964736f6c634300080d0033",
+  "deployedSourceMap": "423:175:13:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;457:29;;;;;-1:-1:-1;;;;;457:29:13;;;;;;-1:-1:-1;;;;;198:32:30;;;180:51;;168:2;153:18;457:29:13;;;;;;;492:104;;;;;;:::i;:::-;551:10;:38;;-1:-1:-1;;;;;;551:38:13;-1:-1:-1;;;;;551:38:13;;;;;;;;;;492:104;;;242:286:30;301:6;354:2;342:9;333:7;329:23;325:32;322:52;;;370:1;367;360:12;322:52;396:23;;-1:-1:-1;;;;;448:31:30;;438:42;;428:70;;494:1;491;484:12;428:70;517:5;242:286;-1:-1:-1;;;242:286:30:o",
+  "language": "Solidity",
+  "natspec": {
+    "details": "Implementation of https://eips.ethereum.org/EIPS/eip-721[ERC721] Non-Fungible Token Standard, including the Metadata extension, but not including the Enumerable extension, which is available separately as {ERC721Enumerable}.",
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "offset": [
+    423,
+    598
+  ],
+  "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH1 0x32 JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x67E3C4D4 EQ PUSH1 0x37 JUMPI DUP1 PUSH4 0xE017B589 EQ PUSH1 0x65 JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0x0 SLOAD PUSH1 0x49 SWAP1 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND DUP2 JUMP JUMPDEST PUSH1 0x40 MLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP1 SWAP2 AND DUP2 MSTORE PUSH1 0x20 ADD PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST PUSH1 0x92 PUSH1 0x70 CALLDATASIZE PUSH1 0x4 PUSH1 0x94 JUMP JUMPDEST PUSH1 0x0 DUP1 SLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB NOT AND PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP3 SWAP1 SWAP3 AND SWAP2 SWAP1 SWAP2 OR SWAP1 SSTORE JUMP JUMPDEST STOP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH1 0xA5 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 CALLDATALOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP2 AND DUP2 EQ PUSH1 0xBB JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST SWAP4 SWAP3 POP POP POP JUMP INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 DUP14 CALLDATACOPY 0x28 ISZERO 0x23 0xD3 0xDE SWAP11 PUSH19 0x682B01E59D69875A982B1D4BBB037945297B85 ADDRESS SLOAD EXP SWAP10 PUSH5 0x736F6C6343 STOP ADDMOD 0xD STOP CALLER ",
+  "pcMap": {
+    "0": {
+      "offset": [
+        423,
+        598
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x80"
+    },
+    "2": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x40"
+    },
+    "4": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "MSTORE",
+      "path": "13"
+    },
+    "5": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "CALLVALUE",
+      "path": "13"
+    },
+    "6": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "DUP1",
+      "path": "13"
+    },
+    "7": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "ISZERO",
+      "path": "13"
+    },
+    "8": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0xF"
+    },
+    "10": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "JUMPI",
+      "path": "13"
+    },
+    "11": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x0"
+    },
+    "13": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "DUP1",
+      "path": "13"
+    },
+    "14": {
+      "dev": "Cannot send ether to nonpayable function",
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "REVERT",
+      "path": "13"
+    },
+    "15": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "JUMPDEST",
+      "path": "13"
+    },
+    "16": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "POP",
+      "path": "13"
+    },
+    "17": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x4"
+    },
+    "19": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "CALLDATASIZE",
+      "path": "13"
+    },
+    "20": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "LT",
+      "path": "13"
+    },
+    "21": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x32"
+    },
+    "23": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "JUMPI",
+      "path": "13"
+    },
+    "24": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x0"
+    },
+    "26": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "CALLDATALOAD",
+      "path": "13"
+    },
+    "27": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0xE0"
+    },
+    "29": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "SHR",
+      "path": "13"
+    },
+    "30": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "DUP1",
+      "path": "13"
+    },
+    "31": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "PUSH4",
+      "path": "13",
+      "value": "0x67E3C4D4"
+    },
+    "36": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "EQ",
+      "path": "13"
+    },
+    "37": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x37"
+    },
+    "39": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "JUMPI",
+      "path": "13"
+    },
+    "40": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "DUP1",
+      "path": "13"
+    },
+    "41": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "PUSH4",
+      "path": "13",
+      "value": "0xE017B589"
+    },
+    "46": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "EQ",
+      "path": "13"
+    },
+    "47": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x65"
+    },
+    "49": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "JUMPI",
+      "path": "13"
+    },
+    "50": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "JUMPDEST",
+      "path": "13"
+    },
+    "51": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x0"
+    },
+    "53": {
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "DUP1",
+      "path": "13"
+    },
+    "54": {
+      "first_revert": true,
+      "fn": null,
+      "offset": [
+        423,
+        598
+      ],
+      "op": "REVERT",
+      "path": "13"
+    },
+    "55": {
+      "offset": [
+        457,
+        486
+      ],
+      "op": "JUMPDEST",
+      "path": "13"
+    },
+    "56": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x0"
+    },
+    "58": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "SLOAD",
+      "path": "13"
+    },
+    "59": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x49"
+    },
+    "61": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "SWAP1",
+      "path": "13"
+    },
+    "62": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "64": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "66": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "68": {
+      "op": "SHL"
+    },
+    "69": {
+      "op": "SUB"
+    },
+    "70": {
+      "offset": [
+        457,
+        486
+      ],
+      "op": "AND",
+      "path": "13"
+    },
+    "71": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "DUP2",
+      "path": "13"
+    },
+    "72": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "JUMP",
+      "path": "13"
+    },
+    "73": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "JUMPDEST",
+      "path": "13"
+    },
+    "74": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x40"
+    },
+    "76": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "MLOAD",
+      "path": "13"
+    },
+    "77": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "79": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "81": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "83": {
+      "op": "SHL"
+    },
+    "84": {
+      "op": "SUB"
+    },
+    "85": {
+      "op": "SWAP1"
+    },
+    "86": {
+      "op": "SWAP2"
+    },
+    "87": {
+      "op": "AND"
+    },
+    "88": {
+      "op": "DUP2"
+    },
+    "89": {
+      "op": "MSTORE"
+    },
+    "90": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "92": {
+      "op": "ADD"
+    },
+    "93": {
+      "offset": [
+        457,
+        486
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x40"
+    },
+    "95": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "MLOAD",
+      "path": "13"
+    },
+    "96": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "DUP1",
+      "path": "13"
+    },
+    "97": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "SWAP2",
+      "path": "13"
+    },
+    "98": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "SUB",
+      "path": "13"
+    },
+    "99": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "SWAP1",
+      "path": "13"
+    },
+    "100": {
+      "fn": null,
+      "offset": [
+        457,
+        486
+      ],
+      "op": "RETURN",
+      "path": "13"
+    },
+    "101": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        492,
+        596
+      ],
+      "op": "JUMPDEST",
+      "path": "13"
+    },
+    "102": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        492,
+        596
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x92"
+    },
+    "104": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        492,
+        596
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x70"
+    },
+    "106": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        492,
+        596
+      ],
+      "op": "CALLDATASIZE",
+      "path": "13"
+    },
+    "107": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        492,
+        596
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x4"
+    },
+    "109": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        492,
+        596
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "value": "0x94"
+    },
+    "111": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "jump": "i",
+      "offset": [
+        492,
+        596
+      ],
+      "op": "JUMP",
+      "path": "13"
+    },
+    "112": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        492,
+        596
+      ],
+      "op": "JUMPDEST",
+      "path": "13"
+    },
+    "113": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        551,
+        561
+      ],
+      "op": "PUSH1",
+      "path": "13",
+      "statement": 0,
+      "value": "0x0"
+    },
+    "115": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        551,
+        589
+      ],
+      "op": "DUP1",
+      "path": "13"
+    },
+    "116": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        551,
+        589
+      ],
+      "op": "SLOAD",
+      "path": "13"
+    },
+    "117": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "119": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "121": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "123": {
+      "op": "SHL"
+    },
+    "124": {
+      "op": "SUB"
+    },
+    "125": {
+      "op": "NOT"
+    },
+    "126": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        551,
+        589
+      ],
+      "op": "AND",
+      "path": "13"
+    },
+    "127": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "129": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "131": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "133": {
+      "op": "SHL"
+    },
+    "134": {
+      "op": "SUB"
+    },
+    "135": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        551,
+        589
+      ],
+      "op": "SWAP3",
+      "path": "13"
+    },
+    "136": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        551,
+        589
+      ],
+      "op": "SWAP1",
+      "path": "13"
+    },
+    "137": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        551,
+        589
+      ],
+      "op": "SWAP3",
+      "path": "13"
+    },
+    "138": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        551,
+        589
+      ],
+      "op": "AND",
+      "path": "13"
+    },
+    "139": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        551,
+        589
+      ],
+      "op": "SWAP2",
+      "path": "13"
+    },
+    "140": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        551,
+        589
+      ],
+      "op": "SWAP1",
+      "path": "13"
+    },
+    "141": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        551,
+        589
+      ],
+      "op": "SWAP2",
+      "path": "13"
+    },
+    "142": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        551,
+        589
+      ],
+      "op": "OR",
+      "path": "13"
+    },
+    "143": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        551,
+        589
+      ],
+      "op": "SWAP1",
+      "path": "13"
+    },
+    "144": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        551,
+        589
+      ],
+      "op": "SSTORE",
+      "path": "13"
+    },
+    "145": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        492,
+        596
+      ],
+      "op": "JUMP",
+      "path": "13"
+    },
+    "146": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        492,
+        596
+      ],
+      "op": "JUMPDEST",
+      "path": "13"
+    },
+    "147": {
+      "fn": "DepositNFTAdapter.connectNFT",
+      "offset": [
+        492,
+        596
+      ],
+      "op": "STOP",
+      "path": "13"
+    },
+    "148": {
+      "op": "JUMPDEST"
+    },
+    "149": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "151": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "153": {
+      "op": "DUP3"
+    },
+    "154": {
+      "op": "DUP5"
+    },
+    "155": {
+      "op": "SUB"
+    },
+    "156": {
+      "op": "SLT"
+    },
+    "157": {
+      "op": "ISZERO"
+    },
+    "158": {
+      "op": "PUSH1",
+      "value": "0xA5"
+    },
+    "160": {
+      "op": "JUMPI"
+    },
+    "161": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "163": {
+      "op": "DUP1"
+    },
+    "164": {
+      "op": "REVERT"
+    },
+    "165": {
+      "op": "JUMPDEST"
+    },
+    "166": {
+      "op": "DUP2"
+    },
+    "167": {
+      "op": "CALLDATALOAD"
+    },
+    "168": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "170": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "172": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "174": {
+      "op": "SHL"
+    },
+    "175": {
+      "op": "SUB"
+    },
+    "176": {
+      "op": "DUP2"
+    },
+    "177": {
+      "op": "AND"
+    },
+    "178": {
+      "op": "DUP2"
+    },
+    "179": {
+      "op": "EQ"
+    },
+    "180": {
+      "op": "PUSH1",
+      "value": "0xBB"
+    },
+    "182": {
+      "op": "JUMPI"
+    },
+    "183": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "185": {
+      "op": "DUP1"
+    },
+    "186": {
+      "op": "REVERT"
+    },
+    "187": {
+      "op": "JUMPDEST"
+    },
+    "188": {
+      "op": "SWAP4"
+    },
+    "189": {
+      "op": "SWAP3"
+    },
+    "190": {
+      "op": "POP"
+    },
+    "191": {
+      "op": "POP"
+    },
+    "192": {
+      "op": "POP"
+    },
+    "193": {
+      "jump": "o",
+      "op": "JUMP"
+    }
+  },
+  "sha1": "dbac6167953bf1cf3439eca50397fb4a282911ef",
+  "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts v4.4.1 (token/ERC721/ERC721.sol)\n\npragma solidity ^0.8.0;\nimport \"interfaces/model/portfolio/token/IDepositNFT.sol\";\n\n/**\n * @dev Implementation of https://eips.ethereum.org/EIPS/eip-721[ERC721] Non-Fungible Token Standard, including\n * the Metadata extension, but not including the Enumerable extension, which is available separately as\n * {ERC721Enumerable}.\n */\ncontract DepositNFTAdapter {\n\n    IDepositNFT public depositNFT;\n    function connectNFT(address tokenAddress) public {\n        depositNFT = IDepositNFT(tokenAddress);\n    }\n}\n",
+  "sourceMap": "423:175:13:-:0;;;;;;;;;;;;;;;;;;;",
+  "sourcePath": "contracts/model/portfolio/token/DepositNFTAdapter.sol",
+  "type": "contract"
+}

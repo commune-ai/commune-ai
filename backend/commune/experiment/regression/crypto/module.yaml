@@ -1,0 +1,30 @@
+# type of problem
+module: experiment.regression.crypto.module.Experiment
+# trainer environment
+trainer: get_cfg(trainer.regression.crypto.trainer)
+# data environment
+data: get_cfg(data.regression.crypto.sushiswap.dataset)
+# model
+model: get_cfg(model.regression.nbeats.base.model)
+# clients
+client: get_cfg(client.manager)
+
+sub_module:
+  experiment_manager: experiment.manager.module
+  hyperopt: hyperopt.bayes.module
+
+
+debug: 
+  enable: True
+  cfg_override:
+    trainer.num_epochs: 1
+    trainer.max_batches_per_epoch : 2
+    experiment.refresh : true
+    experiment.num_samples : 2
+    experiment.name : 'DEBUG'
+
+
+experiment: 
+  num_samples: 10
+  name: Test
+  refresh: True

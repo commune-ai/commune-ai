@@ -1,0 +1,133 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        }
+      ],
+      "name": "processPayment",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "ast": {
+    "absolutePath": "interfaces/model/IModelNFT.sol",
+    "exportedSymbols": {
+      "IModelNFT": [
+        87
+      ]
+    },
+    "id": 88,
+    "license": "MIT OR Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 80,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".7"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "46:23:11"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IModelNFT",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 87,
+        "linearizedBaseContracts": [
+          87
+        ],
+        "name": "IModelNFT",
+        "nameLocation": "80:9:11",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 85,
+              "nodeType": "Block",
+              "src": "306:2:11",
+              "statements": []
+            },
+            "functionSelector": "8fe123d7",
+            "id": 86,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "processPayment",
+            "nameLocation": "245:14:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 83,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 82,
+                  "mutability": "mutable",
+                  "name": "userAddress",
+                  "nameLocation": "268:11:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 86,
+                  "src": "260:19:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 81,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "260:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "259:21:11"
+            },
+            "returnParameters": {
+              "id": 84,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "306:0:11"
+            },
+            "scope": 87,
+            "src": "236:72:11",
+            "stateMutability": "payable",
+            "virtual": true,
+            "visibility": "external"
+          }
+        ],
+        "scope": 88,
+        "src": "71:244:11",
+        "usedErrors": []
+      }
+    ],
+    "src": "46:270:11"
+  },
+  "contractName": "IModelNFT",
+  "dependencies": [],
+  "offset": [
+    71,
+    315
+  ],
+  "sha1": "7ddbc47f5c3be4523285a0d90688fc468e8d7d97",
+  "source": "// SPDX-License-Identifier: MIT OR Apache-2.0\npragma solidity ^0.8.7;\n\ncontract IModelNFT {\n    // function getState() external virtual view returns(address, address, string memory, string memory, uint256, string memory, uint256){}\n    function processPayment(address userAddress) external virtual payable {}\n    \n}\n",
+  "type": "interface"
+}

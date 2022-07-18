@@ -1,0 +1,3823 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "accessController",
+      "outputs": [
+        {
+          "internalType": "contract IAccessControl",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "ac_acccount",
+          "type": "address"
+        }
+      ],
+      "name": "connectAccessController",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "role",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "hasRole",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "19": "contracts/utils/access/AccessControlAdapter.sol",
+    "28": "interfaces/utils/access/IAccessControl.sol",
+    "29": "interfaces/utils/access/IAccessControlAdapter.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/utils/access/AccessControlAdapter.sol",
+    "exportedSymbols": {
+      "AccessControlAdapter": [
+        3132
+      ],
+      "Context": [
+        3163
+      ],
+      "ContextAdapter": [
+        3696
+      ],
+      "IAccessControl": [
+        3766
+      ],
+      "IAccessControlAdapter": [
+        3785
+      ]
+    },
+    "id": 3133,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3063,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "93:23:19"
+      },
+      {
+        "absolutePath": "interfaces/utils/access/IAccessControl.sol",
+        "file": "interfaces/utils/access/IAccessControl.sol",
+        "id": 3064,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 3133,
+        "sourceUnit": 3767,
+        "src": "118:52:19",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "interfaces/utils/access/IAccessControlAdapter.sol",
+        "file": "interfaces/utils/access/IAccessControlAdapter.sol",
+        "id": 3065,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 3133,
+        "sourceUnit": 3786,
+        "src": "171:59:19",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "contracts/utils/context/ContextAdapter.sol",
+        "file": "contracts/utils/context/ContextAdapter.sol",
+        "id": 3066,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 3133,
+        "sourceUnit": 3697,
+        "src": "231:52:19",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 3067,
+              "name": "IAccessControlAdapter",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 3785,
+              "src": "319:21:19"
+            },
+            "id": 3068,
+            "nodeType": "InheritanceSpecifier",
+            "src": "319:21:19"
+          }
+        ],
+        "canonicalName": "AccessControlAdapter",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 3132,
+        "linearizedBaseContracts": [
+          3132,
+          3785
+        ],
+        "name": "AccessControlAdapter",
+        "nameLocation": "295:20:19",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "bc43cbaf",
+            "id": 3071,
+            "mutability": "mutable",
+            "name": "accessController",
+            "nameLocation": "370:16:19",
+            "nodeType": "VariableDeclaration",
+            "scope": 3132,
+            "src": "348:38:19",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_IAccessControl_$3766",
+              "typeString": "contract IAccessControl"
+            },
+            "typeName": {
+              "id": 3070,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 3069,
+                "name": "IAccessControl",
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 3766,
+                "src": "348:14:19"
+              },
+              "referencedDeclaration": 3766,
+              "src": "348:14:19",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IAccessControl_$3766",
+                "typeString": "contract IAccessControl"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 3086,
+              "nodeType": "Block",
+              "src": "452:76:19",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "id": 3080,
+                            "name": "role",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3073,
+                            "src": "495:4:19",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          {
+                            "id": 3081,
+                            "name": "account",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3075,
+                            "src": "501:7:19",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            },
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "expression": {
+                            "id": 3078,
+                            "name": "accessController",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3071,
+                            "src": "470:16:19",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_IAccessControl_$3766",
+                              "typeString": "contract IAccessControl"
+                            }
+                          },
+                          "id": 3079,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "hasRole",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 3736,
+                          "src": "470:24:19",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_external_view$_t_string_memory_ptr_$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (string memory,address) view external returns (bool)"
+                          }
+                        },
+                        "id": 3082,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "470:39:19",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 3077,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "462:7:19",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 3083,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "462:48:19",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3084,
+                  "nodeType": "ExpressionStatement",
+                  "src": "462:48:19"
+                },
+                {
+                  "id": 3085,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "520:1:19"
+                }
+              ]
+            },
+            "id": 3087,
+            "name": "onlyRole",
+            "nameLocation": "407:8:19",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 3076,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3073,
+                  "mutability": "mutable",
+                  "name": "role",
+                  "nameLocation": "430:4:19",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3087,
+                  "src": "416:18:19",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 3072,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "416:6:19",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3075,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "443:7:19",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3087,
+                  "src": "435:15:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3074,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "435:7:19",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "415:36:19"
+            },
+            "src": "398:130:19",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 3100,
+              "nodeType": "Block",
+              "src": "570:94:19",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "hexValue": "6f776e6572",
+                            "id": 3093,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "string",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "596:7:19",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_stringliteral_02016836a56b71f0d02689e69e326f4f4c1b9057164ef592671cf0d37c8040c0",
+                              "typeString": "literal_string \"owner\""
+                            },
+                            "value": "owner"
+                          },
+                          {
+                            "id": 3094,
+                            "name": "account",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 3089,
+                            "src": "605:7:19",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_stringliteral_02016836a56b71f0d02689e69e326f4f4c1b9057164ef592671cf0d37c8040c0",
+                              "typeString": "literal_string \"owner\""
+                            },
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 3092,
+                          "name": "hasRole",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3131,
+                          "src": "588:7:19",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_view$_t_string_memory_ptr_$_t_address_$returns$_t_bool_$",
+                            "typeString": "function (string memory,address) view returns (bool)"
+                          }
+                        },
+                        "id": 3095,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "588:25:19",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "746865206163636f756e74206973206e6f74207468652061646d696e",
+                        "id": 3096,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "615:30:19",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_945051ddff84b7d4f32e60889d53917eae51a3bf52d043558da29a6b1eb464e5",
+                          "typeString": "literal_string \"the account is not the admin\""
+                        },
+                        "value": "the account is not the admin"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_945051ddff84b7d4f32e60889d53917eae51a3bf52d043558da29a6b1eb464e5",
+                          "typeString": "literal_string \"the account is not the admin\""
+                        }
+                      ],
+                      "id": 3091,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "580:7:19",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 3097,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "580:66:19",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3098,
+                  "nodeType": "ExpressionStatement",
+                  "src": "580:66:19"
+                },
+                {
+                  "id": 3099,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "656:1:19"
+                }
+              ]
+            },
+            "id": 3101,
+            "name": "onlyAdmin",
+            "nameLocation": "543:9:19",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 3090,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3089,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "561:7:19",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3101,
+                  "src": "553:15:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3088,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "553:7:19",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "552:17:19"
+            },
+            "src": "534:130:19",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "baseFunctions": [
+              3775
+            ],
+            "body": {
+              "id": 3113,
+              "nodeType": "Block",
+              "src": "745:64:19",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 3111,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 3107,
+                      "name": "accessController",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3071,
+                      "src": "755:16:19",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IAccessControl_$3766",
+                        "typeString": "contract IAccessControl"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 3109,
+                          "name": "ac_acccount",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3103,
+                          "src": "790:11:19",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        ],
+                        "id": 3108,
+                        "name": "IAccessControl",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3766,
+                        "src": "775:14:19",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_IAccessControl_$3766_$",
+                          "typeString": "type(contract IAccessControl)"
+                        }
+                      },
+                      "id": 3110,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "775:27:19",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IAccessControl_$3766",
+                        "typeString": "contract IAccessControl"
+                      }
+                    },
+                    "src": "755:47:19",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IAccessControl_$3766",
+                      "typeString": "contract IAccessControl"
+                    }
+                  },
+                  "id": 3112,
+                  "nodeType": "ExpressionStatement",
+                  "src": "755:47:19"
+                }
+              ]
+            },
+            "functionSelector": "52e5eb79",
+            "id": 3114,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "connectAccessController",
+            "nameLocation": "683:23:19",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 3105,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "735:8:19"
+            },
+            "parameters": {
+              "id": 3104,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3103,
+                  "mutability": "mutable",
+                  "name": "ac_acccount",
+                  "nameLocation": "715:11:19",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3114,
+                  "src": "707:19:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3102,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "707:7:19",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "706:21:19"
+            },
+            "returnParameters": {
+              "id": 3106,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "745:0:19"
+            },
+            "scope": 3132,
+            "src": "674:135:19",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              3784
+            ],
+            "body": {
+              "id": 3130,
+              "nodeType": "Block",
+              "src": "902:63:19",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 3126,
+                        "name": "role",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3116,
+                        "src": "944:4:19",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 3127,
+                        "name": "account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3118,
+                        "src": "950:7:19",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "id": 3124,
+                        "name": "accessController",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3071,
+                        "src": "919:16:19",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IAccessControl_$3766",
+                          "typeString": "contract IAccessControl"
+                        }
+                      },
+                      "id": 3125,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "hasRole",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3736,
+                      "src": "919:24:19",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$_t_string_memory_ptr_$_t_address_$returns$_t_bool_$",
+                        "typeString": "function (string memory,address) view external returns (bool)"
+                      }
+                    },
+                    "id": 3128,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "919:39:19",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 3123,
+                  "id": 3129,
+                  "nodeType": "Return",
+                  "src": "912:46:19"
+                }
+              ]
+            },
+            "functionSelector": "6c9cd097",
+            "id": 3131,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "hasRole",
+            "nameLocation": "823:7:19",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 3120,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "880:8:19"
+            },
+            "parameters": {
+              "id": 3119,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3116,
+                  "mutability": "mutable",
+                  "name": "role",
+                  "nameLocation": "845:4:19",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3131,
+                  "src": "831:18:19",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 3115,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "831:6:19",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3118,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "859:7:19",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3131,
+                  "src": "851:15:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3117,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "851:7:19",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "830:37:19"
+            },
+            "returnParameters": {
+              "id": 3123,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3122,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3131,
+                  "src": "897:4:19",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 3121,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "897:4:19",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "896:6:19"
+            },
+            "scope": 3132,
+            "src": "814:151:19",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 3133,
+        "src": "285:685:19",
+        "usedErrors": []
+      }
+    ],
+    "src": "93:878:19"
+  },
+  "bytecode": "608060405234801561001057600080fd5b50610313806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c806352e5eb79146100465780636c9cd09714610078578063bc43cbaf146100a0575b600080fd5b610076610054366004610162565b600080546001600160a01b0319166001600160a01b0392909216919091179055565b005b61008b610086366004610193565b6100cb565b60405190151581526020015b60405180910390f35b6000546100b3906001600160a01b031681565b6040516001600160a01b039091168152602001610097565b60008054604051636c9cd09760e01b81526001600160a01b0390911690636c9cd097906100fe9086908690600401610255565b602060405180830381865afa15801561011b573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061013f91906102bb565b9392505050565b80356001600160a01b038116811461015d57600080fd5b919050565b60006020828403121561017457600080fd5b61013f82610146565b634e487b7160e01b600052604160045260246000fd5b600080604083850312156101a657600080fd5b823567ffffffffffffffff808211156101be57600080fd5b818501915085601f8301126101d257600080fd5b8135818111156101e4576101e461017d565b604051601f8201601f19908116603f0116810190838211818310171561020c5761020c61017d565b8160405282815288602084870101111561022557600080fd5b82602086016020830137600060208483010152809650505050505061024c60208401610146565b90509250929050565b604081526000835180604084015260005b818110156102835760208187018101516060868401015201610266565b81811115610295576000606083860101525b506001600160a01b0393909316602083015250601f91909101601f191601606001919050565b6000602082840312156102cd57600080fd5b8151801515811461013f57600080fdfea2646970667358221220b850dcd918319b6e0f2493c50a967850c32ba6320c542157258fc174beac863a64736f6c634300080d0033",
+  "bytecodeSha1": "e220ca54e44a7d3303bc7d1b179486a7e3f5691f",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.13+commit.abaa5c0e"
+  },
+  "contractName": "AccessControlAdapter",
+  "coverageMap": {
+    "branches": {
+      "19": {},
+      "28": {},
+      "29": {}
+    },
+    "statements": {
+      "19": {
+        "AccessControlAdapter.connectAccessController": {
+          "0": [
+            755,
+            802
+          ]
+        },
+        "AccessControlAdapter.hasRole": {
+          "1": [
+            912,
+            958
+          ]
+        }
+      },
+      "28": {},
+      "29": {}
+    }
+  },
+  "dependencies": [
+    "IAccessControl",
+    "IAccessControlAdapter"
+  ],
+  "deployedBytecode": "608060405234801561001057600080fd5b50600436106100415760003560e01c806352e5eb79146100465780636c9cd09714610078578063bc43cbaf146100a0575b600080fd5b610076610054366004610162565b600080546001600160a01b0319166001600160a01b0392909216919091179055565b005b61008b610086366004610193565b6100cb565b60405190151581526020015b60405180910390f35b6000546100b3906001600160a01b031681565b6040516001600160a01b039091168152602001610097565b60008054604051636c9cd09760e01b81526001600160a01b0390911690636c9cd097906100fe9086908690600401610255565b602060405180830381865afa15801561011b573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061013f91906102bb565b9392505050565b80356001600160a01b038116811461015d57600080fd5b919050565b60006020828403121561017457600080fd5b61013f82610146565b634e487b7160e01b600052604160045260246000fd5b600080604083850312156101a657600080fd5b823567ffffffffffffffff808211156101be57600080fd5b818501915085601f8301126101d257600080fd5b8135818111156101e4576101e461017d565b604051601f8201601f19908116603f0116810190838211818310171561020c5761020c61017d565b8160405282815288602084870101111561022557600080fd5b82602086016020830137600060208483010152809650505050505061024c60208401610146565b90509250929050565b604081526000835180604084015260005b818110156102835760208187018101516060868401015201610266565b81811115610295576000606083860101525b506001600160a01b0393909316602083015250601f91909101601f191601606001919050565b6000602082840312156102cd57600080fd5b8151801515811461013f57600080fdfea2646970667358221220b850dcd918319b6e0f2493c50a967850c32ba6320c542157258fc174beac863a64736f6c634300080d0033",
+  "deployedSourceMap": "285:685:19:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;674:135;;;;;;:::i;:::-;755:16;:47;;-1:-1:-1;;;;;;755:47:19;-1:-1:-1;;;;;755:47:19;;;;;;;;;;674:135;;;814:151;;;;;;:::i;:::-;;:::i;:::-;;;1691:14:30;;1684:22;1666:41;;1654:2;1639:18;814:151:19;;;;;;;;348:38;;;;;-1:-1:-1;;;;;348:38:19;;;;;;-1:-1:-1;;;;;1905:32:30;;;1887:51;;1875:2;1860:18;348:38:19;1718:226:30;814:151:19;897:4;919:16;;:39;;-1:-1:-1;;;919:39:19;;-1:-1:-1;;;;;919:16:19;;;;:24;;:39;;944:4;;950:7;;919:39;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;912:46;814:151;-1:-1:-1;;;814:151:19:o;14:173:30:-;82:20;;-1:-1:-1;;;;;131:31:30;;121:42;;111:70;;177:1;174;167:12;111:70;14:173;;;:::o;192:186::-;251:6;304:2;292:9;283:7;279:23;275:32;272:52;;;320:1;317;310:12;272:52;343:29;362:9;343:29;:::i;383:127::-;444:10;439:3;435:20;432:1;425:31;475:4;472:1;465:15;499:4;496:1;489:15;515:1006;593:6;601;654:2;642:9;633:7;629:23;625:32;622:52;;;670:1;667;660:12;622:52;710:9;697:23;739:18;780:2;772:6;769:14;766:34;;;796:1;793;786:12;766:34;834:6;823:9;819:22;809:32;;879:7;872:4;868:2;864:13;860:27;850:55;;901:1;898;891:12;850:55;937:2;924:16;959:2;955;952:10;949:36;;;965:18;;:::i;:::-;1040:2;1034:9;1008:2;1094:13;;-1:-1:-1;;1090:22:30;;;1114:2;1086:31;1082:40;1070:53;;;1138:18;;;1158:22;;;1135:46;1132:72;;;1184:18;;:::i;:::-;1224:10;1220:2;1213:22;1259:2;1251:6;1244:18;1301:7;1294:4;1289:2;1285;1281:11;1277:22;1274:35;1271:55;;;1322:1;1319;1312:12;1271:55;1382:2;1375:4;1371:2;1367:13;1360:4;1352:6;1348:17;1335:50;1429:1;1422:4;1417:2;1409:6;1405:15;1401:26;1394:37;1450:6;1440:16;;;;;;;1475:40;1509:4;1498:9;1494:20;1475:40;:::i;:::-;1465:50;;515:1006;;;;;:::o;1949:679::-;2126:2;2115:9;2108:21;2089:4;2158:6;2152:13;2201:6;2196:2;2185:9;2181:18;2174:34;2226:1;2236:144;2250:6;2247:1;2244:13;2236:144;;;2363:4;2347:14;;;2343:25;;2337:32;2332:2;2313:17;;;2309:26;2302:68;2265:12;2236:144;;;2398:6;2395:1;2392:13;2389:91;;;2468:1;2463:2;2454:6;2443:9;2439:22;2435:31;2428:42;2389:91;-1:-1:-1;;;;;;2589:32:30;;;;2582:4;2567:20;;2560:62;-1:-1:-1;2541:2:30;2520:15;;;;-1:-1:-1;;2516:29:30;2501:45;2548:2;2497:54;;1949:679;-1:-1:-1;1949:679:30:o;2633:277::-;2700:6;2753:2;2741:9;2732:7;2728:23;2724:32;2721:52;;;2769:1;2766;2759:12;2721:52;2801:9;2795:16;2854:5;2847:13;2840:21;2833:5;2830:32;2820:60;;2876:1;2873;2866:12",
+  "language": "Solidity",
+  "natspec": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "offset": [
+    285,
+    970
+  ],
+  "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH2 0x41 JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x52E5EB79 EQ PUSH2 0x46 JUMPI DUP1 PUSH4 0x6C9CD097 EQ PUSH2 0x78 JUMPI DUP1 PUSH4 0xBC43CBAF EQ PUSH2 0xA0 JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x76 PUSH2 0x54 CALLDATASIZE PUSH1 0x4 PUSH2 0x162 JUMP JUMPDEST PUSH1 0x0 DUP1 SLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB NOT AND PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP3 SWAP1 SWAP3 AND SWAP2 SWAP1 SWAP2 OR SWAP1 SSTORE JUMP JUMPDEST STOP JUMPDEST PUSH2 0x8B PUSH2 0x86 CALLDATASIZE PUSH1 0x4 PUSH2 0x193 JUMP JUMPDEST PUSH2 0xCB JUMP JUMPDEST PUSH1 0x40 MLOAD SWAP1 ISZERO ISZERO DUP2 MSTORE PUSH1 0x20 ADD JUMPDEST PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST PUSH1 0x0 SLOAD PUSH2 0xB3 SWAP1 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND DUP2 JUMP JUMPDEST PUSH1 0x40 MLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP1 SWAP2 AND DUP2 MSTORE PUSH1 0x20 ADD PUSH2 0x97 JUMP JUMPDEST PUSH1 0x0 DUP1 SLOAD PUSH1 0x40 MLOAD PUSH4 0x6C9CD097 PUSH1 0xE0 SHL DUP2 MSTORE PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP1 SWAP2 AND SWAP1 PUSH4 0x6C9CD097 SWAP1 PUSH2 0xFE SWAP1 DUP7 SWAP1 DUP7 SWAP1 PUSH1 0x4 ADD PUSH2 0x255 JUMP JUMPDEST PUSH1 0x20 PUSH1 0x40 MLOAD DUP1 DUP4 SUB DUP2 DUP7 GAS STATICCALL ISZERO DUP1 ISZERO PUSH2 0x11B JUMPI RETURNDATASIZE PUSH1 0x0 DUP1 RETURNDATACOPY RETURNDATASIZE PUSH1 0x0 REVERT JUMPDEST POP POP POP POP PUSH1 0x40 MLOAD RETURNDATASIZE PUSH1 0x1F NOT PUSH1 0x1F DUP3 ADD AND DUP3 ADD DUP1 PUSH1 0x40 MSTORE POP DUP2 ADD SWAP1 PUSH2 0x13F SWAP2 SWAP1 PUSH2 0x2BB JUMP JUMPDEST SWAP4 SWAP3 POP POP POP JUMP JUMPDEST DUP1 CALLDATALOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP2 AND DUP2 EQ PUSH2 0x15D JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST SWAP2 SWAP1 POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x174 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x13F DUP3 PUSH2 0x146 JUMP JUMPDEST PUSH4 0x4E487B71 PUSH1 0xE0 SHL PUSH1 0x0 MSTORE PUSH1 0x41 PUSH1 0x4 MSTORE PUSH1 0x24 PUSH1 0x0 REVERT JUMPDEST PUSH1 0x0 DUP1 PUSH1 0x40 DUP4 DUP6 SUB SLT ISZERO PUSH2 0x1A6 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP3 CALLDATALOAD PUSH8 0xFFFFFFFFFFFFFFFF DUP1 DUP3 GT ISZERO PUSH2 0x1BE JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 DUP6 ADD SWAP2 POP DUP6 PUSH1 0x1F DUP4 ADD SLT PUSH2 0x1D2 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 CALLDATALOAD DUP2 DUP2 GT ISZERO PUSH2 0x1E4 JUMPI PUSH2 0x1E4 PUSH2 0x17D JUMP JUMPDEST PUSH1 0x40 MLOAD PUSH1 0x1F DUP3 ADD PUSH1 0x1F NOT SWAP1 DUP2 AND PUSH1 0x3F ADD AND DUP2 ADD SWAP1 DUP4 DUP3 GT DUP2 DUP4 LT OR ISZERO PUSH2 0x20C JUMPI PUSH2 0x20C PUSH2 0x17D JUMP JUMPDEST DUP2 PUSH1 0x40 MSTORE DUP3 DUP2 MSTORE DUP9 PUSH1 0x20 DUP5 DUP8 ADD ADD GT ISZERO PUSH2 0x225 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP3 PUSH1 0x20 DUP7 ADD PUSH1 0x20 DUP4 ADD CALLDATACOPY PUSH1 0x0 PUSH1 0x20 DUP5 DUP4 ADD ADD MSTORE DUP1 SWAP7 POP POP POP POP POP POP PUSH2 0x24C PUSH1 0x20 DUP5 ADD PUSH2 0x146 JUMP JUMPDEST SWAP1 POP SWAP3 POP SWAP3 SWAP1 POP JUMP JUMPDEST PUSH1 0x40 DUP2 MSTORE PUSH1 0x0 DUP4 MLOAD DUP1 PUSH1 0x40 DUP5 ADD MSTORE PUSH1 0x0 JUMPDEST DUP2 DUP2 LT ISZERO PUSH2 0x283 JUMPI PUSH1 0x20 DUP2 DUP8 ADD DUP2 ADD MLOAD PUSH1 0x60 DUP7 DUP5 ADD ADD MSTORE ADD PUSH2 0x266 JUMP JUMPDEST DUP2 DUP2 GT ISZERO PUSH2 0x295 JUMPI PUSH1 0x0 PUSH1 0x60 DUP4 DUP7 ADD ADD MSTORE JUMPDEST POP PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP4 SWAP1 SWAP4 AND PUSH1 0x20 DUP4 ADD MSTORE POP PUSH1 0x1F SWAP2 SWAP1 SWAP2 ADD PUSH1 0x1F NOT AND ADD PUSH1 0x60 ADD SWAP2 SWAP1 POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x2CD JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 MLOAD DUP1 ISZERO ISZERO DUP2 EQ PUSH2 0x13F JUMPI PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xB8 POP 0xDC 0xD9 XOR BALANCE SWAP12 PUSH15 0xF2493C50A967850C32BA6320C5421 JUMPI 0x25 DUP16 0xC1 PUSH21 0xBEAC863A64736F6C634300080D0033000000000000 ",
+  "pcMap": {
+    "0": {
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x80"
+    },
+    "2": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x40"
+    },
+    "4": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "MSTORE",
+      "path": "19"
+    },
+    "5": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "CALLVALUE",
+      "path": "19"
+    },
+    "6": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "DUP1",
+      "path": "19"
+    },
+    "7": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "ISZERO",
+      "path": "19"
+    },
+    "8": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x10"
+    },
+    "11": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "JUMPI",
+      "path": "19"
+    },
+    "12": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x0"
+    },
+    "14": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "DUP1",
+      "path": "19"
+    },
+    "15": {
+      "dev": "Cannot send ether to nonpayable function",
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "REVERT",
+      "path": "19"
+    },
+    "16": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "17": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "POP",
+      "path": "19"
+    },
+    "18": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x4"
+    },
+    "20": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "CALLDATASIZE",
+      "path": "19"
+    },
+    "21": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "LT",
+      "path": "19"
+    },
+    "22": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x41"
+    },
+    "25": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "JUMPI",
+      "path": "19"
+    },
+    "26": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x0"
+    },
+    "28": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "CALLDATALOAD",
+      "path": "19"
+    },
+    "29": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0xE0"
+    },
+    "31": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "SHR",
+      "path": "19"
+    },
+    "32": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "DUP1",
+      "path": "19"
+    },
+    "33": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH4",
+      "path": "19",
+      "value": "0x52E5EB79"
+    },
+    "38": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "EQ",
+      "path": "19"
+    },
+    "39": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x46"
+    },
+    "42": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "JUMPI",
+      "path": "19"
+    },
+    "43": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "DUP1",
+      "path": "19"
+    },
+    "44": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH4",
+      "path": "19",
+      "value": "0x6C9CD097"
+    },
+    "49": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "EQ",
+      "path": "19"
+    },
+    "50": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x78"
+    },
+    "53": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "JUMPI",
+      "path": "19"
+    },
+    "54": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "DUP1",
+      "path": "19"
+    },
+    "55": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH4",
+      "path": "19",
+      "value": "0xBC43CBAF"
+    },
+    "60": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "EQ",
+      "path": "19"
+    },
+    "61": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0xA0"
+    },
+    "64": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "JUMPI",
+      "path": "19"
+    },
+    "65": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "66": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x0"
+    },
+    "68": {
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "DUP1",
+      "path": "19"
+    },
+    "69": {
+      "first_revert": true,
+      "fn": null,
+      "offset": [
+        285,
+        970
+      ],
+      "op": "REVERT",
+      "path": "19"
+    },
+    "70": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        674,
+        809
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "71": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        674,
+        809
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x76"
+    },
+    "74": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        674,
+        809
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x54"
+    },
+    "77": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        674,
+        809
+      ],
+      "op": "CALLDATASIZE",
+      "path": "19"
+    },
+    "78": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        674,
+        809
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x4"
+    },
+    "80": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        674,
+        809
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x162"
+    },
+    "83": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "jump": "i",
+      "offset": [
+        674,
+        809
+      ],
+      "op": "JUMP",
+      "path": "19"
+    },
+    "84": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        674,
+        809
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "85": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        755,
+        771
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "statement": 0,
+      "value": "0x0"
+    },
+    "87": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        755,
+        802
+      ],
+      "op": "DUP1",
+      "path": "19"
+    },
+    "88": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        755,
+        802
+      ],
+      "op": "SLOAD",
+      "path": "19"
+    },
+    "89": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "91": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "93": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "95": {
+      "op": "SHL"
+    },
+    "96": {
+      "op": "SUB"
+    },
+    "97": {
+      "op": "NOT"
+    },
+    "98": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        755,
+        802
+      ],
+      "op": "AND",
+      "path": "19"
+    },
+    "99": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "101": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "103": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "105": {
+      "op": "SHL"
+    },
+    "106": {
+      "op": "SUB"
+    },
+    "107": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        755,
+        802
+      ],
+      "op": "SWAP3",
+      "path": "19"
+    },
+    "108": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        755,
+        802
+      ],
+      "op": "SWAP1",
+      "path": "19"
+    },
+    "109": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        755,
+        802
+      ],
+      "op": "SWAP3",
+      "path": "19"
+    },
+    "110": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        755,
+        802
+      ],
+      "op": "AND",
+      "path": "19"
+    },
+    "111": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        755,
+        802
+      ],
+      "op": "SWAP2",
+      "path": "19"
+    },
+    "112": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        755,
+        802
+      ],
+      "op": "SWAP1",
+      "path": "19"
+    },
+    "113": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        755,
+        802
+      ],
+      "op": "SWAP2",
+      "path": "19"
+    },
+    "114": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        755,
+        802
+      ],
+      "op": "OR",
+      "path": "19"
+    },
+    "115": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        755,
+        802
+      ],
+      "op": "SWAP1",
+      "path": "19"
+    },
+    "116": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        755,
+        802
+      ],
+      "op": "SSTORE",
+      "path": "19"
+    },
+    "117": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        674,
+        809
+      ],
+      "op": "JUMP",
+      "path": "19"
+    },
+    "118": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        674,
+        809
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "119": {
+      "fn": "AccessControlAdapter.connectAccessController",
+      "offset": [
+        674,
+        809
+      ],
+      "op": "STOP",
+      "path": "19"
+    },
+    "120": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "121": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x8B"
+    },
+    "124": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x86"
+    },
+    "127": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "CALLDATASIZE",
+      "path": "19"
+    },
+    "128": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x4"
+    },
+    "130": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x193"
+    },
+    "133": {
+      "fn": "AccessControlAdapter.hasRole",
+      "jump": "i",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "JUMP",
+      "path": "19"
+    },
+    "134": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "135": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0xCB"
+    },
+    "138": {
+      "fn": "AccessControlAdapter.hasRole",
+      "jump": "i",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "JUMP",
+      "path": "19"
+    },
+    "139": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "140": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x40"
+    },
+    "142": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "MLOAD",
+      "path": "19"
+    },
+    "143": {
+      "op": "SWAP1"
+    },
+    "144": {
+      "op": "ISZERO"
+    },
+    "145": {
+      "op": "ISZERO"
+    },
+    "146": {
+      "op": "DUP2"
+    },
+    "147": {
+      "op": "MSTORE"
+    },
+    "148": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "150": {
+      "op": "ADD"
+    },
+    "151": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "152": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x40"
+    },
+    "154": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "MLOAD",
+      "path": "19"
+    },
+    "155": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "DUP1",
+      "path": "19"
+    },
+    "156": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "SWAP2",
+      "path": "19"
+    },
+    "157": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "SUB",
+      "path": "19"
+    },
+    "158": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "SWAP1",
+      "path": "19"
+    },
+    "159": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "RETURN",
+      "path": "19"
+    },
+    "160": {
+      "offset": [
+        348,
+        386
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "161": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        348,
+        386
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x0"
+    },
+    "163": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        348,
+        386
+      ],
+      "op": "SLOAD",
+      "path": "19"
+    },
+    "164": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        348,
+        386
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0xB3"
+    },
+    "167": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        348,
+        386
+      ],
+      "op": "SWAP1",
+      "path": "19"
+    },
+    "168": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "170": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "172": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "174": {
+      "op": "SHL"
+    },
+    "175": {
+      "op": "SUB"
+    },
+    "176": {
+      "offset": [
+        348,
+        386
+      ],
+      "op": "AND",
+      "path": "19"
+    },
+    "177": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        348,
+        386
+      ],
+      "op": "DUP2",
+      "path": "19"
+    },
+    "178": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        348,
+        386
+      ],
+      "op": "JUMP",
+      "path": "19"
+    },
+    "179": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        348,
+        386
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "180": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        348,
+        386
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x40"
+    },
+    "182": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        348,
+        386
+      ],
+      "op": "MLOAD",
+      "path": "19"
+    },
+    "183": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "185": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "187": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "189": {
+      "op": "SHL"
+    },
+    "190": {
+      "op": "SUB"
+    },
+    "191": {
+      "op": "SWAP1"
+    },
+    "192": {
+      "op": "SWAP2"
+    },
+    "193": {
+      "op": "AND"
+    },
+    "194": {
+      "op": "DUP2"
+    },
+    "195": {
+      "op": "MSTORE"
+    },
+    "196": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "198": {
+      "op": "ADD"
+    },
+    "199": {
+      "offset": [
+        348,
+        386
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x97"
+    },
+    "202": {
+      "op": "JUMP"
+    },
+    "203": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "204": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        897,
+        901
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x0"
+    },
+    "206": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        935
+      ],
+      "op": "DUP1",
+      "path": "19",
+      "statement": 1
+    },
+    "207": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        935
+      ],
+      "op": "SLOAD",
+      "path": "19"
+    },
+    "208": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x40"
+    },
+    "210": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "MLOAD",
+      "path": "19"
+    },
+    "211": {
+      "op": "PUSH4",
+      "value": "0x6C9CD097"
+    },
+    "216": {
+      "op": "PUSH1",
+      "value": "0xE0"
+    },
+    "218": {
+      "op": "SHL"
+    },
+    "219": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "DUP2",
+      "path": "19"
+    },
+    "220": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "MSTORE",
+      "path": "19"
+    },
+    "221": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "223": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "225": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "227": {
+      "op": "SHL"
+    },
+    "228": {
+      "op": "SUB"
+    },
+    "229": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        935
+      ],
+      "op": "SWAP1",
+      "path": "19"
+    },
+    "230": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        935
+      ],
+      "op": "SWAP2",
+      "path": "19"
+    },
+    "231": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        935
+      ],
+      "op": "AND",
+      "path": "19"
+    },
+    "232": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        935
+      ],
+      "op": "SWAP1",
+      "path": "19"
+    },
+    "233": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        943
+      ],
+      "op": "PUSH4",
+      "path": "19",
+      "value": "0x6C9CD097"
+    },
+    "238": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        943
+      ],
+      "op": "SWAP1",
+      "path": "19"
+    },
+    "239": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0xFE"
+    },
+    "242": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "SWAP1",
+      "path": "19"
+    },
+    "243": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        944,
+        948
+      ],
+      "op": "DUP7",
+      "path": "19"
+    },
+    "244": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        944,
+        948
+      ],
+      "op": "SWAP1",
+      "path": "19"
+    },
+    "245": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        950,
+        957
+      ],
+      "op": "DUP7",
+      "path": "19"
+    },
+    "246": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        950,
+        957
+      ],
+      "op": "SWAP1",
+      "path": "19"
+    },
+    "247": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x4"
+    },
+    "249": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "ADD",
+      "path": "19"
+    },
+    "250": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x255"
+    },
+    "253": {
+      "fn": "AccessControlAdapter.hasRole",
+      "jump": "i",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "JUMP",
+      "path": "19"
+    },
+    "254": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "255": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x20"
+    },
+    "257": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x40"
+    },
+    "259": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "MLOAD",
+      "path": "19"
+    },
+    "260": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "DUP1",
+      "path": "19"
+    },
+    "261": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "DUP4",
+      "path": "19"
+    },
+    "262": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "SUB",
+      "path": "19"
+    },
+    "263": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "DUP2",
+      "path": "19"
+    },
+    "264": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "DUP7",
+      "path": "19"
+    },
+    "265": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "GAS",
+      "path": "19"
+    },
+    "266": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "STATICCALL",
+      "path": "19"
+    },
+    "267": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "ISZERO",
+      "path": "19"
+    },
+    "268": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "DUP1",
+      "path": "19"
+    },
+    "269": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "ISZERO",
+      "path": "19"
+    },
+    "270": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x11B"
+    },
+    "273": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "JUMPI",
+      "path": "19"
+    },
+    "274": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "19"
+    },
+    "275": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x0"
+    },
+    "277": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "DUP1",
+      "path": "19"
+    },
+    "278": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "RETURNDATACOPY",
+      "path": "19"
+    },
+    "279": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "19"
+    },
+    "280": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x0"
+    },
+    "282": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "REVERT",
+      "path": "19"
+    },
+    "283": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "284": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "POP",
+      "path": "19"
+    },
+    "285": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "POP",
+      "path": "19"
+    },
+    "286": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "POP",
+      "path": "19"
+    },
+    "287": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "POP",
+      "path": "19"
+    },
+    "288": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x40"
+    },
+    "290": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "MLOAD",
+      "path": "19"
+    },
+    "291": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "19"
+    },
+    "292": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x1F"
+    },
+    "294": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "NOT",
+      "path": "19"
+    },
+    "295": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x1F"
+    },
+    "297": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "DUP3",
+      "path": "19"
+    },
+    "298": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "ADD",
+      "path": "19"
+    },
+    "299": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "AND",
+      "path": "19"
+    },
+    "300": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "DUP3",
+      "path": "19"
+    },
+    "301": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "ADD",
+      "path": "19"
+    },
+    "302": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "DUP1",
+      "path": "19"
+    },
+    "303": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH1",
+      "path": "19",
+      "value": "0x40"
+    },
+    "305": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "MSTORE",
+      "path": "19"
+    },
+    "306": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "POP",
+      "path": "19"
+    },
+    "307": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "DUP2",
+      "path": "19"
+    },
+    "308": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "ADD",
+      "path": "19"
+    },
+    "309": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "SWAP1",
+      "path": "19"
+    },
+    "310": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x13F"
+    },
+    "313": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "SWAP2",
+      "path": "19"
+    },
+    "314": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "SWAP1",
+      "path": "19"
+    },
+    "315": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "PUSH2",
+      "path": "19",
+      "value": "0x2BB"
+    },
+    "318": {
+      "fn": "AccessControlAdapter.hasRole",
+      "jump": "i",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "JUMP",
+      "path": "19"
+    },
+    "319": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        919,
+        958
+      ],
+      "op": "JUMPDEST",
+      "path": "19"
+    },
+    "320": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        912,
+        958
+      ],
+      "op": "SWAP4",
+      "path": "19"
+    },
+    "321": {
+      "fn": "AccessControlAdapter.hasRole",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "SWAP3",
+      "path": "19"
+    },
+    "322": {
+      "op": "POP"
+    },
+    "323": {
+      "op": "POP"
+    },
+    "324": {
+      "op": "POP"
+    },
+    "325": {
+      "fn": "AccessControlAdapter.hasRole",
+      "jump": "o",
+      "offset": [
+        814,
+        965
+      ],
+      "op": "JUMP",
+      "path": "19"
+    },
+    "326": {
+      "op": "JUMPDEST"
+    },
+    "327": {
+      "op": "DUP1"
+    },
+    "328": {
+      "op": "CALLDATALOAD"
+    },
+    "329": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "331": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "333": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "335": {
+      "op": "SHL"
+    },
+    "336": {
+      "op": "SUB"
+    },
+    "337": {
+      "op": "DUP2"
+    },
+    "338": {
+      "op": "AND"
+    },
+    "339": {
+      "op": "DUP2"
+    },
+    "340": {
+      "op": "EQ"
+    },
+    "341": {
+      "op": "PUSH2",
+      "value": "0x15D"
+    },
+    "344": {
+      "op": "JUMPI"
+    },
+    "345": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "347": {
+      "op": "DUP1"
+    },
+    "348": {
+      "op": "REVERT"
+    },
+    "349": {
+      "op": "JUMPDEST"
+    },
+    "350": {
+      "op": "SWAP2"
+    },
+    "351": {
+      "op": "SWAP1"
+    },
+    "352": {
+      "op": "POP"
+    },
+    "353": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "354": {
+      "op": "JUMPDEST"
+    },
+    "355": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "357": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "359": {
+      "op": "DUP3"
+    },
+    "360": {
+      "op": "DUP5"
+    },
+    "361": {
+      "op": "SUB"
+    },
+    "362": {
+      "op": "SLT"
+    },
+    "363": {
+      "op": "ISZERO"
+    },
+    "364": {
+      "op": "PUSH2",
+      "value": "0x174"
+    },
+    "367": {
+      "op": "JUMPI"
+    },
+    "368": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "370": {
+      "op": "DUP1"
+    },
+    "371": {
+      "op": "REVERT"
+    },
+    "372": {
+      "op": "JUMPDEST"
+    },
+    "373": {
+      "op": "PUSH2",
+      "value": "0x13F"
+    },
+    "376": {
+      "op": "DUP3"
+    },
+    "377": {
+      "op": "PUSH2",
+      "value": "0x146"
+    },
+    "380": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "381": {
+      "op": "JUMPDEST"
+    },
+    "382": {
+      "op": "PUSH4",
+      "value": "0x4E487B71"
+    },
+    "387": {
+      "op": "PUSH1",
+      "value": "0xE0"
+    },
+    "389": {
+      "op": "SHL"
+    },
+    "390": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "392": {
+      "op": "MSTORE"
+    },
+    "393": {
+      "op": "PUSH1",
+      "value": "0x41"
+    },
+    "395": {
+      "op": "PUSH1",
+      "value": "0x4"
+    },
+    "397": {
+      "op": "MSTORE"
+    },
+    "398": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "400": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "402": {
+      "op": "REVERT"
+    },
+    "403": {
+      "op": "JUMPDEST"
+    },
+    "404": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "406": {
+      "op": "DUP1"
+    },
+    "407": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "409": {
+      "op": "DUP4"
+    },
+    "410": {
+      "op": "DUP6"
+    },
+    "411": {
+      "op": "SUB"
+    },
+    "412": {
+      "op": "SLT"
+    },
+    "413": {
+      "op": "ISZERO"
+    },
+    "414": {
+      "op": "PUSH2",
+      "value": "0x1A6"
+    },
+    "417": {
+      "op": "JUMPI"
+    },
+    "418": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "420": {
+      "op": "DUP1"
+    },
+    "421": {
+      "op": "REVERT"
+    },
+    "422": {
+      "op": "JUMPDEST"
+    },
+    "423": {
+      "op": "DUP3"
+    },
+    "424": {
+      "op": "CALLDATALOAD"
+    },
+    "425": {
+      "op": "PUSH8",
+      "value": "0xFFFFFFFFFFFFFFFF"
+    },
+    "434": {
+      "op": "DUP1"
+    },
+    "435": {
+      "op": "DUP3"
+    },
+    "436": {
+      "op": "GT"
+    },
+    "437": {
+      "op": "ISZERO"
+    },
+    "438": {
+      "op": "PUSH2",
+      "value": "0x1BE"
+    },
+    "441": {
+      "op": "JUMPI"
+    },
+    "442": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "444": {
+      "op": "DUP1"
+    },
+    "445": {
+      "op": "REVERT"
+    },
+    "446": {
+      "op": "JUMPDEST"
+    },
+    "447": {
+      "op": "DUP2"
+    },
+    "448": {
+      "op": "DUP6"
+    },
+    "449": {
+      "op": "ADD"
+    },
+    "450": {
+      "op": "SWAP2"
+    },
+    "451": {
+      "op": "POP"
+    },
+    "452": {
+      "op": "DUP6"
+    },
+    "453": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "455": {
+      "op": "DUP4"
+    },
+    "456": {
+      "op": "ADD"
+    },
+    "457": {
+      "op": "SLT"
+    },
+    "458": {
+      "op": "PUSH2",
+      "value": "0x1D2"
+    },
+    "461": {
+      "op": "JUMPI"
+    },
+    "462": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "464": {
+      "op": "DUP1"
+    },
+    "465": {
+      "op": "REVERT"
+    },
+    "466": {
+      "op": "JUMPDEST"
+    },
+    "467": {
+      "op": "DUP2"
+    },
+    "468": {
+      "op": "CALLDATALOAD"
+    },
+    "469": {
+      "op": "DUP2"
+    },
+    "470": {
+      "op": "DUP2"
+    },
+    "471": {
+      "op": "GT"
+    },
+    "472": {
+      "op": "ISZERO"
+    },
+    "473": {
+      "op": "PUSH2",
+      "value": "0x1E4"
+    },
+    "476": {
+      "op": "JUMPI"
+    },
+    "477": {
+      "op": "PUSH2",
+      "value": "0x1E4"
+    },
+    "480": {
+      "op": "PUSH2",
+      "value": "0x17D"
+    },
+    "483": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "484": {
+      "op": "JUMPDEST"
+    },
+    "485": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "487": {
+      "op": "MLOAD"
+    },
+    "488": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "490": {
+      "op": "DUP3"
+    },
+    "491": {
+      "op": "ADD"
+    },
+    "492": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "494": {
+      "op": "NOT"
+    },
+    "495": {
+      "op": "SWAP1"
+    },
+    "496": {
+      "op": "DUP2"
+    },
+    "497": {
+      "op": "AND"
+    },
+    "498": {
+      "op": "PUSH1",
+      "value": "0x3F"
+    },
+    "500": {
+      "op": "ADD"
+    },
+    "501": {
+      "op": "AND"
+    },
+    "502": {
+      "op": "DUP2"
+    },
+    "503": {
+      "op": "ADD"
+    },
+    "504": {
+      "op": "SWAP1"
+    },
+    "505": {
+      "op": "DUP4"
+    },
+    "506": {
+      "op": "DUP3"
+    },
+    "507": {
+      "op": "GT"
+    },
+    "508": {
+      "op": "DUP2"
+    },
+    "509": {
+      "op": "DUP4"
+    },
+    "510": {
+      "op": "LT"
+    },
+    "511": {
+      "op": "OR"
+    },
+    "512": {
+      "op": "ISZERO"
+    },
+    "513": {
+      "op": "PUSH2",
+      "value": "0x20C"
+    },
+    "516": {
+      "op": "JUMPI"
+    },
+    "517": {
+      "op": "PUSH2",
+      "value": "0x20C"
+    },
+    "520": {
+      "op": "PUSH2",
+      "value": "0x17D"
+    },
+    "523": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "524": {
+      "op": "JUMPDEST"
+    },
+    "525": {
+      "op": "DUP2"
+    },
+    "526": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "528": {
+      "op": "MSTORE"
+    },
+    "529": {
+      "op": "DUP3"
+    },
+    "530": {
+      "op": "DUP2"
+    },
+    "531": {
+      "op": "MSTORE"
+    },
+    "532": {
+      "op": "DUP9"
+    },
+    "533": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "535": {
+      "op": "DUP5"
+    },
+    "536": {
+      "op": "DUP8"
+    },
+    "537": {
+      "op": "ADD"
+    },
+    "538": {
+      "op": "ADD"
+    },
+    "539": {
+      "op": "GT"
+    },
+    "540": {
+      "op": "ISZERO"
+    },
+    "541": {
+      "op": "PUSH2",
+      "value": "0x225"
+    },
+    "544": {
+      "op": "JUMPI"
+    },
+    "545": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "547": {
+      "op": "DUP1"
+    },
+    "548": {
+      "op": "REVERT"
+    },
+    "549": {
+      "op": "JUMPDEST"
+    },
+    "550": {
+      "op": "DUP3"
+    },
+    "551": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "553": {
+      "op": "DUP7"
+    },
+    "554": {
+      "op": "ADD"
+    },
+    "555": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "557": {
+      "op": "DUP4"
+    },
+    "558": {
+      "op": "ADD"
+    },
+    "559": {
+      "op": "CALLDATACOPY"
+    },
+    "560": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "562": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "564": {
+      "op": "DUP5"
+    },
+    "565": {
+      "op": "DUP4"
+    },
+    "566": {
+      "op": "ADD"
+    },
+    "567": {
+      "op": "ADD"
+    },
+    "568": {
+      "op": "MSTORE"
+    },
+    "569": {
+      "op": "DUP1"
+    },
+    "570": {
+      "op": "SWAP7"
+    },
+    "571": {
+      "op": "POP"
+    },
+    "572": {
+      "op": "POP"
+    },
+    "573": {
+      "op": "POP"
+    },
+    "574": {
+      "op": "POP"
+    },
+    "575": {
+      "op": "POP"
+    },
+    "576": {
+      "op": "POP"
+    },
+    "577": {
+      "op": "PUSH2",
+      "value": "0x24C"
+    },
+    "580": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "582": {
+      "op": "DUP5"
+    },
+    "583": {
+      "op": "ADD"
+    },
+    "584": {
+      "op": "PUSH2",
+      "value": "0x146"
+    },
+    "587": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "588": {
+      "op": "JUMPDEST"
+    },
+    "589": {
+      "op": "SWAP1"
+    },
+    "590": {
+      "op": "POP"
+    },
+    "591": {
+      "op": "SWAP3"
+    },
+    "592": {
+      "op": "POP"
+    },
+    "593": {
+      "op": "SWAP3"
+    },
+    "594": {
+      "op": "SWAP1"
+    },
+    "595": {
+      "op": "POP"
+    },
+    "596": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "597": {
+      "op": "JUMPDEST"
+    },
+    "598": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "600": {
+      "op": "DUP2"
+    },
+    "601": {
+      "op": "MSTORE"
+    },
+    "602": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "604": {
+      "op": "DUP4"
+    },
+    "605": {
+      "op": "MLOAD"
+    },
+    "606": {
+      "op": "DUP1"
+    },
+    "607": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "609": {
+      "op": "DUP5"
+    },
+    "610": {
+      "op": "ADD"
+    },
+    "611": {
+      "op": "MSTORE"
+    },
+    "612": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "614": {
+      "op": "JUMPDEST"
+    },
+    "615": {
+      "op": "DUP2"
+    },
+    "616": {
+      "op": "DUP2"
+    },
+    "617": {
+      "op": "LT"
+    },
+    "618": {
+      "op": "ISZERO"
+    },
+    "619": {
+      "op": "PUSH2",
+      "value": "0x283"
+    },
+    "622": {
+      "op": "JUMPI"
+    },
+    "623": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "625": {
+      "op": "DUP2"
+    },
+    "626": {
+      "op": "DUP8"
+    },
+    "627": {
+      "op": "ADD"
+    },
+    "628": {
+      "op": "DUP2"
+    },
+    "629": {
+      "op": "ADD"
+    },
+    "630": {
+      "op": "MLOAD"
+    },
+    "631": {
+      "op": "PUSH1",
+      "value": "0x60"
+    },
+    "633": {
+      "op": "DUP7"
+    },
+    "634": {
+      "op": "DUP5"
+    },
+    "635": {
+      "op": "ADD"
+    },
+    "636": {
+      "op": "ADD"
+    },
+    "637": {
+      "op": "MSTORE"
+    },
+    "638": {
+      "op": "ADD"
+    },
+    "639": {
+      "op": "PUSH2",
+      "value": "0x266"
+    },
+    "642": {
+      "op": "JUMP"
+    },
+    "643": {
+      "op": "JUMPDEST"
+    },
+    "644": {
+      "op": "DUP2"
+    },
+    "645": {
+      "op": "DUP2"
+    },
+    "646": {
+      "op": "GT"
+    },
+    "647": {
+      "op": "ISZERO"
+    },
+    "648": {
+      "op": "PUSH2",
+      "value": "0x295"
+    },
+    "651": {
+      "op": "JUMPI"
+    },
+    "652": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "654": {
+      "op": "PUSH1",
+      "value": "0x60"
+    },
+    "656": {
+      "op": "DUP4"
+    },
+    "657": {
+      "op": "DUP7"
+    },
+    "658": {
+      "op": "ADD"
+    },
+    "659": {
+      "op": "ADD"
+    },
+    "660": {
+      "op": "MSTORE"
+    },
+    "661": {
+      "op": "JUMPDEST"
+    },
+    "662": {
+      "op": "POP"
+    },
+    "663": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "665": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "667": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "669": {
+      "op": "SHL"
+    },
+    "670": {
+      "op": "SUB"
+    },
+    "671": {
+      "op": "SWAP4"
+    },
+    "672": {
+      "op": "SWAP1"
+    },
+    "673": {
+      "op": "SWAP4"
+    },
+    "674": {
+      "op": "AND"
+    },
+    "675": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "677": {
+      "op": "DUP4"
+    },
+    "678": {
+      "op": "ADD"
+    },
+    "679": {
+      "op": "MSTORE"
+    },
+    "680": {
+      "op": "POP"
+    },
+    "681": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "683": {
+      "op": "SWAP2"
+    },
+    "684": {
+      "op": "SWAP1"
+    },
+    "685": {
+      "op": "SWAP2"
+    },
+    "686": {
+      "op": "ADD"
+    },
+    "687": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "689": {
+      "op": "NOT"
+    },
+    "690": {
+      "op": "AND"
+    },
+    "691": {
+      "op": "ADD"
+    },
+    "692": {
+      "op": "PUSH1",
+      "value": "0x60"
+    },
+    "694": {
+      "op": "ADD"
+    },
+    "695": {
+      "op": "SWAP2"
+    },
+    "696": {
+      "op": "SWAP1"
+    },
+    "697": {
+      "op": "POP"
+    },
+    "698": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "699": {
+      "op": "JUMPDEST"
+    },
+    "700": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "702": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "704": {
+      "op": "DUP3"
+    },
+    "705": {
+      "op": "DUP5"
+    },
+    "706": {
+      "op": "SUB"
+    },
+    "707": {
+      "op": "SLT"
+    },
+    "708": {
+      "op": "ISZERO"
+    },
+    "709": {
+      "op": "PUSH2",
+      "value": "0x2CD"
+    },
+    "712": {
+      "op": "JUMPI"
+    },
+    "713": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "715": {
+      "op": "DUP1"
+    },
+    "716": {
+      "op": "REVERT"
+    },
+    "717": {
+      "op": "JUMPDEST"
+    },
+    "718": {
+      "op": "DUP2"
+    },
+    "719": {
+      "op": "MLOAD"
+    },
+    "720": {
+      "op": "DUP1"
+    },
+    "721": {
+      "op": "ISZERO"
+    },
+    "722": {
+      "op": "ISZERO"
+    },
+    "723": {
+      "op": "DUP2"
+    },
+    "724": {
+      "op": "EQ"
+    },
+    "725": {
+      "op": "PUSH2",
+      "value": "0x13F"
+    },
+    "728": {
+      "op": "JUMPI"
+    },
+    "729": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "731": {
+      "op": "DUP1"
+    },
+    "732": {
+      "op": "REVERT"
+    }
+  },
+  "sha1": "9a6243aad0af3098131bb901189388fdf50b6061",
+  "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts v4.4.1 (access/AccessControl.sol)\n\npragma solidity ^0.8.0;\n\nimport \"interfaces/utils/access/IAccessControl.sol\";\nimport \"interfaces/utils/access/IAccessControlAdapter.sol\";\nimport \"contracts/utils/context/ContextAdapter.sol\";\n\ncontract  AccessControlAdapter is IAccessControlAdapter{\n\n\n    IAccessControl public accessController ;\n    \n    modifier onlyRole(string memory role,address account) {\n        require(accessController.hasRole(role, account));\n        _;\n    }\n\n    modifier onlyAdmin(address account) {\n        require(hasRole(\"owner\", account), \"the account is not the admin\");\n        _;\n    }\n    \n    function connectAccessController(address ac_acccount) public override  {\n        accessController =  IAccessControl(ac_acccount);\n    }\n    function hasRole(string memory role, address account) public view override returns(bool){\n        return accessController.hasRole(role, account);\n    }\n\n\n\n}\n",
+  "sourceMap": "285:685:19:-:0;;;;;;;;;;;;;;;;;;;",
+  "sourcePath": "contracts/utils/access/AccessControlAdapter.sol",
+  "type": "contract"
+}

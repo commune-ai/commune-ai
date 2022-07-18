@@ -1,0 +1,115 @@
+module: 'process.regression.crypto.sushiswap.process_data.module.Process'
+
+token: WETH
+splits:
+  train: ["2021-01-01", "2022-02-01"]
+  val: ["2021-02-01", "2022-05-20"]
+periods:
+  # the input period
+  input: 128
+  output: 12
+generated_periods:
+  input: 256
+  output: 64
+base_ticker: "15m"
+max_ticker: "120m"
+# feature groups (categorical (cat) and continuous (con))
+feature_group:
+  cat: 
+    - "Time Quarter"
+    - "Time Day of Week"
+    - "Time Day"
+    - "Time Hour"
+  con: 
+  - reserveUSD
+  - reserveETH
+  - token0Price
+  - token1Price
+  - reserve0
+  - reserve1
+  - totalSupply
+  - volumeUSD
+  - volumeToken0
+  - volumeToken1
+  - trackedReserveETH
+  - untrackedVolumeUSD
+  - tokenPriceUSD
+  
+# features that span both the input and output
+
+known_future_features: [ "Time Quarter",
+                      "Time Day of Week",
+                      "Time Day",
+                      "Time Hour" ]
+gt_keys:
+  - "tokenPriceUSD"
+timestamp_column: "timestamp"
+
+tag:
+  processed_data: "base"
+  processed_split: "base"
+  processed_samples: "diff"
+input_keys: []
+
+# explain: get_cfg(config.meta.crypto.token)
+dag_key: transformation.complete.regression.data.base.DataTransformManager
+
+
+refresh: True
+run: True 
+
+read:
+  sushiswap_data: 
+    client: postgres
+    params:
+      table_name: extract_crypto_sushiswap_{token}
+    ignore: True
+
+  processed_data_pipeline_map: 
+    client: minio
+    params:
+      object_name: store/regression/crypto/sushiswap/{token}/{base_ticker}/processed_data/{processed_data_tag}/pipeline_map.pkl
+      bucket_name: backend
+      type: pickle
+  
+  categorical_feature_info: 
+    client: minio
+    params:
+      object_name: store/regression/crypto/sushiswap/{token}/{base_ticker}/processed_data/{processed_data_tag}/categorical_feature_info.pkl
+      bucket_name: backend
+      type: pickle
+      
+write:
+  cfg: 
+    client: mongo
+    params:
+      database: commune
+      collection: config
+      query:
+        module: local_copy(module)
+        token: "{token}"
+        
+  processed_data: 
+    client: postgres
+    params:
+      table_name: process_crypto_{token}_{base_ticker}_{processed_data_tag}
+    ignore: True
+
+  
+  processed_data_pipeline_map: 
+    client: minio
+    params:
+      object_name: store/regression/crypto/sushiswap/{token}/{base_ticker}/processed_data/{processed_data_tag}/pipeline_map.pkl
+      bucket_name: backend
+      type: pickle
+  
+  categorical_feature_info: 
+    client: minio
+    params:
+      object_name: store/regression/crypto/sushiswap/{token}/{base_ticker}/processed_data/{processed_data_tag}/categorical_feature_info.pkl
+      bucket_name: backend
+      type: pickle
+
+run: False
+
+client: get_cfg(client.manager)

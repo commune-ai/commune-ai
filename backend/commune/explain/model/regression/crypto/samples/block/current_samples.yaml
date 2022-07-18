@@ -1,0 +1,24 @@
+module: 'explain.block.regression.crypto.current_samples'
+period: 
+  input: 32
+  output: 6
+timescale: "30m"
+coin_logo_map: get_cfg(config.meta.crypto.tokens.logos) 
+coins:  get_cfg(config.meta.crypto.tokens.commune_app)
+client: get_cfg(client.manager)
+
+
+read:
+  explain:
+    client: ipfs
+    params:
+      meta: 
+        module: local_copy(module)
+
+write:
+  explain:
+    client: ipfs
+    params:
+      meta: 
+        module: local_copy(module)
+    

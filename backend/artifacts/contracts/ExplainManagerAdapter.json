@@ -1,0 +1,5973 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "explainAddress",
+          "type": "address"
+        }
+      ],
+      "name": "connectExplain",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "explain",
+      "outputs": [
+        {
+          "internalType": "contract IExplainManager",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "name": "getExplainer",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "uri",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct ExplainSchema",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getExplainers",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "uri",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct ExplainSchema[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "24": "interfaces/explain/IExplainManager.sol",
+    "6": "contracts/explain/ExplainManagerAdapter.sol",
+    "7": "contracts/explain/Structs.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/explain/ExplainManagerAdapter.sol",
+    "exportedSymbols": {
+      "ExplainManagerAdapter": [
+        2333
+      ],
+      "ExplainSchema": [
+        3645
+      ],
+      "IExplainManager": [
+        3677
+      ]
+    },
+    "id": 2334,
+    "license": "MIT OR Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2287,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".7"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "46:23:6"
+      },
+      {
+        "absolutePath": "contracts/explain/Structs.sol",
+        "file": "contracts/explain/Structs.sol",
+        "id": 2289,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 2334,
+        "sourceUnit": 3646,
+        "src": "70:60:6",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 2288,
+              "name": "ExplainSchema",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 3645,
+              "src": "78:13:6",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "interfaces/explain/IExplainManager.sol",
+        "file": "interfaces/explain/IExplainManager.sol",
+        "id": 2291,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 2334,
+        "sourceUnit": 3678,
+        "src": "131:71:6",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 2290,
+              "name": "IExplainManager",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 3677,
+              "src": "139:15:6",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ExplainManagerAdapter",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 2333,
+        "linearizedBaseContracts": [
+          2333
+        ],
+        "name": "ExplainManagerAdapter",
+        "nameLocation": "213:21:6",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "6ae7a541",
+            "id": 2294,
+            "mutability": "mutable",
+            "name": "explain",
+            "nameLocation": "265:7:6",
+            "nodeType": "VariableDeclaration",
+            "scope": 2333,
+            "src": "242:30:6",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_IExplainManager_$3677",
+              "typeString": "contract IExplainManager"
+            },
+            "typeName": {
+              "id": 2293,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 2292,
+                "name": "IExplainManager",
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 3677,
+                "src": "242:15:6"
+              },
+              "referencedDeclaration": 3677,
+              "src": "242:15:6",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IExplainManager_$3677",
+                "typeString": "contract IExplainManager"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2305,
+              "nodeType": "Block",
+              "src": "334:58:6",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 2303,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 2299,
+                      "name": "explain",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2294,
+                      "src": "344:7:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IExplainManager_$3677",
+                        "typeString": "contract IExplainManager"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 2301,
+                          "name": "explainAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2296,
+                          "src": "370:14:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        ],
+                        "id": 2300,
+                        "name": "IExplainManager",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3677,
+                        "src": "354:15:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_IExplainManager_$3677_$",
+                          "typeString": "type(contract IExplainManager)"
+                        }
+                      },
+                      "id": 2302,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "354:31:6",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IExplainManager_$3677",
+                        "typeString": "contract IExplainManager"
+                      }
+                    },
+                    "src": "344:41:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IExplainManager_$3677",
+                      "typeString": "contract IExplainManager"
+                    }
+                  },
+                  "id": 2304,
+                  "nodeType": "ExpressionStatement",
+                  "src": "344:41:6"
+                }
+              ]
+            },
+            "functionSelector": "ecb8d843",
+            "id": 2306,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "connectExplain",
+            "nameLocation": "288:14:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2297,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2296,
+                  "mutability": "mutable",
+                  "name": "explainAddress",
+                  "nameLocation": "311:14:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2306,
+                  "src": "303:22:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2295,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "303:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "302:24:6"
+            },
+            "returnParameters": {
+              "id": 2298,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "334:0:6"
+            },
+            "scope": 2333,
+            "src": "279:113:6",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2319,
+              "nodeType": "Block",
+              "src": "489:46:6",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 2316,
+                        "name": "name",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2308,
+                        "src": "523:4:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "expression": {
+                        "id": 2314,
+                        "name": "explain",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2294,
+                        "src": "502:7:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IExplainManager_$3677",
+                          "typeString": "contract IExplainManager"
+                        }
+                      },
+                      "id": 2315,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "getExplainer",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3669,
+                      "src": "502:20:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$_t_string_memory_ptr_$returns$_t_struct$_ExplainSchema_$3645_memory_ptr_$",
+                        "typeString": "function (string memory) view external returns (struct ExplainSchema memory)"
+                      }
+                    },
+                    "id": 2317,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "502:26:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_ExplainSchema_$3645_memory_ptr",
+                      "typeString": "struct ExplainSchema memory"
+                    }
+                  },
+                  "functionReturnParameters": 2313,
+                  "id": 2318,
+                  "nodeType": "Return",
+                  "src": "495:33:6"
+                }
+              ]
+            },
+            "functionSelector": "5ae6634b",
+            "id": 2320,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getExplainer",
+            "nameLocation": "407:12:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2309,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2308,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "nameLocation": "434:4:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2320,
+                  "src": "420:18:6",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2307,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "420:6:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "419:20:6"
+            },
+            "returnParameters": {
+              "id": 2313,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2312,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2320,
+                  "src": "462:20:6",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_ExplainSchema_$3645_memory_ptr",
+                    "typeString": "struct ExplainSchema"
+                  },
+                  "typeName": {
+                    "id": 2311,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 2310,
+                      "name": "ExplainSchema",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 3645,
+                      "src": "462:13:6"
+                    },
+                    "referencedDeclaration": 3645,
+                    "src": "462:13:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_ExplainSchema_$3645_storage_ptr",
+                      "typeString": "struct ExplainSchema"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "461:23:6"
+            },
+            "scope": 2333,
+            "src": "398:137:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 2331,
+              "nodeType": "Block",
+              "src": "616:43:6",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "id": 2327,
+                        "name": "explain",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2294,
+                        "src": "629:7:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IExplainManager_$3677",
+                          "typeString": "contract IExplainManager"
+                        }
+                      },
+                      "id": 2328,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "getExplainers",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 3676,
+                      "src": "629:21:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$__$returns$_t_array$_t_struct$_ExplainSchema_$3645_memory_ptr_$dyn_memory_ptr_$",
+                        "typeString": "function () view external returns (struct ExplainSchema memory[] memory)"
+                      }
+                    },
+                    "id": 2329,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "629:23:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_ExplainSchema_$3645_memory_ptr_$dyn_memory_ptr",
+                      "typeString": "struct ExplainSchema memory[] memory"
+                    }
+                  },
+                  "functionReturnParameters": 2326,
+                  "id": 2330,
+                  "nodeType": "Return",
+                  "src": "622:30:6"
+                }
+              ]
+            },
+            "functionSelector": "3f9bb242",
+            "id": 2332,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getExplainers",
+            "nameLocation": "549:13:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2321,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "562:2:6"
+            },
+            "returnParameters": {
+              "id": 2326,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2325,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2332,
+                  "src": "587:22:6",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_ExplainSchema_$3645_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "struct ExplainSchema[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 2323,
+                      "nodeType": "UserDefinedTypeName",
+                      "pathNode": {
+                        "id": 2322,
+                        "name": "ExplainSchema",
+                        "nodeType": "IdentifierPath",
+                        "referencedDeclaration": 3645,
+                        "src": "587:13:6"
+                      },
+                      "referencedDeclaration": 3645,
+                      "src": "587:13:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_ExplainSchema_$3645_storage_ptr",
+                        "typeString": "struct ExplainSchema"
+                      }
+                    },
+                    "id": 2324,
+                    "nodeType": "ArrayTypeName",
+                    "src": "587:15:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_ExplainSchema_$3645_storage_$dyn_storage_ptr",
+                      "typeString": "struct ExplainSchema[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "586:25:6"
+            },
+            "scope": 2333,
+            "src": "540:119:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 2334,
+        "src": "204:463:6",
+        "usedErrors": []
+      }
+    ],
+    "src": "46:622:6"
+  },
+  "bytecode": "608060405234801561001057600080fd5b5061062e806100206000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80633f9bb242146100515780635ae6634b1461006f5780636ae7a5411461008f578063ecb8d843146100ba575b600080fd5b6100596100ec565b6040516100669190610282565b60405180910390f35b61008261007d366004610353565b610162565b60405161006691906103d3565b6000546100a2906001600160a01b031681565b6040516001600160a01b039091168152602001610066565b6100ea6100c83660046103ed565b600080546001600160a01b0319166001600160a01b0392909216919091179055565b005b6000805460408051631fcdd92160e11b815290516060936001600160a01b0390931692633f9bb24292600480820193918290030181865afa158015610135573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f1916820160405261015d91908101906104ed565b905090565b604080518082018252606080825260208201526000549151635ae6634b60e01b815290916001600160a01b031690635ae6634b906101a49085906004016105b0565b600060405180830381865afa1580156101c1573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f191682016040526101e991908101906105c3565b92915050565b60005b8381101561020a5781810151838201526020016101f2565b83811115610219576000848401525b50505050565b600081518084526102378160208601602086016101ef565b601f01601f19169290920160200192915050565b6000815160408452610260604085018261021f565b905060208301518482036020860152610279828261021f565b95945050505050565b6000602080830181845280855180835260408601915060408160051b870101925083870160005b828110156102d757603f198886030184526102c585835161024b565b945092850192908501906001016102a9565b5092979650505050505050565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f1916810167ffffffffffffffff81118282101715610323576103236102e4565b604052919050565b600067ffffffffffffffff821115610345576103456102e4565b50601f01601f191660200190565b60006020828403121561036557600080fd5b813567ffffffffffffffff81111561037c57600080fd5b8201601f8101841361038d57600080fd5b80356103a061039b8261032b565b6102fa565b8181528560208385010111156103b557600080fd5b81602084016020830137600091810160200191909152949350505050565b6020815260006103e6602083018461024b565b9392505050565b6000602082840312156103ff57600080fd5b81356001600160a01b03811681146103e657600080fd5b600082601f83011261042757600080fd5b815161043561039b8261032b565b81815284602083860101111561044a57600080fd5b61045b8260208301602087016101ef565b949350505050565b60006040828403121561047557600080fd5b6040516040810167ffffffffffffffff8282108183111715610499576104996102e4565b8160405282935084519150808211156104b157600080fd5b6104bd86838701610416565b835260208501519150808211156104d357600080fd5b506104e085828601610416565b6020830152505092915050565b6000602080838503121561050057600080fd5b825167ffffffffffffffff8082111561051857600080fd5b818501915085601f83011261052c57600080fd5b81518181111561053e5761053e6102e4565b8060051b61054d8582016102fa565b918252838101850191858101908984111561056757600080fd5b86860192505b838310156105a3578251858111156105855760008081fd5b6105938b89838a0101610463565b835250918601919086019061056d565b9998505050505050505050565b6020815260006103e6602083018461021f565b6000602082840312156105d557600080fd5b815167ffffffffffffffff8111156105ec57600080fd5b61045b8482850161046356fea2646970667358221220af97e704bfb1b61c242d3438ab05226813d234562f77dc0924b971baa3d9b24e64736f6c634300080d0033",
+  "bytecodeSha1": "cb3e63f24a4b9d9143287f28d837bf76f9fe5cc0",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.13+commit.abaa5c0e"
+  },
+  "contractName": "ExplainManagerAdapter",
+  "coverageMap": {
+    "branches": {
+      "24": {},
+      "6": {},
+      "7": {}
+    },
+    "statements": {
+      "24": {},
+      "6": {
+        "ExplainManagerAdapter.connectExplain": {
+          "0": [
+            344,
+            385
+          ]
+        },
+        "ExplainManagerAdapter.getExplainer": {
+          "2": [
+            495,
+            528
+          ]
+        },
+        "ExplainManagerAdapter.getExplainers": {
+          "1": [
+            622,
+            652
+          ]
+        }
+      },
+      "7": {}
+    }
+  },
+  "dependencies": [
+    "IExplainManager"
+  ],
+  "deployedBytecode": "608060405234801561001057600080fd5b506004361061004c5760003560e01c80633f9bb242146100515780635ae6634b1461006f5780636ae7a5411461008f578063ecb8d843146100ba575b600080fd5b6100596100ec565b6040516100669190610282565b60405180910390f35b61008261007d366004610353565b610162565b60405161006691906103d3565b6000546100a2906001600160a01b031681565b6040516001600160a01b039091168152602001610066565b6100ea6100c83660046103ed565b600080546001600160a01b0319166001600160a01b0392909216919091179055565b005b6000805460408051631fcdd92160e11b815290516060936001600160a01b0390931692633f9bb24292600480820193918290030181865afa158015610135573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f1916820160405261015d91908101906104ed565b905090565b604080518082018252606080825260208201526000549151635ae6634b60e01b815290916001600160a01b031690635ae6634b906101a49085906004016105b0565b600060405180830381865afa1580156101c1573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f191682016040526101e991908101906105c3565b92915050565b60005b8381101561020a5781810151838201526020016101f2565b83811115610219576000848401525b50505050565b600081518084526102378160208601602086016101ef565b601f01601f19169290920160200192915050565b6000815160408452610260604085018261021f565b905060208301518482036020860152610279828261021f565b95945050505050565b6000602080830181845280855180835260408601915060408160051b870101925083870160005b828110156102d757603f198886030184526102c585835161024b565b945092850192908501906001016102a9565b5092979650505050505050565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f1916810167ffffffffffffffff81118282101715610323576103236102e4565b604052919050565b600067ffffffffffffffff821115610345576103456102e4565b50601f01601f191660200190565b60006020828403121561036557600080fd5b813567ffffffffffffffff81111561037c57600080fd5b8201601f8101841361038d57600080fd5b80356103a061039b8261032b565b6102fa565b8181528560208385010111156103b557600080fd5b81602084016020830137600091810160200191909152949350505050565b6020815260006103e6602083018461024b565b9392505050565b6000602082840312156103ff57600080fd5b81356001600160a01b03811681146103e657600080fd5b600082601f83011261042757600080fd5b815161043561039b8261032b565b81815284602083860101111561044a57600080fd5b61045b8260208301602087016101ef565b949350505050565b60006040828403121561047557600080fd5b6040516040810167ffffffffffffffff8282108183111715610499576104996102e4565b8160405282935084519150808211156104b157600080fd5b6104bd86838701610416565b835260208501519150808211156104d357600080fd5b506104e085828601610416565b6020830152505092915050565b6000602080838503121561050057600080fd5b825167ffffffffffffffff8082111561051857600080fd5b818501915085601f83011261052c57600080fd5b81518181111561053e5761053e6102e4565b8060051b61054d8582016102fa565b918252838101850191858101908984111561056757600080fd5b86860192505b838310156105a3578251858111156105855760008081fd5b6105938b89838a0101610463565b835250918601919086019061056d565b9998505050505050505050565b6020815260006103e6602083018461021f565b6000602082840312156105d557600080fd5b815167ffffffffffffffff8111156105ec57600080fd5b61045b8482850161046356fea2646970667358221220af97e704bfb1b61c242d3438ab05226813d234562f77dc0924b971baa3d9b24e64736f6c634300080d0033",
+  "deployedSourceMap": "204:463:6:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;540:119;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;398:137;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;242:30::-;;;;;-1:-1:-1;;;;;242:30:6;;;;;;-1:-1:-1;;;;;3522:32:30;;;3504:51;;3492:2;3477:18;242:30:6;3334:227:30;279:113:6;;;;;;:::i;:::-;344:7;:41;;-1:-1:-1;;;;;;344:41:6;-1:-1:-1;;;;;344:41:6;;;;;;;;;;279:113;;;540:119;629:7;;;:23;;;-1:-1:-1;;;629:23:6;;;;587:22;;-1:-1:-1;;;;;629:7:6;;;;:21;;:23;;;;;;;;;;;:7;:23;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;629:23:6;;;;;;;;;;;;:::i;:::-;622:30;;540:119;:::o;398:137::-;-1:-1:-1;;;;;;;;;;;;;;;;;502:7:6;:26;;-1:-1:-1;;;502:26:6;;-1:-1:-1;;;;;;;502:7:6;;:20;;:26;;523:4;;502:26;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;502:26:6;;;;;;;;;;;;:::i;:::-;495:33;398:137;-1:-1:-1;;398:137:6:o;14:258:30:-;86:1;96:113;110:6;107:1;104:13;96:113;;;186:11;;;180:18;167:11;;;160:39;132:2;125:10;96:113;;;227:6;224:1;221:13;218:48;;;262:1;253:6;248:3;244:16;237:27;218:48;;14:258;;;:::o;277:::-;319:3;357:5;351:12;384:6;379:3;372:19;400:63;456:6;449:4;444:3;440:14;433:4;426:5;422:16;400:63;:::i;:::-;517:2;496:15;-1:-1:-1;;492:29:30;483:39;;;;524:4;479:50;;277:258;-1:-1:-1;;277:258:30:o;540:362::-;596:3;640:5;634:12;667:4;662:3;655:17;693:47;734:4;729:3;725:14;711:12;693:47;:::i;:::-;681:59;;788:4;781:5;777:16;771:23;836:3;830:4;826:14;819:4;814:3;810:14;803:38;857:39;891:4;875:14;857:39;:::i;:::-;850:46;540:362;-1:-1:-1;;;;;540:362:30:o;907:859::-;1111:4;1140:2;1180;1169:9;1165:18;1210:2;1199:9;1192:21;1233:6;1268;1262:13;1299:6;1291;1284:22;1337:2;1326:9;1322:18;1315:25;;1399:2;1389:6;1386:1;1382:14;1371:9;1367:30;1363:39;1349:53;;1437:2;1429:6;1425:15;1458:1;1468:269;1482:6;1479:1;1476:13;1468:269;;;1575:2;1571:7;1559:9;1551:6;1547:22;1543:36;1538:3;1531:49;1603:54;1650:6;1641;1635:13;1603:54;:::i;:::-;1593:64;-1:-1:-1;1715:12:30;;;;1680:15;;;;1504:1;1497:9;1468:269;;;-1:-1:-1;1754:6:30;;907:859;-1:-1:-1;;;;;;;907:859:30:o;1771:127::-;1832:10;1827:3;1823:20;1820:1;1813:31;1863:4;1860:1;1853:15;1887:4;1884:1;1877:15;1903:275;1974:2;1968:9;2039:2;2020:13;;-1:-1:-1;;2016:27:30;2004:40;;2074:18;2059:34;;2095:22;;;2056:62;2053:88;;;2121:18;;:::i;:::-;2157:2;2150:22;1903:275;;-1:-1:-1;1903:275:30:o;2183:187::-;2232:4;2265:18;2257:6;2254:30;2251:56;;;2287:18;;:::i;:::-;-1:-1:-1;2353:2:30;2332:15;-1:-1:-1;;2328:29:30;2359:4;2324:40;;2183:187::o;2375:673::-;2444:6;2497:2;2485:9;2476:7;2472:23;2468:32;2465:52;;;2513:1;2510;2503:12;2465:52;2553:9;2540:23;2586:18;2578:6;2575:30;2572:50;;;2618:1;2615;2608:12;2572:50;2641:22;;2694:4;2686:13;;2682:27;-1:-1:-1;2672:55:30;;2723:1;2720;2713:12;2672:55;2759:2;2746:16;2784:49;2800:32;2829:2;2800:32;:::i;:::-;2784:49;:::i;:::-;2856:2;2849:5;2842:17;2896:7;2891:2;2886;2882;2878:11;2874:20;2871:33;2868:53;;;2917:1;2914;2907:12;2868:53;2972:2;2967;2963;2959:11;2954:2;2947:5;2943:14;2930:45;3016:1;2995:14;;;3011:2;2991:23;2984:34;;;;2999:5;2375:673;-1:-1:-1;;;;2375:673:30:o;3053:276::-;3244:2;3233:9;3226:21;3207:4;3264:59;3319:2;3308:9;3304:18;3296:6;3264:59;:::i;:::-;3256:67;3053:276;-1:-1:-1;;;3053:276:30:o;3566:286::-;3625:6;3678:2;3666:9;3657:7;3653:23;3649:32;3646:52;;;3694:1;3691;3684:12;3646:52;3720:23;;-1:-1:-1;;;;;3772:31:30;;3762:42;;3752:70;;3818:1;3815;3808:12;3857:430;3911:5;3964:3;3957:4;3949:6;3945:17;3941:27;3931:55;;3982:1;3979;3972:12;3931:55;4011:6;4005:13;4042:49;4058:32;4087:2;4058:32;:::i;4042:49::-;4116:2;4107:7;4100:19;4162:3;4155:4;4150:2;4142:6;4138:15;4134:26;4131:35;4128:55;;;4179:1;4176;4169:12;4128:55;4192:64;4253:2;4246:4;4237:7;4233:18;4226:4;4218:6;4214:17;4192:64;:::i;:::-;4274:7;3857:430;-1:-1:-1;;;;3857:430:30:o;4292:752::-;4363:5;4411:4;4399:9;4394:3;4390:19;4386:30;4383:50;;;4429:1;4426;4419:12;4383:50;4462:4;4456:11;4506:4;4498:6;4494:17;4530:18;4598:6;4586:10;4583:22;4578:2;4566:10;4563:18;4560:46;4557:72;;;4609:18;;:::i;:::-;4651:10;4645:4;4638:24;4680:6;4671:15;;4715:9;4709:16;4695:30;;4748:2;4740:6;4737:14;4734:34;;;4764:1;4761;4754:12;4734:34;4792:57;4845:3;4836:6;4825:9;4821:22;4792:57;:::i;:::-;4784:6;4777:73;4896:2;4885:9;4881:18;4875:25;4859:41;;4925:2;4915:8;4912:16;4909:36;;;4941:1;4938;4931:12;4909:36;;4978:59;5033:3;5022:8;5011:9;5007:24;4978:59;:::i;:::-;4973:2;4965:6;4961:15;4954:84;;;4292:752;;;;:::o;5049:1203::-;5175:6;5206:2;5249;5237:9;5228:7;5224:23;5220:32;5217:52;;;5265:1;5262;5255:12;5217:52;5298:9;5292:16;5327:18;5368:2;5360:6;5357:14;5354:34;;;5384:1;5381;5374:12;5354:34;5422:6;5411:9;5407:22;5397:32;;5467:7;5460:4;5456:2;5452:13;5448:27;5438:55;;5489:1;5486;5479:12;5438:55;5518:2;5512:9;5540:2;5536;5533:10;5530:36;;;5546:18;;:::i;:::-;5592:2;5589:1;5585:10;5615:28;5639:2;5635;5631:11;5615:28;:::i;:::-;5677:15;;;5747:11;;;5743:20;;;5708:12;;;;5775:19;;;5772:39;;;5807:1;5804;5797:12;5772:39;5839:2;5835;5831:11;5820:22;;5851:371;5867:6;5862:3;5859:15;5851:371;;;5946:3;5940:10;5982:2;5969:11;5966:19;5963:109;;;6026:1;6055:2;6051;6044:14;5963:109;6097:82;6171:7;6166:2;6152:11;6148:2;6144:20;6140:29;6097:82;:::i;:::-;6085:95;;-1:-1:-1;5884:12:30;;;;6200;;;;5851:371;;;6241:5;5049:1203;-1:-1:-1;;;;;;;;;5049:1203:30:o;6257:220::-;6406:2;6395:9;6388:21;6369:4;6426:45;6467:2;6456:9;6452:18;6444:6;6426:45;:::i;6482:372::-;6583:6;6636:2;6624:9;6615:7;6611:23;6607:32;6604:52;;;6652:1;6649;6642:12;6604:52;6685:9;6679:16;6718:18;6710:6;6707:30;6704:50;;;6750:1;6747;6740:12;6704:50;6773:75;6840:7;6831:6;6820:9;6816:22;6773:75;:::i",
+  "language": "Solidity",
+  "natspec": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "offset": [
+    204,
+    667
+  ],
+  "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH2 0x4C JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x3F9BB242 EQ PUSH2 0x51 JUMPI DUP1 PUSH4 0x5AE6634B EQ PUSH2 0x6F JUMPI DUP1 PUSH4 0x6AE7A541 EQ PUSH2 0x8F JUMPI DUP1 PUSH4 0xECB8D843 EQ PUSH2 0xBA JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x59 PUSH2 0xEC JUMP JUMPDEST PUSH1 0x40 MLOAD PUSH2 0x66 SWAP2 SWAP1 PUSH2 0x282 JUMP JUMPDEST PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST PUSH2 0x82 PUSH2 0x7D CALLDATASIZE PUSH1 0x4 PUSH2 0x353 JUMP JUMPDEST PUSH2 0x162 JUMP JUMPDEST PUSH1 0x40 MLOAD PUSH2 0x66 SWAP2 SWAP1 PUSH2 0x3D3 JUMP JUMPDEST PUSH1 0x0 SLOAD PUSH2 0xA2 SWAP1 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND DUP2 JUMP JUMPDEST PUSH1 0x40 MLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP1 SWAP2 AND DUP2 MSTORE PUSH1 0x20 ADD PUSH2 0x66 JUMP JUMPDEST PUSH2 0xEA PUSH2 0xC8 CALLDATASIZE PUSH1 0x4 PUSH2 0x3ED JUMP JUMPDEST PUSH1 0x0 DUP1 SLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB NOT AND PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP3 SWAP1 SWAP3 AND SWAP2 SWAP1 SWAP2 OR SWAP1 SSTORE JUMP JUMPDEST STOP JUMPDEST PUSH1 0x0 DUP1 SLOAD PUSH1 0x40 DUP1 MLOAD PUSH4 0x1FCDD921 PUSH1 0xE1 SHL DUP2 MSTORE SWAP1 MLOAD PUSH1 0x60 SWAP4 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP1 SWAP4 AND SWAP3 PUSH4 0x3F9BB242 SWAP3 PUSH1 0x4 DUP1 DUP3 ADD SWAP4 SWAP2 DUP3 SWAP1 SUB ADD DUP2 DUP7 GAS STATICCALL ISZERO DUP1 ISZERO PUSH2 0x135 JUMPI RETURNDATASIZE PUSH1 0x0 DUP1 RETURNDATACOPY RETURNDATASIZE PUSH1 0x0 REVERT JUMPDEST POP POP POP POP PUSH1 0x40 MLOAD RETURNDATASIZE PUSH1 0x0 DUP3 RETURNDATACOPY PUSH1 0x1F RETURNDATASIZE SWAP1 DUP2 ADD PUSH1 0x1F NOT AND DUP3 ADD PUSH1 0x40 MSTORE PUSH2 0x15D SWAP2 SWAP1 DUP2 ADD SWAP1 PUSH2 0x4ED JUMP JUMPDEST SWAP1 POP SWAP1 JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD DUP1 DUP3 ADD DUP3 MSTORE PUSH1 0x60 DUP1 DUP3 MSTORE PUSH1 0x20 DUP3 ADD MSTORE PUSH1 0x0 SLOAD SWAP2 MLOAD PUSH4 0x5AE6634B PUSH1 0xE0 SHL DUP2 MSTORE SWAP1 SWAP2 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB AND SWAP1 PUSH4 0x5AE6634B SWAP1 PUSH2 0x1A4 SWAP1 DUP6 SWAP1 PUSH1 0x4 ADD PUSH2 0x5B0 JUMP JUMPDEST PUSH1 0x0 PUSH1 0x40 MLOAD DUP1 DUP4 SUB DUP2 DUP7 GAS STATICCALL ISZERO DUP1 ISZERO PUSH2 0x1C1 JUMPI RETURNDATASIZE PUSH1 0x0 DUP1 RETURNDATACOPY RETURNDATASIZE PUSH1 0x0 REVERT JUMPDEST POP POP POP POP PUSH1 0x40 MLOAD RETURNDATASIZE PUSH1 0x0 DUP3 RETURNDATACOPY PUSH1 0x1F RETURNDATASIZE SWAP1 DUP2 ADD PUSH1 0x1F NOT AND DUP3 ADD PUSH1 0x40 MSTORE PUSH2 0x1E9 SWAP2 SWAP1 DUP2 ADD SWAP1 PUSH2 0x5C3 JUMP JUMPDEST SWAP3 SWAP2 POP POP JUMP JUMPDEST PUSH1 0x0 JUMPDEST DUP4 DUP2 LT ISZERO PUSH2 0x20A JUMPI DUP2 DUP2 ADD MLOAD DUP4 DUP3 ADD MSTORE PUSH1 0x20 ADD PUSH2 0x1F2 JUMP JUMPDEST DUP4 DUP2 GT ISZERO PUSH2 0x219 JUMPI PUSH1 0x0 DUP5 DUP5 ADD MSTORE JUMPDEST POP POP POP POP JUMP JUMPDEST PUSH1 0x0 DUP2 MLOAD DUP1 DUP5 MSTORE PUSH2 0x237 DUP2 PUSH1 0x20 DUP7 ADD PUSH1 0x20 DUP7 ADD PUSH2 0x1EF JUMP JUMPDEST PUSH1 0x1F ADD PUSH1 0x1F NOT AND SWAP3 SWAP1 SWAP3 ADD PUSH1 0x20 ADD SWAP3 SWAP2 POP POP JUMP JUMPDEST PUSH1 0x0 DUP2 MLOAD PUSH1 0x40 DUP5 MSTORE PUSH2 0x260 PUSH1 0x40 DUP6 ADD DUP3 PUSH2 0x21F JUMP JUMPDEST SWAP1 POP PUSH1 0x20 DUP4 ADD MLOAD DUP5 DUP3 SUB PUSH1 0x20 DUP7 ADD MSTORE PUSH2 0x279 DUP3 DUP3 PUSH2 0x21F JUMP JUMPDEST SWAP6 SWAP5 POP POP POP POP POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP1 DUP4 ADD DUP2 DUP5 MSTORE DUP1 DUP6 MLOAD DUP1 DUP4 MSTORE PUSH1 0x40 DUP7 ADD SWAP2 POP PUSH1 0x40 DUP2 PUSH1 0x5 SHL DUP8 ADD ADD SWAP3 POP DUP4 DUP8 ADD PUSH1 0x0 JUMPDEST DUP3 DUP2 LT ISZERO PUSH2 0x2D7 JUMPI PUSH1 0x3F NOT DUP9 DUP7 SUB ADD DUP5 MSTORE PUSH2 0x2C5 DUP6 DUP4 MLOAD PUSH2 0x24B JUMP JUMPDEST SWAP5 POP SWAP3 DUP6 ADD SWAP3 SWAP1 DUP6 ADD SWAP1 PUSH1 0x1 ADD PUSH2 0x2A9 JUMP JUMPDEST POP SWAP3 SWAP8 SWAP7 POP POP POP POP POP POP POP JUMP JUMPDEST PUSH4 0x4E487B71 PUSH1 0xE0 SHL PUSH1 0x0 MSTORE PUSH1 0x41 PUSH1 0x4 MSTORE PUSH1 0x24 PUSH1 0x0 REVERT JUMPDEST PUSH1 0x40 MLOAD PUSH1 0x1F DUP3 ADD PUSH1 0x1F NOT AND DUP2 ADD PUSH8 0xFFFFFFFFFFFFFFFF DUP2 GT DUP3 DUP3 LT OR ISZERO PUSH2 0x323 JUMPI PUSH2 0x323 PUSH2 0x2E4 JUMP JUMPDEST PUSH1 0x40 MSTORE SWAP2 SWAP1 POP JUMP JUMPDEST PUSH1 0x0 PUSH8 0xFFFFFFFFFFFFFFFF DUP3 GT ISZERO PUSH2 0x345 JUMPI PUSH2 0x345 PUSH2 0x2E4 JUMP JUMPDEST POP PUSH1 0x1F ADD PUSH1 0x1F NOT AND PUSH1 0x20 ADD SWAP1 JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x365 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 CALLDATALOAD PUSH8 0xFFFFFFFFFFFFFFFF DUP2 GT ISZERO PUSH2 0x37C JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP3 ADD PUSH1 0x1F DUP2 ADD DUP5 SGT PUSH2 0x38D JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP1 CALLDATALOAD PUSH2 0x3A0 PUSH2 0x39B DUP3 PUSH2 0x32B JUMP JUMPDEST PUSH2 0x2FA JUMP JUMPDEST DUP2 DUP2 MSTORE DUP6 PUSH1 0x20 DUP4 DUP6 ADD ADD GT ISZERO PUSH2 0x3B5 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 PUSH1 0x20 DUP5 ADD PUSH1 0x20 DUP4 ADD CALLDATACOPY PUSH1 0x0 SWAP2 DUP2 ADD PUSH1 0x20 ADD SWAP2 SWAP1 SWAP2 MSTORE SWAP5 SWAP4 POP POP POP POP JUMP JUMPDEST PUSH1 0x20 DUP2 MSTORE PUSH1 0x0 PUSH2 0x3E6 PUSH1 0x20 DUP4 ADD DUP5 PUSH2 0x24B JUMP JUMPDEST SWAP4 SWAP3 POP POP POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x3FF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 CALLDATALOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP2 AND DUP2 EQ PUSH2 0x3E6 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0x0 DUP3 PUSH1 0x1F DUP4 ADD SLT PUSH2 0x427 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 MLOAD PUSH2 0x435 PUSH2 0x39B DUP3 PUSH2 0x32B JUMP JUMPDEST DUP2 DUP2 MSTORE DUP5 PUSH1 0x20 DUP4 DUP7 ADD ADD GT ISZERO PUSH2 0x44A JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x45B DUP3 PUSH1 0x20 DUP4 ADD PUSH1 0x20 DUP8 ADD PUSH2 0x1EF JUMP JUMPDEST SWAP5 SWAP4 POP POP POP POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x40 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x475 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0x40 MLOAD PUSH1 0x40 DUP2 ADD PUSH8 0xFFFFFFFFFFFFFFFF DUP3 DUP3 LT DUP2 DUP4 GT OR ISZERO PUSH2 0x499 JUMPI PUSH2 0x499 PUSH2 0x2E4 JUMP JUMPDEST DUP2 PUSH1 0x40 MSTORE DUP3 SWAP4 POP DUP5 MLOAD SWAP2 POP DUP1 DUP3 GT ISZERO PUSH2 0x4B1 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x4BD DUP7 DUP4 DUP8 ADD PUSH2 0x416 JUMP JUMPDEST DUP4 MSTORE PUSH1 0x20 DUP6 ADD MLOAD SWAP2 POP DUP1 DUP3 GT ISZERO PUSH2 0x4D3 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH2 0x4E0 DUP6 DUP3 DUP7 ADD PUSH2 0x416 JUMP JUMPDEST PUSH1 0x20 DUP4 ADD MSTORE POP POP SWAP3 SWAP2 POP POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP1 DUP4 DUP6 SUB SLT ISZERO PUSH2 0x500 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP3 MLOAD PUSH8 0xFFFFFFFFFFFFFFFF DUP1 DUP3 GT ISZERO PUSH2 0x518 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 DUP6 ADD SWAP2 POP DUP6 PUSH1 0x1F DUP4 ADD SLT PUSH2 0x52C JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 MLOAD DUP2 DUP2 GT ISZERO PUSH2 0x53E JUMPI PUSH2 0x53E PUSH2 0x2E4 JUMP JUMPDEST DUP1 PUSH1 0x5 SHL PUSH2 0x54D DUP6 DUP3 ADD PUSH2 0x2FA JUMP JUMPDEST SWAP2 DUP3 MSTORE DUP4 DUP2 ADD DUP6 ADD SWAP2 DUP6 DUP2 ADD SWAP1 DUP10 DUP5 GT ISZERO PUSH2 0x567 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP7 DUP7 ADD SWAP3 POP JUMPDEST DUP4 DUP4 LT ISZERO PUSH2 0x5A3 JUMPI DUP3 MLOAD DUP6 DUP2 GT ISZERO PUSH2 0x585 JUMPI PUSH1 0x0 DUP1 DUP2 REVERT JUMPDEST PUSH2 0x593 DUP12 DUP10 DUP4 DUP11 ADD ADD PUSH2 0x463 JUMP JUMPDEST DUP4 MSTORE POP SWAP2 DUP7 ADD SWAP2 SWAP1 DUP7 ADD SWAP1 PUSH2 0x56D JUMP JUMPDEST SWAP10 SWAP9 POP POP POP POP POP POP POP POP POP JUMP JUMPDEST PUSH1 0x20 DUP2 MSTORE PUSH1 0x0 PUSH2 0x3E6 PUSH1 0x20 DUP4 ADD DUP5 PUSH2 0x21F JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x5D5 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 MLOAD PUSH8 0xFFFFFFFFFFFFFFFF DUP2 GT ISZERO PUSH2 0x5EC JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x45B DUP5 DUP3 DUP6 ADD PUSH2 0x463 JUMP INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xAF SWAP8 0xE7 DIV 0xBF 0xB1 0xB6 SHR 0x24 0x2D CALLVALUE CODESIZE 0xAB SDIV 0x22 PUSH9 0x13D234562F77DC0924 0xB9 PUSH18 0xBAA3D9B24E64736F6C634300080D00330000 ",
+  "pcMap": {
+    "0": {
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x80"
+    },
+    "2": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x40"
+    },
+    "4": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "MSTORE",
+      "path": "6"
+    },
+    "5": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "CALLVALUE",
+      "path": "6"
+    },
+    "6": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "7": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "ISZERO",
+      "path": "6"
+    },
+    "8": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x10"
+    },
+    "11": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "JUMPI",
+      "path": "6"
+    },
+    "12": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x0"
+    },
+    "14": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "15": {
+      "dev": "Cannot send ether to nonpayable function",
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "REVERT",
+      "path": "6"
+    },
+    "16": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "17": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "POP",
+      "path": "6"
+    },
+    "18": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x4"
+    },
+    "20": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "CALLDATASIZE",
+      "path": "6"
+    },
+    "21": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "LT",
+      "path": "6"
+    },
+    "22": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x4C"
+    },
+    "25": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "JUMPI",
+      "path": "6"
+    },
+    "26": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x0"
+    },
+    "28": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "CALLDATALOAD",
+      "path": "6"
+    },
+    "29": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0xE0"
+    },
+    "31": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "SHR",
+      "path": "6"
+    },
+    "32": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "33": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH4",
+      "path": "6",
+      "value": "0x3F9BB242"
+    },
+    "38": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "EQ",
+      "path": "6"
+    },
+    "39": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x51"
+    },
+    "42": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "JUMPI",
+      "path": "6"
+    },
+    "43": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "44": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH4",
+      "path": "6",
+      "value": "0x5AE6634B"
+    },
+    "49": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "EQ",
+      "path": "6"
+    },
+    "50": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x6F"
+    },
+    "53": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "JUMPI",
+      "path": "6"
+    },
+    "54": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "55": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH4",
+      "path": "6",
+      "value": "0x6AE7A541"
+    },
+    "60": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "EQ",
+      "path": "6"
+    },
+    "61": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x8F"
+    },
+    "64": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "JUMPI",
+      "path": "6"
+    },
+    "65": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "66": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH4",
+      "path": "6",
+      "value": "0xECB8D843"
+    },
+    "71": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "EQ",
+      "path": "6"
+    },
+    "72": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0xBA"
+    },
+    "75": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "JUMPI",
+      "path": "6"
+    },
+    "76": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "77": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x0"
+    },
+    "79": {
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "80": {
+      "first_revert": true,
+      "fn": null,
+      "offset": [
+        204,
+        667
+      ],
+      "op": "REVERT",
+      "path": "6"
+    },
+    "81": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "82": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x59"
+    },
+    "85": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0xEC"
+    },
+    "88": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "jump": "i",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "JUMP",
+      "path": "6"
+    },
+    "89": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "90": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x40"
+    },
+    "92": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "MLOAD",
+      "path": "6"
+    },
+    "93": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x66"
+    },
+    "96": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "SWAP2",
+      "path": "6"
+    },
+    "97": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "98": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x282"
+    },
+    "101": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "jump": "i",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "JUMP",
+      "path": "6"
+    },
+    "102": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "103": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x40"
+    },
+    "105": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "MLOAD",
+      "path": "6"
+    },
+    "106": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "107": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "SWAP2",
+      "path": "6"
+    },
+    "108": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "SUB",
+      "path": "6"
+    },
+    "109": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "110": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "RETURN",
+      "path": "6"
+    },
+    "111": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "112": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x82"
+    },
+    "115": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x7D"
+    },
+    "118": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "CALLDATASIZE",
+      "path": "6"
+    },
+    "119": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x4"
+    },
+    "121": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x353"
+    },
+    "124": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "jump": "i",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "JUMP",
+      "path": "6"
+    },
+    "125": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "126": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x162"
+    },
+    "129": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "jump": "i",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "JUMP",
+      "path": "6"
+    },
+    "130": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "131": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x40"
+    },
+    "133": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "MLOAD",
+      "path": "6"
+    },
+    "134": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x66"
+    },
+    "137": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "SWAP2",
+      "path": "6"
+    },
+    "138": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "139": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x3D3"
+    },
+    "142": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "jump": "i",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "JUMP",
+      "path": "6"
+    },
+    "143": {
+      "offset": [
+        242,
+        272
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "144": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        242,
+        272
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x0"
+    },
+    "146": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        242,
+        272
+      ],
+      "op": "SLOAD",
+      "path": "6"
+    },
+    "147": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        242,
+        272
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0xA2"
+    },
+    "150": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        242,
+        272
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "151": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "153": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "155": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "157": {
+      "op": "SHL"
+    },
+    "158": {
+      "op": "SUB"
+    },
+    "159": {
+      "offset": [
+        242,
+        272
+      ],
+      "op": "AND",
+      "path": "6"
+    },
+    "160": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        242,
+        272
+      ],
+      "op": "DUP2",
+      "path": "6"
+    },
+    "161": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        242,
+        272
+      ],
+      "op": "JUMP",
+      "path": "6"
+    },
+    "162": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        242,
+        272
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "163": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        242,
+        272
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x40"
+    },
+    "165": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        242,
+        272
+      ],
+      "op": "MLOAD",
+      "path": "6"
+    },
+    "166": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "168": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "170": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "172": {
+      "op": "SHL"
+    },
+    "173": {
+      "op": "SUB"
+    },
+    "174": {
+      "op": "SWAP1"
+    },
+    "175": {
+      "op": "SWAP2"
+    },
+    "176": {
+      "op": "AND"
+    },
+    "177": {
+      "op": "DUP2"
+    },
+    "178": {
+      "op": "MSTORE"
+    },
+    "179": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "181": {
+      "op": "ADD"
+    },
+    "182": {
+      "offset": [
+        242,
+        272
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x66"
+    },
+    "185": {
+      "op": "JUMP"
+    },
+    "186": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        279,
+        392
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "187": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        279,
+        392
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0xEA"
+    },
+    "190": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        279,
+        392
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0xC8"
+    },
+    "193": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        279,
+        392
+      ],
+      "op": "CALLDATASIZE",
+      "path": "6"
+    },
+    "194": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        279,
+        392
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x4"
+    },
+    "196": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        279,
+        392
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x3ED"
+    },
+    "199": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "jump": "i",
+      "offset": [
+        279,
+        392
+      ],
+      "op": "JUMP",
+      "path": "6"
+    },
+    "200": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        279,
+        392
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "201": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        344,
+        351
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "statement": 0,
+      "value": "0x0"
+    },
+    "203": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        344,
+        385
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "204": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        344,
+        385
+      ],
+      "op": "SLOAD",
+      "path": "6"
+    },
+    "205": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "207": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "209": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "211": {
+      "op": "SHL"
+    },
+    "212": {
+      "op": "SUB"
+    },
+    "213": {
+      "op": "NOT"
+    },
+    "214": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        344,
+        385
+      ],
+      "op": "AND",
+      "path": "6"
+    },
+    "215": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "217": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "219": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "221": {
+      "op": "SHL"
+    },
+    "222": {
+      "op": "SUB"
+    },
+    "223": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        344,
+        385
+      ],
+      "op": "SWAP3",
+      "path": "6"
+    },
+    "224": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        344,
+        385
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "225": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        344,
+        385
+      ],
+      "op": "SWAP3",
+      "path": "6"
+    },
+    "226": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        344,
+        385
+      ],
+      "op": "AND",
+      "path": "6"
+    },
+    "227": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        344,
+        385
+      ],
+      "op": "SWAP2",
+      "path": "6"
+    },
+    "228": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        344,
+        385
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "229": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        344,
+        385
+      ],
+      "op": "SWAP2",
+      "path": "6"
+    },
+    "230": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        344,
+        385
+      ],
+      "op": "OR",
+      "path": "6"
+    },
+    "231": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        344,
+        385
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "232": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        344,
+        385
+      ],
+      "op": "SSTORE",
+      "path": "6"
+    },
+    "233": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        279,
+        392
+      ],
+      "op": "JUMP",
+      "path": "6"
+    },
+    "234": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        279,
+        392
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "235": {
+      "fn": "ExplainManagerAdapter.connectExplain",
+      "offset": [
+        279,
+        392
+      ],
+      "op": "STOP",
+      "path": "6"
+    },
+    "236": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "237": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        636
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "statement": 1,
+      "value": "0x0"
+    },
+    "239": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        636
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "240": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        636
+      ],
+      "op": "SLOAD",
+      "path": "6"
+    },
+    "241": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x40"
+    },
+    "243": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "244": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "MLOAD",
+      "path": "6"
+    },
+    "245": {
+      "op": "PUSH4",
+      "value": "0x1FCDD921"
+    },
+    "250": {
+      "op": "PUSH1",
+      "value": "0xE1"
+    },
+    "252": {
+      "op": "SHL"
+    },
+    "253": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "DUP2",
+      "path": "6"
+    },
+    "254": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "MSTORE",
+      "path": "6"
+    },
+    "255": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "256": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "MLOAD",
+      "path": "6"
+    },
+    "257": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        587,
+        609
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x60"
+    },
+    "259": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        587,
+        609
+      ],
+      "op": "SWAP4",
+      "path": "6"
+    },
+    "260": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "262": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "264": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "266": {
+      "op": "SHL"
+    },
+    "267": {
+      "op": "SUB"
+    },
+    "268": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        636
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "269": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        636
+      ],
+      "op": "SWAP4",
+      "path": "6"
+    },
+    "270": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        636
+      ],
+      "op": "AND",
+      "path": "6"
+    },
+    "271": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        636
+      ],
+      "op": "SWAP3",
+      "path": "6"
+    },
+    "272": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        650
+      ],
+      "op": "PUSH4",
+      "path": "6",
+      "value": "0x3F9BB242"
+    },
+    "277": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        650
+      ],
+      "op": "SWAP3",
+      "path": "6"
+    },
+    "278": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x4"
+    },
+    "280": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "281": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "DUP3",
+      "path": "6"
+    },
+    "282": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "ADD",
+      "path": "6"
+    },
+    "283": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "SWAP4",
+      "path": "6"
+    },
+    "284": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "SWAP2",
+      "path": "6"
+    },
+    "285": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "DUP3",
+      "path": "6"
+    },
+    "286": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "287": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "SUB",
+      "path": "6"
+    },
+    "288": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "ADD",
+      "path": "6"
+    },
+    "289": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "DUP2",
+      "path": "6"
+    },
+    "290": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        636
+      ],
+      "op": "DUP7",
+      "path": "6"
+    },
+    "291": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "GAS",
+      "path": "6"
+    },
+    "292": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "STATICCALL",
+      "path": "6"
+    },
+    "293": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "ISZERO",
+      "path": "6"
+    },
+    "294": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "295": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "ISZERO",
+      "path": "6"
+    },
+    "296": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x135"
+    },
+    "299": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "JUMPI",
+      "path": "6"
+    },
+    "300": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "6"
+    },
+    "301": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x0"
+    },
+    "303": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "304": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "RETURNDATACOPY",
+      "path": "6"
+    },
+    "305": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "6"
+    },
+    "306": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x0"
+    },
+    "308": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "REVERT",
+      "path": "6"
+    },
+    "309": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "310": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "POP",
+      "path": "6"
+    },
+    "311": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "POP",
+      "path": "6"
+    },
+    "312": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "POP",
+      "path": "6"
+    },
+    "313": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "POP",
+      "path": "6"
+    },
+    "314": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x40"
+    },
+    "316": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "MLOAD",
+      "path": "6"
+    },
+    "317": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "6"
+    },
+    "318": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x0"
+    },
+    "320": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "DUP3",
+      "path": "6"
+    },
+    "321": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "RETURNDATACOPY",
+      "path": "6"
+    },
+    "322": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x1F"
+    },
+    "324": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "6"
+    },
+    "325": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "326": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "DUP2",
+      "path": "6"
+    },
+    "327": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "ADD",
+      "path": "6"
+    },
+    "328": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "330": {
+      "op": "NOT"
+    },
+    "331": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "AND",
+      "path": "6"
+    },
+    "332": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "DUP3",
+      "path": "6"
+    },
+    "333": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "ADD",
+      "path": "6"
+    },
+    "334": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x40"
+    },
+    "336": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "MSTORE",
+      "path": "6"
+    },
+    "337": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x15D"
+    },
+    "340": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "SWAP2",
+      "path": "6"
+    },
+    "341": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "342": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "DUP2",
+      "path": "6"
+    },
+    "343": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "ADD",
+      "path": "6"
+    },
+    "344": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "345": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x4ED"
+    },
+    "348": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "jump": "i",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "JUMP",
+      "path": "6"
+    },
+    "349": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        629,
+        652
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "350": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        622,
+        652
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "351": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        622,
+        652
+      ],
+      "op": "POP",
+      "path": "6"
+    },
+    "352": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "353": {
+      "fn": "ExplainManagerAdapter.getExplainers",
+      "jump": "o",
+      "offset": [
+        540,
+        659
+      ],
+      "op": "JUMP",
+      "path": "6"
+    },
+    "354": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "355": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "357": {
+      "op": "DUP1"
+    },
+    "358": {
+      "op": "MLOAD"
+    },
+    "359": {
+      "op": "DUP1"
+    },
+    "360": {
+      "op": "DUP3"
+    },
+    "361": {
+      "op": "ADD"
+    },
+    "362": {
+      "op": "DUP3"
+    },
+    "363": {
+      "op": "MSTORE"
+    },
+    "364": {
+      "op": "PUSH1",
+      "value": "0x60"
+    },
+    "366": {
+      "op": "DUP1"
+    },
+    "367": {
+      "op": "DUP3"
+    },
+    "368": {
+      "op": "MSTORE"
+    },
+    "369": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "371": {
+      "op": "DUP3"
+    },
+    "372": {
+      "op": "ADD"
+    },
+    "373": {
+      "op": "MSTORE"
+    },
+    "374": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "376": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        509
+      ],
+      "op": "SLOAD",
+      "path": "6",
+      "statement": 2
+    },
+    "377": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "SWAP2",
+      "path": "6"
+    },
+    "378": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "MLOAD",
+      "path": "6"
+    },
+    "379": {
+      "op": "PUSH4",
+      "value": "0x5AE6634B"
+    },
+    "384": {
+      "op": "PUSH1",
+      "value": "0xE0"
+    },
+    "386": {
+      "op": "SHL"
+    },
+    "387": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "DUP2",
+      "path": "6"
+    },
+    "388": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "MSTORE",
+      "path": "6"
+    },
+    "389": {
+      "op": "SWAP1"
+    },
+    "390": {
+      "op": "SWAP2"
+    },
+    "391": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "393": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "395": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "397": {
+      "op": "SHL"
+    },
+    "398": {
+      "op": "SUB"
+    },
+    "399": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        509
+      ],
+      "op": "AND",
+      "path": "6"
+    },
+    "400": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        509
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "401": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        522
+      ],
+      "op": "PUSH4",
+      "path": "6",
+      "value": "0x5AE6634B"
+    },
+    "406": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        522
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "407": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x1A4"
+    },
+    "410": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "411": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        523,
+        527
+      ],
+      "op": "DUP6",
+      "path": "6"
+    },
+    "412": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        523,
+        527
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "413": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x4"
+    },
+    "415": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "ADD",
+      "path": "6"
+    },
+    "416": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x5B0"
+    },
+    "419": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "jump": "i",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "JUMP",
+      "path": "6"
+    },
+    "420": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "421": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x0"
+    },
+    "423": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x40"
+    },
+    "425": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "MLOAD",
+      "path": "6"
+    },
+    "426": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "427": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "DUP4",
+      "path": "6"
+    },
+    "428": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "SUB",
+      "path": "6"
+    },
+    "429": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "DUP2",
+      "path": "6"
+    },
+    "430": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "DUP7",
+      "path": "6"
+    },
+    "431": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "GAS",
+      "path": "6"
+    },
+    "432": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "STATICCALL",
+      "path": "6"
+    },
+    "433": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "ISZERO",
+      "path": "6"
+    },
+    "434": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "435": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "ISZERO",
+      "path": "6"
+    },
+    "436": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x1C1"
+    },
+    "439": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "JUMPI",
+      "path": "6"
+    },
+    "440": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "6"
+    },
+    "441": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x0"
+    },
+    "443": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "444": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "RETURNDATACOPY",
+      "path": "6"
+    },
+    "445": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "6"
+    },
+    "446": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x0"
+    },
+    "448": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "REVERT",
+      "path": "6"
+    },
+    "449": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "450": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "POP",
+      "path": "6"
+    },
+    "451": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "POP",
+      "path": "6"
+    },
+    "452": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "POP",
+      "path": "6"
+    },
+    "453": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "POP",
+      "path": "6"
+    },
+    "454": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x40"
+    },
+    "456": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "MLOAD",
+      "path": "6"
+    },
+    "457": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "6"
+    },
+    "458": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x0"
+    },
+    "460": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "DUP3",
+      "path": "6"
+    },
+    "461": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "RETURNDATACOPY",
+      "path": "6"
+    },
+    "462": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x1F"
+    },
+    "464": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "RETURNDATASIZE",
+      "path": "6"
+    },
+    "465": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "466": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "DUP2",
+      "path": "6"
+    },
+    "467": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "ADD",
+      "path": "6"
+    },
+    "468": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "470": {
+      "op": "NOT"
+    },
+    "471": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "AND",
+      "path": "6"
+    },
+    "472": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "DUP3",
+      "path": "6"
+    },
+    "473": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "ADD",
+      "path": "6"
+    },
+    "474": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x40"
+    },
+    "476": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "MSTORE",
+      "path": "6"
+    },
+    "477": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x1E9"
+    },
+    "480": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "SWAP2",
+      "path": "6"
+    },
+    "481": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "482": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "DUP2",
+      "path": "6"
+    },
+    "483": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "ADD",
+      "path": "6"
+    },
+    "484": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "SWAP1",
+      "path": "6"
+    },
+    "485": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "PUSH2",
+      "path": "6",
+      "value": "0x5C3"
+    },
+    "488": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "jump": "i",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "JUMP",
+      "path": "6"
+    },
+    "489": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        502,
+        528
+      ],
+      "op": "JUMPDEST",
+      "path": "6"
+    },
+    "490": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        495,
+        528
+      ],
+      "op": "SWAP3",
+      "path": "6"
+    },
+    "491": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "SWAP2",
+      "path": "6"
+    },
+    "492": {
+      "op": "POP"
+    },
+    "493": {
+      "op": "POP"
+    },
+    "494": {
+      "fn": "ExplainManagerAdapter.getExplainer",
+      "jump": "o",
+      "offset": [
+        398,
+        535
+      ],
+      "op": "JUMP",
+      "path": "6"
+    },
+    "495": {
+      "op": "JUMPDEST"
+    },
+    "496": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "498": {
+      "op": "JUMPDEST"
+    },
+    "499": {
+      "op": "DUP4"
+    },
+    "500": {
+      "op": "DUP2"
+    },
+    "501": {
+      "op": "LT"
+    },
+    "502": {
+      "op": "ISZERO"
+    },
+    "503": {
+      "op": "PUSH2",
+      "value": "0x20A"
+    },
+    "506": {
+      "op": "JUMPI"
+    },
+    "507": {
+      "op": "DUP2"
+    },
+    "508": {
+      "op": "DUP2"
+    },
+    "509": {
+      "op": "ADD"
+    },
+    "510": {
+      "op": "MLOAD"
+    },
+    "511": {
+      "op": "DUP4"
+    },
+    "512": {
+      "op": "DUP3"
+    },
+    "513": {
+      "op": "ADD"
+    },
+    "514": {
+      "op": "MSTORE"
+    },
+    "515": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "517": {
+      "op": "ADD"
+    },
+    "518": {
+      "op": "PUSH2",
+      "value": "0x1F2"
+    },
+    "521": {
+      "op": "JUMP"
+    },
+    "522": {
+      "op": "JUMPDEST"
+    },
+    "523": {
+      "op": "DUP4"
+    },
+    "524": {
+      "op": "DUP2"
+    },
+    "525": {
+      "op": "GT"
+    },
+    "526": {
+      "op": "ISZERO"
+    },
+    "527": {
+      "op": "PUSH2",
+      "value": "0x219"
+    },
+    "530": {
+      "op": "JUMPI"
+    },
+    "531": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "533": {
+      "op": "DUP5"
+    },
+    "534": {
+      "op": "DUP5"
+    },
+    "535": {
+      "op": "ADD"
+    },
+    "536": {
+      "op": "MSTORE"
+    },
+    "537": {
+      "op": "JUMPDEST"
+    },
+    "538": {
+      "op": "POP"
+    },
+    "539": {
+      "op": "POP"
+    },
+    "540": {
+      "op": "POP"
+    },
+    "541": {
+      "op": "POP"
+    },
+    "542": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "543": {
+      "op": "JUMPDEST"
+    },
+    "544": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "546": {
+      "op": "DUP2"
+    },
+    "547": {
+      "op": "MLOAD"
+    },
+    "548": {
+      "op": "DUP1"
+    },
+    "549": {
+      "op": "DUP5"
+    },
+    "550": {
+      "op": "MSTORE"
+    },
+    "551": {
+      "op": "PUSH2",
+      "value": "0x237"
+    },
+    "554": {
+      "op": "DUP2"
+    },
+    "555": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "557": {
+      "op": "DUP7"
+    },
+    "558": {
+      "op": "ADD"
+    },
+    "559": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "561": {
+      "op": "DUP7"
+    },
+    "562": {
+      "op": "ADD"
+    },
+    "563": {
+      "op": "PUSH2",
+      "value": "0x1EF"
+    },
+    "566": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "567": {
+      "op": "JUMPDEST"
+    },
+    "568": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "570": {
+      "op": "ADD"
+    },
+    "571": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "573": {
+      "op": "NOT"
+    },
+    "574": {
+      "op": "AND"
+    },
+    "575": {
+      "op": "SWAP3"
+    },
+    "576": {
+      "op": "SWAP1"
+    },
+    "577": {
+      "op": "SWAP3"
+    },
+    "578": {
+      "op": "ADD"
+    },
+    "579": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "581": {
+      "op": "ADD"
+    },
+    "582": {
+      "op": "SWAP3"
+    },
+    "583": {
+      "op": "SWAP2"
+    },
+    "584": {
+      "op": "POP"
+    },
+    "585": {
+      "op": "POP"
+    },
+    "586": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "587": {
+      "op": "JUMPDEST"
+    },
+    "588": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "590": {
+      "op": "DUP2"
+    },
+    "591": {
+      "op": "MLOAD"
+    },
+    "592": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "594": {
+      "op": "DUP5"
+    },
+    "595": {
+      "op": "MSTORE"
+    },
+    "596": {
+      "op": "PUSH2",
+      "value": "0x260"
+    },
+    "599": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "601": {
+      "op": "DUP6"
+    },
+    "602": {
+      "op": "ADD"
+    },
+    "603": {
+      "op": "DUP3"
+    },
+    "604": {
+      "op": "PUSH2",
+      "value": "0x21F"
+    },
+    "607": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "608": {
+      "op": "JUMPDEST"
+    },
+    "609": {
+      "op": "SWAP1"
+    },
+    "610": {
+      "op": "POP"
+    },
+    "611": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "613": {
+      "op": "DUP4"
+    },
+    "614": {
+      "op": "ADD"
+    },
+    "615": {
+      "op": "MLOAD"
+    },
+    "616": {
+      "op": "DUP5"
+    },
+    "617": {
+      "op": "DUP3"
+    },
+    "618": {
+      "op": "SUB"
+    },
+    "619": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "621": {
+      "op": "DUP7"
+    },
+    "622": {
+      "op": "ADD"
+    },
+    "623": {
+      "op": "MSTORE"
+    },
+    "624": {
+      "op": "PUSH2",
+      "value": "0x279"
+    },
+    "627": {
+      "op": "DUP3"
+    },
+    "628": {
+      "op": "DUP3"
+    },
+    "629": {
+      "op": "PUSH2",
+      "value": "0x21F"
+    },
+    "632": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "633": {
+      "op": "JUMPDEST"
+    },
+    "634": {
+      "op": "SWAP6"
+    },
+    "635": {
+      "op": "SWAP5"
+    },
+    "636": {
+      "op": "POP"
+    },
+    "637": {
+      "op": "POP"
+    },
+    "638": {
+      "op": "POP"
+    },
+    "639": {
+      "op": "POP"
+    },
+    "640": {
+      "op": "POP"
+    },
+    "641": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "642": {
+      "op": "JUMPDEST"
+    },
+    "643": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "645": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "647": {
+      "op": "DUP1"
+    },
+    "648": {
+      "op": "DUP4"
+    },
+    "649": {
+      "op": "ADD"
+    },
+    "650": {
+      "op": "DUP2"
+    },
+    "651": {
+      "op": "DUP5"
+    },
+    "652": {
+      "op": "MSTORE"
+    },
+    "653": {
+      "op": "DUP1"
+    },
+    "654": {
+      "op": "DUP6"
+    },
+    "655": {
+      "op": "MLOAD"
+    },
+    "656": {
+      "op": "DUP1"
+    },
+    "657": {
+      "op": "DUP4"
+    },
+    "658": {
+      "op": "MSTORE"
+    },
+    "659": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "661": {
+      "op": "DUP7"
+    },
+    "662": {
+      "op": "ADD"
+    },
+    "663": {
+      "op": "SWAP2"
+    },
+    "664": {
+      "op": "POP"
+    },
+    "665": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "667": {
+      "op": "DUP2"
+    },
+    "668": {
+      "op": "PUSH1",
+      "value": "0x5"
+    },
+    "670": {
+      "op": "SHL"
+    },
+    "671": {
+      "op": "DUP8"
+    },
+    "672": {
+      "op": "ADD"
+    },
+    "673": {
+      "op": "ADD"
+    },
+    "674": {
+      "op": "SWAP3"
+    },
+    "675": {
+      "op": "POP"
+    },
+    "676": {
+      "op": "DUP4"
+    },
+    "677": {
+      "op": "DUP8"
+    },
+    "678": {
+      "op": "ADD"
+    },
+    "679": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "681": {
+      "op": "JUMPDEST"
+    },
+    "682": {
+      "op": "DUP3"
+    },
+    "683": {
+      "op": "DUP2"
+    },
+    "684": {
+      "op": "LT"
+    },
+    "685": {
+      "op": "ISZERO"
+    },
+    "686": {
+      "op": "PUSH2",
+      "value": "0x2D7"
+    },
+    "689": {
+      "op": "JUMPI"
+    },
+    "690": {
+      "op": "PUSH1",
+      "value": "0x3F"
+    },
+    "692": {
+      "op": "NOT"
+    },
+    "693": {
+      "op": "DUP9"
+    },
+    "694": {
+      "op": "DUP7"
+    },
+    "695": {
+      "op": "SUB"
+    },
+    "696": {
+      "op": "ADD"
+    },
+    "697": {
+      "op": "DUP5"
+    },
+    "698": {
+      "op": "MSTORE"
+    },
+    "699": {
+      "op": "PUSH2",
+      "value": "0x2C5"
+    },
+    "702": {
+      "op": "DUP6"
+    },
+    "703": {
+      "op": "DUP4"
+    },
+    "704": {
+      "op": "MLOAD"
+    },
+    "705": {
+      "op": "PUSH2",
+      "value": "0x24B"
+    },
+    "708": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "709": {
+      "op": "JUMPDEST"
+    },
+    "710": {
+      "op": "SWAP5"
+    },
+    "711": {
+      "op": "POP"
+    },
+    "712": {
+      "op": "SWAP3"
+    },
+    "713": {
+      "op": "DUP6"
+    },
+    "714": {
+      "op": "ADD"
+    },
+    "715": {
+      "op": "SWAP3"
+    },
+    "716": {
+      "op": "SWAP1"
+    },
+    "717": {
+      "op": "DUP6"
+    },
+    "718": {
+      "op": "ADD"
+    },
+    "719": {
+      "op": "SWAP1"
+    },
+    "720": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "722": {
+      "op": "ADD"
+    },
+    "723": {
+      "op": "PUSH2",
+      "value": "0x2A9"
+    },
+    "726": {
+      "op": "JUMP"
+    },
+    "727": {
+      "op": "JUMPDEST"
+    },
+    "728": {
+      "op": "POP"
+    },
+    "729": {
+      "op": "SWAP3"
+    },
+    "730": {
+      "op": "SWAP8"
+    },
+    "731": {
+      "op": "SWAP7"
+    },
+    "732": {
+      "op": "POP"
+    },
+    "733": {
+      "op": "POP"
+    },
+    "734": {
+      "op": "POP"
+    },
+    "735": {
+      "op": "POP"
+    },
+    "736": {
+      "op": "POP"
+    },
+    "737": {
+      "op": "POP"
+    },
+    "738": {
+      "op": "POP"
+    },
+    "739": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "740": {
+      "op": "JUMPDEST"
+    },
+    "741": {
+      "op": "PUSH4",
+      "value": "0x4E487B71"
+    },
+    "746": {
+      "op": "PUSH1",
+      "value": "0xE0"
+    },
+    "748": {
+      "op": "SHL"
+    },
+    "749": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "751": {
+      "op": "MSTORE"
+    },
+    "752": {
+      "op": "PUSH1",
+      "value": "0x41"
+    },
+    "754": {
+      "op": "PUSH1",
+      "value": "0x4"
+    },
+    "756": {
+      "op": "MSTORE"
+    },
+    "757": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "759": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "761": {
+      "op": "REVERT"
+    },
+    "762": {
+      "op": "JUMPDEST"
+    },
+    "763": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "765": {
+      "op": "MLOAD"
+    },
+    "766": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "768": {
+      "op": "DUP3"
+    },
+    "769": {
+      "op": "ADD"
+    },
+    "770": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "772": {
+      "op": "NOT"
+    },
+    "773": {
+      "op": "AND"
+    },
+    "774": {
+      "op": "DUP2"
+    },
+    "775": {
+      "op": "ADD"
+    },
+    "776": {
+      "op": "PUSH8",
+      "value": "0xFFFFFFFFFFFFFFFF"
+    },
+    "785": {
+      "op": "DUP2"
+    },
+    "786": {
+      "op": "GT"
+    },
+    "787": {
+      "op": "DUP3"
+    },
+    "788": {
+      "op": "DUP3"
+    },
+    "789": {
+      "op": "LT"
+    },
+    "790": {
+      "op": "OR"
+    },
+    "791": {
+      "op": "ISZERO"
+    },
+    "792": {
+      "op": "PUSH2",
+      "value": "0x323"
+    },
+    "795": {
+      "op": "JUMPI"
+    },
+    "796": {
+      "op": "PUSH2",
+      "value": "0x323"
+    },
+    "799": {
+      "op": "PUSH2",
+      "value": "0x2E4"
+    },
+    "802": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "803": {
+      "op": "JUMPDEST"
+    },
+    "804": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "806": {
+      "op": "MSTORE"
+    },
+    "807": {
+      "op": "SWAP2"
+    },
+    "808": {
+      "op": "SWAP1"
+    },
+    "809": {
+      "op": "POP"
+    },
+    "810": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "811": {
+      "op": "JUMPDEST"
+    },
+    "812": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "814": {
+      "op": "PUSH8",
+      "value": "0xFFFFFFFFFFFFFFFF"
+    },
+    "823": {
+      "op": "DUP3"
+    },
+    "824": {
+      "op": "GT"
+    },
+    "825": {
+      "op": "ISZERO"
+    },
+    "826": {
+      "op": "PUSH2",
+      "value": "0x345"
+    },
+    "829": {
+      "op": "JUMPI"
+    },
+    "830": {
+      "op": "PUSH2",
+      "value": "0x345"
+    },
+    "833": {
+      "op": "PUSH2",
+      "value": "0x2E4"
+    },
+    "836": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "837": {
+      "op": "JUMPDEST"
+    },
+    "838": {
+      "op": "POP"
+    },
+    "839": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "841": {
+      "op": "ADD"
+    },
+    "842": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "844": {
+      "op": "NOT"
+    },
+    "845": {
+      "op": "AND"
+    },
+    "846": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "848": {
+      "op": "ADD"
+    },
+    "849": {
+      "op": "SWAP1"
+    },
+    "850": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "851": {
+      "op": "JUMPDEST"
+    },
+    "852": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "854": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "856": {
+      "op": "DUP3"
+    },
+    "857": {
+      "op": "DUP5"
+    },
+    "858": {
+      "op": "SUB"
+    },
+    "859": {
+      "op": "SLT"
+    },
+    "860": {
+      "op": "ISZERO"
+    },
+    "861": {
+      "op": "PUSH2",
+      "value": "0x365"
+    },
+    "864": {
+      "op": "JUMPI"
+    },
+    "865": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "867": {
+      "op": "DUP1"
+    },
+    "868": {
+      "op": "REVERT"
+    },
+    "869": {
+      "op": "JUMPDEST"
+    },
+    "870": {
+      "op": "DUP2"
+    },
+    "871": {
+      "op": "CALLDATALOAD"
+    },
+    "872": {
+      "op": "PUSH8",
+      "value": "0xFFFFFFFFFFFFFFFF"
+    },
+    "881": {
+      "op": "DUP2"
+    },
+    "882": {
+      "op": "GT"
+    },
+    "883": {
+      "op": "ISZERO"
+    },
+    "884": {
+      "op": "PUSH2",
+      "value": "0x37C"
+    },
+    "887": {
+      "op": "JUMPI"
+    },
+    "888": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "890": {
+      "op": "DUP1"
+    },
+    "891": {
+      "op": "REVERT"
+    },
+    "892": {
+      "op": "JUMPDEST"
+    },
+    "893": {
+      "op": "DUP3"
+    },
+    "894": {
+      "op": "ADD"
+    },
+    "895": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "897": {
+      "op": "DUP2"
+    },
+    "898": {
+      "op": "ADD"
+    },
+    "899": {
+      "op": "DUP5"
+    },
+    "900": {
+      "op": "SGT"
+    },
+    "901": {
+      "op": "PUSH2",
+      "value": "0x38D"
+    },
+    "904": {
+      "op": "JUMPI"
+    },
+    "905": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "907": {
+      "op": "DUP1"
+    },
+    "908": {
+      "op": "REVERT"
+    },
+    "909": {
+      "op": "JUMPDEST"
+    },
+    "910": {
+      "op": "DUP1"
+    },
+    "911": {
+      "op": "CALLDATALOAD"
+    },
+    "912": {
+      "op": "PUSH2",
+      "value": "0x3A0"
+    },
+    "915": {
+      "op": "PUSH2",
+      "value": "0x39B"
+    },
+    "918": {
+      "op": "DUP3"
+    },
+    "919": {
+      "op": "PUSH2",
+      "value": "0x32B"
+    },
+    "922": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "923": {
+      "op": "JUMPDEST"
+    },
+    "924": {
+      "op": "PUSH2",
+      "value": "0x2FA"
+    },
+    "927": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "928": {
+      "op": "JUMPDEST"
+    },
+    "929": {
+      "op": "DUP2"
+    },
+    "930": {
+      "op": "DUP2"
+    },
+    "931": {
+      "op": "MSTORE"
+    },
+    "932": {
+      "op": "DUP6"
+    },
+    "933": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "935": {
+      "op": "DUP4"
+    },
+    "936": {
+      "op": "DUP6"
+    },
+    "937": {
+      "op": "ADD"
+    },
+    "938": {
+      "op": "ADD"
+    },
+    "939": {
+      "op": "GT"
+    },
+    "940": {
+      "op": "ISZERO"
+    },
+    "941": {
+      "op": "PUSH2",
+      "value": "0x3B5"
+    },
+    "944": {
+      "op": "JUMPI"
+    },
+    "945": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "947": {
+      "op": "DUP1"
+    },
+    "948": {
+      "op": "REVERT"
+    },
+    "949": {
+      "op": "JUMPDEST"
+    },
+    "950": {
+      "op": "DUP2"
+    },
+    "951": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "953": {
+      "op": "DUP5"
+    },
+    "954": {
+      "op": "ADD"
+    },
+    "955": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "957": {
+      "op": "DUP4"
+    },
+    "958": {
+      "op": "ADD"
+    },
+    "959": {
+      "op": "CALLDATACOPY"
+    },
+    "960": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "962": {
+      "op": "SWAP2"
+    },
+    "963": {
+      "op": "DUP2"
+    },
+    "964": {
+      "op": "ADD"
+    },
+    "965": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "967": {
+      "op": "ADD"
+    },
+    "968": {
+      "op": "SWAP2"
+    },
+    "969": {
+      "op": "SWAP1"
+    },
+    "970": {
+      "op": "SWAP2"
+    },
+    "971": {
+      "op": "MSTORE"
+    },
+    "972": {
+      "op": "SWAP5"
+    },
+    "973": {
+      "op": "SWAP4"
+    },
+    "974": {
+      "op": "POP"
+    },
+    "975": {
+      "op": "POP"
+    },
+    "976": {
+      "op": "POP"
+    },
+    "977": {
+      "op": "POP"
+    },
+    "978": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "979": {
+      "op": "JUMPDEST"
+    },
+    "980": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "982": {
+      "op": "DUP2"
+    },
+    "983": {
+      "op": "MSTORE"
+    },
+    "984": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "986": {
+      "op": "PUSH2",
+      "value": "0x3E6"
+    },
+    "989": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "991": {
+      "op": "DUP4"
+    },
+    "992": {
+      "op": "ADD"
+    },
+    "993": {
+      "op": "DUP5"
+    },
+    "994": {
+      "op": "PUSH2",
+      "value": "0x24B"
+    },
+    "997": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "998": {
+      "op": "JUMPDEST"
+    },
+    "999": {
+      "op": "SWAP4"
+    },
+    "1000": {
+      "op": "SWAP3"
+    },
+    "1001": {
+      "op": "POP"
+    },
+    "1002": {
+      "op": "POP"
+    },
+    "1003": {
+      "op": "POP"
+    },
+    "1004": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "1005": {
+      "op": "JUMPDEST"
+    },
+    "1006": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1008": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1010": {
+      "op": "DUP3"
+    },
+    "1011": {
+      "op": "DUP5"
+    },
+    "1012": {
+      "op": "SUB"
+    },
+    "1013": {
+      "op": "SLT"
+    },
+    "1014": {
+      "op": "ISZERO"
+    },
+    "1015": {
+      "op": "PUSH2",
+      "value": "0x3FF"
+    },
+    "1018": {
+      "op": "JUMPI"
+    },
+    "1019": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1021": {
+      "op": "DUP1"
+    },
+    "1022": {
+      "op": "REVERT"
+    },
+    "1023": {
+      "op": "JUMPDEST"
+    },
+    "1024": {
+      "op": "DUP2"
+    },
+    "1025": {
+      "op": "CALLDATALOAD"
+    },
+    "1026": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1028": {
+      "op": "PUSH1",
+      "value": "0x1"
+    },
+    "1030": {
+      "op": "PUSH1",
+      "value": "0xA0"
+    },
+    "1032": {
+      "op": "SHL"
+    },
+    "1033": {
+      "op": "SUB"
+    },
+    "1034": {
+      "op": "DUP2"
+    },
+    "1035": {
+      "op": "AND"
+    },
+    "1036": {
+      "op": "DUP2"
+    },
+    "1037": {
+      "op": "EQ"
+    },
+    "1038": {
+      "op": "PUSH2",
+      "value": "0x3E6"
+    },
+    "1041": {
+      "op": "JUMPI"
+    },
+    "1042": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1044": {
+      "op": "DUP1"
+    },
+    "1045": {
+      "op": "REVERT"
+    },
+    "1046": {
+      "op": "JUMPDEST"
+    },
+    "1047": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1049": {
+      "op": "DUP3"
+    },
+    "1050": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "1052": {
+      "op": "DUP4"
+    },
+    "1053": {
+      "op": "ADD"
+    },
+    "1054": {
+      "op": "SLT"
+    },
+    "1055": {
+      "op": "PUSH2",
+      "value": "0x427"
+    },
+    "1058": {
+      "op": "JUMPI"
+    },
+    "1059": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1061": {
+      "op": "DUP1"
+    },
+    "1062": {
+      "op": "REVERT"
+    },
+    "1063": {
+      "op": "JUMPDEST"
+    },
+    "1064": {
+      "op": "DUP2"
+    },
+    "1065": {
+      "op": "MLOAD"
+    },
+    "1066": {
+      "op": "PUSH2",
+      "value": "0x435"
+    },
+    "1069": {
+      "op": "PUSH2",
+      "value": "0x39B"
+    },
+    "1072": {
+      "op": "DUP3"
+    },
+    "1073": {
+      "op": "PUSH2",
+      "value": "0x32B"
+    },
+    "1076": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1077": {
+      "op": "JUMPDEST"
+    },
+    "1078": {
+      "op": "DUP2"
+    },
+    "1079": {
+      "op": "DUP2"
+    },
+    "1080": {
+      "op": "MSTORE"
+    },
+    "1081": {
+      "op": "DUP5"
+    },
+    "1082": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1084": {
+      "op": "DUP4"
+    },
+    "1085": {
+      "op": "DUP7"
+    },
+    "1086": {
+      "op": "ADD"
+    },
+    "1087": {
+      "op": "ADD"
+    },
+    "1088": {
+      "op": "GT"
+    },
+    "1089": {
+      "op": "ISZERO"
+    },
+    "1090": {
+      "op": "PUSH2",
+      "value": "0x44A"
+    },
+    "1093": {
+      "op": "JUMPI"
+    },
+    "1094": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1096": {
+      "op": "DUP1"
+    },
+    "1097": {
+      "op": "REVERT"
+    },
+    "1098": {
+      "op": "JUMPDEST"
+    },
+    "1099": {
+      "op": "PUSH2",
+      "value": "0x45B"
+    },
+    "1102": {
+      "op": "DUP3"
+    },
+    "1103": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1105": {
+      "op": "DUP4"
+    },
+    "1106": {
+      "op": "ADD"
+    },
+    "1107": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1109": {
+      "op": "DUP8"
+    },
+    "1110": {
+      "op": "ADD"
+    },
+    "1111": {
+      "op": "PUSH2",
+      "value": "0x1EF"
+    },
+    "1114": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1115": {
+      "op": "JUMPDEST"
+    },
+    "1116": {
+      "op": "SWAP5"
+    },
+    "1117": {
+      "op": "SWAP4"
+    },
+    "1118": {
+      "op": "POP"
+    },
+    "1119": {
+      "op": "POP"
+    },
+    "1120": {
+      "op": "POP"
+    },
+    "1121": {
+      "op": "POP"
+    },
+    "1122": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "1123": {
+      "op": "JUMPDEST"
+    },
+    "1124": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1126": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "1128": {
+      "op": "DUP3"
+    },
+    "1129": {
+      "op": "DUP5"
+    },
+    "1130": {
+      "op": "SUB"
+    },
+    "1131": {
+      "op": "SLT"
+    },
+    "1132": {
+      "op": "ISZERO"
+    },
+    "1133": {
+      "op": "PUSH2",
+      "value": "0x475"
+    },
+    "1136": {
+      "op": "JUMPI"
+    },
+    "1137": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1139": {
+      "op": "DUP1"
+    },
+    "1140": {
+      "op": "REVERT"
+    },
+    "1141": {
+      "op": "JUMPDEST"
+    },
+    "1142": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "1144": {
+      "op": "MLOAD"
+    },
+    "1145": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "1147": {
+      "op": "DUP2"
+    },
+    "1148": {
+      "op": "ADD"
+    },
+    "1149": {
+      "op": "PUSH8",
+      "value": "0xFFFFFFFFFFFFFFFF"
+    },
+    "1158": {
+      "op": "DUP3"
+    },
+    "1159": {
+      "op": "DUP3"
+    },
+    "1160": {
+      "op": "LT"
+    },
+    "1161": {
+      "op": "DUP2"
+    },
+    "1162": {
+      "op": "DUP4"
+    },
+    "1163": {
+      "op": "GT"
+    },
+    "1164": {
+      "op": "OR"
+    },
+    "1165": {
+      "op": "ISZERO"
+    },
+    "1166": {
+      "op": "PUSH2",
+      "value": "0x499"
+    },
+    "1169": {
+      "op": "JUMPI"
+    },
+    "1170": {
+      "op": "PUSH2",
+      "value": "0x499"
+    },
+    "1173": {
+      "op": "PUSH2",
+      "value": "0x2E4"
+    },
+    "1176": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1177": {
+      "op": "JUMPDEST"
+    },
+    "1178": {
+      "op": "DUP2"
+    },
+    "1179": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "1181": {
+      "op": "MSTORE"
+    },
+    "1182": {
+      "op": "DUP3"
+    },
+    "1183": {
+      "op": "SWAP4"
+    },
+    "1184": {
+      "op": "POP"
+    },
+    "1185": {
+      "op": "DUP5"
+    },
+    "1186": {
+      "op": "MLOAD"
+    },
+    "1187": {
+      "op": "SWAP2"
+    },
+    "1188": {
+      "op": "POP"
+    },
+    "1189": {
+      "op": "DUP1"
+    },
+    "1190": {
+      "op": "DUP3"
+    },
+    "1191": {
+      "op": "GT"
+    },
+    "1192": {
+      "op": "ISZERO"
+    },
+    "1193": {
+      "op": "PUSH2",
+      "value": "0x4B1"
+    },
+    "1196": {
+      "op": "JUMPI"
+    },
+    "1197": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1199": {
+      "op": "DUP1"
+    },
+    "1200": {
+      "op": "REVERT"
+    },
+    "1201": {
+      "op": "JUMPDEST"
+    },
+    "1202": {
+      "op": "PUSH2",
+      "value": "0x4BD"
+    },
+    "1205": {
+      "op": "DUP7"
+    },
+    "1206": {
+      "op": "DUP4"
+    },
+    "1207": {
+      "op": "DUP8"
+    },
+    "1208": {
+      "op": "ADD"
+    },
+    "1209": {
+      "op": "PUSH2",
+      "value": "0x416"
+    },
+    "1212": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1213": {
+      "op": "JUMPDEST"
+    },
+    "1214": {
+      "op": "DUP4"
+    },
+    "1215": {
+      "op": "MSTORE"
+    },
+    "1216": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1218": {
+      "op": "DUP6"
+    },
+    "1219": {
+      "op": "ADD"
+    },
+    "1220": {
+      "op": "MLOAD"
+    },
+    "1221": {
+      "op": "SWAP2"
+    },
+    "1222": {
+      "op": "POP"
+    },
+    "1223": {
+      "op": "DUP1"
+    },
+    "1224": {
+      "op": "DUP3"
+    },
+    "1225": {
+      "op": "GT"
+    },
+    "1226": {
+      "op": "ISZERO"
+    },
+    "1227": {
+      "op": "PUSH2",
+      "value": "0x4D3"
+    },
+    "1230": {
+      "op": "JUMPI"
+    },
+    "1231": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1233": {
+      "op": "DUP1"
+    },
+    "1234": {
+      "op": "REVERT"
+    },
+    "1235": {
+      "op": "JUMPDEST"
+    },
+    "1236": {
+      "op": "POP"
+    },
+    "1237": {
+      "op": "PUSH2",
+      "value": "0x4E0"
+    },
+    "1240": {
+      "op": "DUP6"
+    },
+    "1241": {
+      "op": "DUP3"
+    },
+    "1242": {
+      "op": "DUP7"
+    },
+    "1243": {
+      "op": "ADD"
+    },
+    "1244": {
+      "op": "PUSH2",
+      "value": "0x416"
+    },
+    "1247": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1248": {
+      "op": "JUMPDEST"
+    },
+    "1249": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1251": {
+      "op": "DUP4"
+    },
+    "1252": {
+      "op": "ADD"
+    },
+    "1253": {
+      "op": "MSTORE"
+    },
+    "1254": {
+      "op": "POP"
+    },
+    "1255": {
+      "op": "POP"
+    },
+    "1256": {
+      "op": "SWAP3"
+    },
+    "1257": {
+      "op": "SWAP2"
+    },
+    "1258": {
+      "op": "POP"
+    },
+    "1259": {
+      "op": "POP"
+    },
+    "1260": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "1261": {
+      "op": "JUMPDEST"
+    },
+    "1262": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1264": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1266": {
+      "op": "DUP1"
+    },
+    "1267": {
+      "op": "DUP4"
+    },
+    "1268": {
+      "op": "DUP6"
+    },
+    "1269": {
+      "op": "SUB"
+    },
+    "1270": {
+      "op": "SLT"
+    },
+    "1271": {
+      "op": "ISZERO"
+    },
+    "1272": {
+      "op": "PUSH2",
+      "value": "0x500"
+    },
+    "1275": {
+      "op": "JUMPI"
+    },
+    "1276": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1278": {
+      "op": "DUP1"
+    },
+    "1279": {
+      "op": "REVERT"
+    },
+    "1280": {
+      "op": "JUMPDEST"
+    },
+    "1281": {
+      "op": "DUP3"
+    },
+    "1282": {
+      "op": "MLOAD"
+    },
+    "1283": {
+      "op": "PUSH8",
+      "value": "0xFFFFFFFFFFFFFFFF"
+    },
+    "1292": {
+      "op": "DUP1"
+    },
+    "1293": {
+      "op": "DUP3"
+    },
+    "1294": {
+      "op": "GT"
+    },
+    "1295": {
+      "op": "ISZERO"
+    },
+    "1296": {
+      "op": "PUSH2",
+      "value": "0x518"
+    },
+    "1299": {
+      "op": "JUMPI"
+    },
+    "1300": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1302": {
+      "op": "DUP1"
+    },
+    "1303": {
+      "op": "REVERT"
+    },
+    "1304": {
+      "op": "JUMPDEST"
+    },
+    "1305": {
+      "op": "DUP2"
+    },
+    "1306": {
+      "op": "DUP6"
+    },
+    "1307": {
+      "op": "ADD"
+    },
+    "1308": {
+      "op": "SWAP2"
+    },
+    "1309": {
+      "op": "POP"
+    },
+    "1310": {
+      "op": "DUP6"
+    },
+    "1311": {
+      "op": "PUSH1",
+      "value": "0x1F"
+    },
+    "1313": {
+      "op": "DUP4"
+    },
+    "1314": {
+      "op": "ADD"
+    },
+    "1315": {
+      "op": "SLT"
+    },
+    "1316": {
+      "op": "PUSH2",
+      "value": "0x52C"
+    },
+    "1319": {
+      "op": "JUMPI"
+    },
+    "1320": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1322": {
+      "op": "DUP1"
+    },
+    "1323": {
+      "op": "REVERT"
+    },
+    "1324": {
+      "op": "JUMPDEST"
+    },
+    "1325": {
+      "op": "DUP2"
+    },
+    "1326": {
+      "op": "MLOAD"
+    },
+    "1327": {
+      "op": "DUP2"
+    },
+    "1328": {
+      "op": "DUP2"
+    },
+    "1329": {
+      "op": "GT"
+    },
+    "1330": {
+      "op": "ISZERO"
+    },
+    "1331": {
+      "op": "PUSH2",
+      "value": "0x53E"
+    },
+    "1334": {
+      "op": "JUMPI"
+    },
+    "1335": {
+      "op": "PUSH2",
+      "value": "0x53E"
+    },
+    "1338": {
+      "op": "PUSH2",
+      "value": "0x2E4"
+    },
+    "1341": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1342": {
+      "op": "JUMPDEST"
+    },
+    "1343": {
+      "op": "DUP1"
+    },
+    "1344": {
+      "op": "PUSH1",
+      "value": "0x5"
+    },
+    "1346": {
+      "op": "SHL"
+    },
+    "1347": {
+      "op": "PUSH2",
+      "value": "0x54D"
+    },
+    "1350": {
+      "op": "DUP6"
+    },
+    "1351": {
+      "op": "DUP3"
+    },
+    "1352": {
+      "op": "ADD"
+    },
+    "1353": {
+      "op": "PUSH2",
+      "value": "0x2FA"
+    },
+    "1356": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1357": {
+      "op": "JUMPDEST"
+    },
+    "1358": {
+      "op": "SWAP2"
+    },
+    "1359": {
+      "op": "DUP3"
+    },
+    "1360": {
+      "op": "MSTORE"
+    },
+    "1361": {
+      "op": "DUP4"
+    },
+    "1362": {
+      "op": "DUP2"
+    },
+    "1363": {
+      "op": "ADD"
+    },
+    "1364": {
+      "op": "DUP6"
+    },
+    "1365": {
+      "op": "ADD"
+    },
+    "1366": {
+      "op": "SWAP2"
+    },
+    "1367": {
+      "op": "DUP6"
+    },
+    "1368": {
+      "op": "DUP2"
+    },
+    "1369": {
+      "op": "ADD"
+    },
+    "1370": {
+      "op": "SWAP1"
+    },
+    "1371": {
+      "op": "DUP10"
+    },
+    "1372": {
+      "op": "DUP5"
+    },
+    "1373": {
+      "op": "GT"
+    },
+    "1374": {
+      "op": "ISZERO"
+    },
+    "1375": {
+      "op": "PUSH2",
+      "value": "0x567"
+    },
+    "1378": {
+      "op": "JUMPI"
+    },
+    "1379": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1381": {
+      "op": "DUP1"
+    },
+    "1382": {
+      "op": "REVERT"
+    },
+    "1383": {
+      "op": "JUMPDEST"
+    },
+    "1384": {
+      "op": "DUP7"
+    },
+    "1385": {
+      "op": "DUP7"
+    },
+    "1386": {
+      "op": "ADD"
+    },
+    "1387": {
+      "op": "SWAP3"
+    },
+    "1388": {
+      "op": "POP"
+    },
+    "1389": {
+      "op": "JUMPDEST"
+    },
+    "1390": {
+      "op": "DUP4"
+    },
+    "1391": {
+      "op": "DUP4"
+    },
+    "1392": {
+      "op": "LT"
+    },
+    "1393": {
+      "op": "ISZERO"
+    },
+    "1394": {
+      "op": "PUSH2",
+      "value": "0x5A3"
+    },
+    "1397": {
+      "op": "JUMPI"
+    },
+    "1398": {
+      "op": "DUP3"
+    },
+    "1399": {
+      "op": "MLOAD"
+    },
+    "1400": {
+      "op": "DUP6"
+    },
+    "1401": {
+      "op": "DUP2"
+    },
+    "1402": {
+      "op": "GT"
+    },
+    "1403": {
+      "op": "ISZERO"
+    },
+    "1404": {
+      "op": "PUSH2",
+      "value": "0x585"
+    },
+    "1407": {
+      "op": "JUMPI"
+    },
+    "1408": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1410": {
+      "op": "DUP1"
+    },
+    "1411": {
+      "op": "DUP2"
+    },
+    "1412": {
+      "op": "REVERT"
+    },
+    "1413": {
+      "op": "JUMPDEST"
+    },
+    "1414": {
+      "op": "PUSH2",
+      "value": "0x593"
+    },
+    "1417": {
+      "op": "DUP12"
+    },
+    "1418": {
+      "op": "DUP10"
+    },
+    "1419": {
+      "op": "DUP4"
+    },
+    "1420": {
+      "op": "DUP11"
+    },
+    "1421": {
+      "op": "ADD"
+    },
+    "1422": {
+      "op": "ADD"
+    },
+    "1423": {
+      "op": "PUSH2",
+      "value": "0x463"
+    },
+    "1426": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1427": {
+      "op": "JUMPDEST"
+    },
+    "1428": {
+      "op": "DUP4"
+    },
+    "1429": {
+      "op": "MSTORE"
+    },
+    "1430": {
+      "op": "POP"
+    },
+    "1431": {
+      "op": "SWAP2"
+    },
+    "1432": {
+      "op": "DUP7"
+    },
+    "1433": {
+      "op": "ADD"
+    },
+    "1434": {
+      "op": "SWAP2"
+    },
+    "1435": {
+      "op": "SWAP1"
+    },
+    "1436": {
+      "op": "DUP7"
+    },
+    "1437": {
+      "op": "ADD"
+    },
+    "1438": {
+      "op": "SWAP1"
+    },
+    "1439": {
+      "op": "PUSH2",
+      "value": "0x56D"
+    },
+    "1442": {
+      "op": "JUMP"
+    },
+    "1443": {
+      "op": "JUMPDEST"
+    },
+    "1444": {
+      "op": "SWAP10"
+    },
+    "1445": {
+      "op": "SWAP9"
+    },
+    "1446": {
+      "op": "POP"
+    },
+    "1447": {
+      "op": "POP"
+    },
+    "1448": {
+      "op": "POP"
+    },
+    "1449": {
+      "op": "POP"
+    },
+    "1450": {
+      "op": "POP"
+    },
+    "1451": {
+      "op": "POP"
+    },
+    "1452": {
+      "op": "POP"
+    },
+    "1453": {
+      "op": "POP"
+    },
+    "1454": {
+      "op": "POP"
+    },
+    "1455": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "1456": {
+      "op": "JUMPDEST"
+    },
+    "1457": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1459": {
+      "op": "DUP2"
+    },
+    "1460": {
+      "op": "MSTORE"
+    },
+    "1461": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1463": {
+      "op": "PUSH2",
+      "value": "0x3E6"
+    },
+    "1466": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1468": {
+      "op": "DUP4"
+    },
+    "1469": {
+      "op": "ADD"
+    },
+    "1470": {
+      "op": "DUP5"
+    },
+    "1471": {
+      "op": "PUSH2",
+      "value": "0x21F"
+    },
+    "1474": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "1475": {
+      "op": "JUMPDEST"
+    },
+    "1476": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1478": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "1480": {
+      "op": "DUP3"
+    },
+    "1481": {
+      "op": "DUP5"
+    },
+    "1482": {
+      "op": "SUB"
+    },
+    "1483": {
+      "op": "SLT"
+    },
+    "1484": {
+      "op": "ISZERO"
+    },
+    "1485": {
+      "op": "PUSH2",
+      "value": "0x5D5"
+    },
+    "1488": {
+      "op": "JUMPI"
+    },
+    "1489": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1491": {
+      "op": "DUP1"
+    },
+    "1492": {
+      "op": "REVERT"
+    },
+    "1493": {
+      "op": "JUMPDEST"
+    },
+    "1494": {
+      "op": "DUP2"
+    },
+    "1495": {
+      "op": "MLOAD"
+    },
+    "1496": {
+      "op": "PUSH8",
+      "value": "0xFFFFFFFFFFFFFFFF"
+    },
+    "1505": {
+      "op": "DUP2"
+    },
+    "1506": {
+      "op": "GT"
+    },
+    "1507": {
+      "op": "ISZERO"
+    },
+    "1508": {
+      "op": "PUSH2",
+      "value": "0x5EC"
+    },
+    "1511": {
+      "op": "JUMPI"
+    },
+    "1512": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "1514": {
+      "op": "DUP1"
+    },
+    "1515": {
+      "op": "REVERT"
+    },
+    "1516": {
+      "op": "JUMPDEST"
+    },
+    "1517": {
+      "op": "PUSH2",
+      "value": "0x45B"
+    },
+    "1520": {
+      "op": "DUP5"
+    },
+    "1521": {
+      "op": "DUP3"
+    },
+    "1522": {
+      "op": "DUP6"
+    },
+    "1523": {
+      "op": "ADD"
+    },
+    "1524": {
+      "op": "PUSH2",
+      "value": "0x463"
+    },
+    "1527": {
+      "jump": "i",
+      "op": "JUMP"
+    }
+  },
+  "sha1": "593c3b5120098703364bd6bbab43fcd2f960ca90",
+  "source": "// SPDX-License-Identifier: MIT OR Apache-2.0\npragma solidity ^0.8.7;\nimport {ExplainSchema} from \"contracts/explain/Structs.sol\";\nimport {IExplainManager} from \"interfaces/explain/IExplainManager.sol\";\n\ncontract ExplainManagerAdapter {\n\n    IExplainManager public explain;\n\n    function connectExplain(address explainAddress) public {\n        explain = IExplainManager(explainAddress);\n    }\n\n    function getExplainer(string memory name) external view returns(ExplainSchema memory )\n    {\n    return explain.getExplainer(name);\n    }\n    function getExplainers() external view returns(ExplainSchema[] memory )\n    {\n    return explain.getExplainers();\n    }\n     \n}\n",
+  "sourceMap": "204:463:6:-:0;;;;;;;;;;;;;;;;;;;",
+  "sourcePath": "contracts/explain/ExplainManagerAdapter.sol",
+  "type": "contract"
+}

@@ -1,0 +1,39 @@
+
+module: data.regression.crypto.sushiswap.dataset.Dataset
+pipeline: get_cfg(data.regression.crypto.sushiswap.pipeline)
+tokens:  get_cfg(config.meta.crypto.tokens.commune_app)
+# tokens: ['WETH']
+timescales: [90m]
+actor_count: 4
+delay_threshold: 15
+pipeline_override:
+  load_block_data:
+    run: True
+    refresh: False
+  load_data:
+    run: True
+    refresh: False
+  process_data:
+    run: True
+    refresh: False
+  sample_generator:
+    run: True
+    refresh: False
+
+actor:
+  name: data_manager
+  max_concurrency: 6
+  refresh: True 
+
+refresh: True
+
+write:
+  cfg: 
+    client: mongo
+    params:
+      database: commune
+      collection: config
+      query:
+        module: local_copy(module)
+
+client: get_cfg(client.manager)

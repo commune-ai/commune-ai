@@ -1,0 +1,41 @@
+module: "model.complete.regression.transformer.quantile"
+# get the periods from the data
+predicted_columns:  ["tokenPriceUSD"] 
+periods:
+  # the input period
+  input: 128
+  output: 12
+device: cuda
+
+transformer:
+  d_model: 16
+  attn_heads: 4
+  dropout: 0.1
+  d_ff: 8
+  num_layers: 2
+  positional: True
+
+  temporal_features:  []
+  categorical_features: {}
+  known_future_features: []
+  embedding_sizes: {}
+  embedding_size: 8
+
+quantiles: [0.02, 0.1, 0.25, 0.5, 0.75, 0.9, 0.98]
+semantic_quantile_map:
+  lower: 0.1
+  mean: 0.5
+  upper: 0.9
+
+optimizer:
+  lr: 0.001
+  weight_decay: 1.e-4
+  amsgrad: True
+
+metric:
+  module: model.metric.bundle.regression.quantile.v0
+  time_modes: ['past', 'future']
+  loss_weight:
+    s1: 1
+    root: 1
+    log_prob: 1

@@ -1,0 +1,46 @@
+# change the build directory to be within react's scope
+project_structure:
+    build: artifacts
+
+      
+# automatically fetch contract sources from Etherscan
+autofetch_sources: True
+# dotenv: .env
+dependencies:
+   - OpenZeppelin/openzeppelin-contracts@4.4.0
+   - Uniswap/v2-core@1.0.1 
+   - Uniswap/v2-periphery@1.0.0-beta.0
+   - Uniswap/v3-periphery@1.3.0
+   - Uniswap/solidity-lib@2.1.0
+compiler:
+    solc:
+        remappings:
+            - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.4.0"
+            - "@uniswap/v2-periphery=Uniswap/v2-periphery@1.0.0-beta.0"
+            - "@uniswap/v2-core=Uniswap/v2-core@1.0.1"
+            - "@uniswap/v3-periphery=Uniswap/v3-periphery@1.3.0"
+            - "@uniswap/lib=Uniswap/solidity-lib@2.1.0"
+networks:
+  default: development
+  development:
+    cmd_settings:
+      mnemonic: brownie
+      default_balance: 100000000000000000000
+      # unlock: <ACCOUNT ADDRESS HERE> # optionally add saved brownie account to Ganache
+      # (requires explicit transfer of eth to accounts[-1]) 
+    # gas_price: 10000000
+    update_interval: 60
+    verify: False
+  
+  kovan:
+
+    verify: False
+    update_interval: 60
+
+
+wallets:
+  from_key: ${PRIVATE_KEY}
+
+
+# enable output of development artifacts to load with react
+dev_deployment_artifacts: true

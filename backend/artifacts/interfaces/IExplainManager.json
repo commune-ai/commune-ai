@@ -1,0 +1,484 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "explainURI",
+          "type": "string"
+        }
+      ],
+      "name": "addExplain",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "name": "getExplainer",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "uri",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct ExplainSchema",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getExplainers",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "uri",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct ExplainSchema[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "name": "removeExplain",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "ast": {
+    "absolutePath": "interfaces/explain/IExplainManager.sol",
+    "exportedSymbols": {
+      "ExplainSchema": [
+        42
+      ],
+      "IExplainManager": [
+        31
+      ]
+    },
+    "id": 32,
+    "license": "MIT OR Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".7"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "46:23:1"
+      },
+      {
+        "absolutePath": "contracts/explain/Structs.sol",
+        "file": "contracts/explain/Structs.sol",
+        "id": 3,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 32,
+        "sourceUnit": 43,
+        "src": "71:60:1",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 2,
+              "name": "ExplainSchema",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 42,
+              "src": "79:13:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_type$_t_struct$_ExplainSchema_$42_storage_ptr_$",
+                "typeString": "type(struct ExplainSchema storage pointer)"
+              }
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IExplainManager",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 31,
+        "linearizedBaseContracts": [
+          31
+        ],
+        "name": "IExplainManager",
+        "nameLocation": "148:15:1",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "0dec0d38",
+            "id": 10,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addExplain",
+            "nameLocation": "253:10:1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 8,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "nameLocation": "278:4:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10,
+                  "src": "264:18:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 4,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "264:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7,
+                  "mutability": "mutable",
+                  "name": "explainURI",
+                  "nameLocation": "299:10:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 10,
+                  "src": "285:24:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 6,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "285:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "263:47:1"
+            },
+            "returnParameters": {
+              "id": 9,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "320:0:1"
+            },
+            "scope": 31,
+            "src": "244:77:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "6ecef986",
+            "id": 15,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeExplain",
+            "nameLocation": "335:13:1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "nameLocation": "363:4:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 15,
+                  "src": "349:18:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 11,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "349:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "348:21:1"
+            },
+            "returnParameters": {
+              "id": 14,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "380:0:1"
+            },
+            "scope": 31,
+            "src": "326:55:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "5ae6634b",
+            "id": 23,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getExplainer",
+            "nameLocation": "395:12:1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 17,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "nameLocation": "422:4:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23,
+                  "src": "408:18:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 16,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "408:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "407:20:1"
+            },
+            "returnParameters": {
+              "id": 22,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 21,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23,
+                  "src": "450:20:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_ExplainSchema_$42_memory_ptr",
+                    "typeString": "struct ExplainSchema"
+                  },
+                  "typeName": {
+                    "id": 20,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 19,
+                      "name": "ExplainSchema",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 42,
+                      "src": "450:13:1"
+                    },
+                    "referencedDeclaration": 42,
+                    "src": "450:13:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_ExplainSchema_$42_storage_ptr",
+                      "typeString": "struct ExplainSchema"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "449:23:1"
+            },
+            "scope": 31,
+            "src": "386:87:1",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "3f9bb242",
+            "id": 30,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getExplainers",
+            "nameLocation": "487:13:1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "500:2:1"
+            },
+            "returnParameters": {
+              "id": 29,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30,
+                  "src": "525:22:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_ExplainSchema_$42_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "struct ExplainSchema[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 26,
+                      "nodeType": "UserDefinedTypeName",
+                      "pathNode": {
+                        "id": 25,
+                        "name": "ExplainSchema",
+                        "nodeType": "IdentifierPath",
+                        "referencedDeclaration": 42,
+                        "src": "525:13:1"
+                      },
+                      "referencedDeclaration": 42,
+                      "src": "525:13:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_ExplainSchema_$42_storage_ptr",
+                        "typeString": "struct ExplainSchema"
+                      }
+                    },
+                    "id": 27,
+                    "nodeType": "ArrayTypeName",
+                    "src": "525:15:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_ExplainSchema_$42_storage_$dyn_storage_ptr",
+                      "typeString": "struct ExplainSchema[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "524:25:1"
+            },
+            "scope": 31,
+            "src": "478:72:1",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 32,
+        "src": "138:414:1",
+        "usedErrors": []
+      }
+    ],
+    "src": "46:507:1"
+  },
+  "contractName": "IExplainManager",
+  "dependencies": [],
+  "offset": [
+    138,
+    552
+  ],
+  "sha1": "f2a1c50cb17d03386557447b7c7c2c6cd1f7c35f",
+  "source": "// SPDX-License-Identifier: MIT OR Apache-2.0\npragma solidity ^0.8.7;\n\nimport {ExplainSchema} from \"contracts/explain/Structs.sol\";\n    \n\ninterface IExplainManager {\n    // add explainer object to Modules List\n    // replaces existing name\n    function addExplain(string memory name , string memory explainURI) external ;\n    function removeExplain(string memory name )  external ;\n    function getExplainer(string memory name) external view returns(ExplainSchema memory );\n    function getExplainers() external view returns(ExplainSchema[] memory );\n}\n",
+  "type": "interface"
+}

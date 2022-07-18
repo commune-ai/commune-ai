@@ -1,0 +1,30 @@
+
+client: get_cfg(client.manager)
+module: explain.contract.model.portfolio.module.ExplainModule
+
+sub_module:
+  module.explain.roi:
+    module: explain.contract.model.portfolio.block.roi.ExplainBlock
+    baseline: 1
+
+  module.explain.token_ratios:
+    module: explain.contract.model.portfolio.block.token_ratios.ExplainBlock
+    baseline: 1
+
+
+
+refresh: True
+read:
+  explain:
+    client: ipfs
+    params:
+      meta: 
+        module: local_copy(module)
+
+write:
+  explain:
+    client: ipfs
+    params:
+      meta: 
+        module: local_copy(module)
+    

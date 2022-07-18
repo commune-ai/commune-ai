@@ -1,0 +1,22 @@
+model_type: complete.regression
+model_name: compose
+prediction_type: base
+predicted_columns: null # list of column names to be predicted
+# get the periods from the data
+periods: copy(data.periods)
+batch_size: copy(data.batch_size)
+device: copy(trainer.device)
+
+model:
+  transformer: get_cfg(model.regression.transformer.base)
+  nbeats_1: get_cfg(model.regression.nbeats.base)
+  nbeats_2: get_cfg(model.regression.nbeats.base)
+  nbeats_3: get_cfg(model.regression.gp.base)
+
+metric:
+  module: model.metric.bundle.regression.base.v0
+  time_modes: ['future']
+  loss_weight:
+    s1: 1
+    root: 1
+    log_prob: 1

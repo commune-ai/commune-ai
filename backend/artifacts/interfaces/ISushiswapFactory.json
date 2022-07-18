@@ -1,0 +1,266 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "token0",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "token1",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "pair",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "PairCreated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "allPairs",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "pair",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "allPairsLength",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenA",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenB",
+          "type": "address"
+        }
+      ],
+      "name": "createPair",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "pair",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "feeTo",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "feeToSetter",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenA",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenB",
+          "type": "address"
+        }
+      ],
+      "name": "getPair",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "pair",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "setFeeTo",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "setFeeToSetter",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "ast": {
+    "absolutePath": "interfaces/dex/sushiswap/ISushiswapFactory.sol",
+    "exportedSymbols": {
+      "ISushiswapFactory": [
+        64
+      ],
+      "IUniswapV2Factory": [
+        479
+      ]
+    },
+    "id": 65,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 59,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".7"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:8"
+      },
+      {
+        "absolutePath": "/root/.brownie/packages/Uniswap/v2-core@1.0.1/contracts/interfaces/IUniswapV2Factory.sol",
+        "file": "@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol",
+        "id": 61,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 65,
+        "sourceUnit": 480,
+        "src": "24:94:8",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 60,
+              "name": "IUniswapV2Factory",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 479,
+              "src": "32:17:8",
+              "typeDescriptions": {
+                "typeIdentifier": "t_type$_t_contract$_IUniswapV2Factory_$479_$",
+                "typeString": "type(contract IUniswapV2Factory)"
+              }
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 62,
+              "name": "IUniswapV2Factory",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 479,
+              "src": "151:17:8"
+            },
+            "id": 63,
+            "nodeType": "InheritanceSpecifier",
+            "src": "151:17:8"
+          }
+        ],
+        "canonicalName": "ISushiswapFactory",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 64,
+        "linearizedBaseContracts": [
+          64,
+          479
+        ],
+        "name": "ISushiswapFactory",
+        "nameLocation": "130:17:8",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 65,
+        "src": "120:51:8",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:171:8"
+  },
+  "contractName": "ISushiswapFactory",
+  "dependencies": [
+    "Uniswap/v2-core@1.0.1/IUniswapV2Factory"
+  ],
+  "offset": [
+    120,
+    171
+  ],
+  "sha1": "9013a6e74eab9b68ea118efb3b29c38934b6ff59",
+  "source": "pragma solidity ^0.8.7;\nimport {IUniswapV2Factory} from '@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol';\n\ninterface ISushiswapFactory is IUniswapV2Factory {}",
+  "type": "interface"
+}

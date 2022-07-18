@@ -1,0 +1,33 @@
+
+module: commune.explain.complete.regression.crypto.backtest.ExplainModule
+
+sub_module:
+  roi:
+    module: 'explain.regression.crypto.backtest.block.roi'
+    baseline: 1
+
+  token_values:
+    module: 'explain.regression.crypto.backtest.block.token_values'
+    baseline: 1
+
+  token_ratios:
+    module: 'explain.regression.crypto.backtest.block.token_ratios'
+    baseline: 1
+
+client: get_cfg(client.manager)
+refresh: True
+
+read:
+  explain:
+    client: ipfs
+    params:
+      meta: 
+        module: local_copy(module)
+
+write:
+  explain:
+    client: ipfs
+    params:
+      meta: 
+        module: local_copy(module)
+    

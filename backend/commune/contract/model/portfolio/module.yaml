@@ -1,0 +1,17 @@
+module: contract.model.portfolio.token.depositNFT.module.ContractModule
+
+name: 'TOKEN'
+symbol: 'TKN'
+
+contract: 
+  name: "DepositNFT"
+  address: null
+
+sub_module: {}
+refresh: True
+
+
+client: get_cfg(client.manager)
+read: get_cfg(contract.base.module,read)
+write: get_cfg(contract.base.module,write)
+

@@ -1,0 +1,9 @@
+
+module: hyperopt.pbt.module.PBTHyperopt
+
+mode: 'min'
+metric: 'loss'
+num_samples: 3000
+resources_per_trial:
+  cpu: 8
+  gpu: 0.4

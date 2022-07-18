@@ -1,0 +1,38 @@
+
+
+model_type: complete.regression
+model_name: ensemble
+prediction_type: base
+
+predicted_columns: null # list of column names to be predicted
+# get the periods from the data
+periods: copy(data.periods)
+device: copy(trainer.device)
+
+
+model_extractor:
+  experiments : ['NBEATS_BLM']
+  metric : 'val.MSE_future_Close'
+  ascending: True
+  num_best_runs : 2
+
+combiner:
+  input_dim: null # specified within class
+  num_layers: 4
+  hidden_dim: 16
+  dropout: 0.3
+  output_dim: 1
+
+optimizer:
+  lr: 0.01
+  weight_decay: 1.e-3
+  amsgrad: True
+
+
+metric:
+  module: model.metric.bundle.regression.base.v0
+  time_modes: ['past', 'future']
+  loss_weight:
+    s1: 1
+    root: 1
+    log_prob: 1

@@ -1,0 +1,14 @@
+module: contract.commune.base.module.ContractModule
+name: Commune
+contract: 
+  name: ModelCommune
+  address: null
+
+refresh: False
+run: True
+
+network: get_cfg(contract.base.module,network)
+account: get_cfg(contract.base.module,account)
+read: get_cfg(contract.base.module,read)
+write: get_cfg(contract.base.module,write)
+client: get_cfg(client.manager)

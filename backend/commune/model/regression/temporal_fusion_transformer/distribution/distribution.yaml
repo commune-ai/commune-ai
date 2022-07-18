@@ -1,0 +1,43 @@
+module: "model.complete.regression.temporal_fusion_transformer.base"
+
+
+predicted_columns:  ["tokenPriceUSD"] 
+periods:
+  # the input period
+  input: 128
+  output: 12
+device: cuda
+
+
+temporal_fusion_transformer:
+  hidden_size: 16
+  lstm_layers: 1
+  dropout: 0.1
+  output_size:  None
+  attention_head_size: 4
+  max_encoder_length: 10
+  static_features: []
+  temporal_features: []
+  categorical_features:  []
+  categorical_groups: {}
+  known_future_features:  []
+  hidden_continuous_size:  8
+  embedding_sizes: {}
+  embedding_size: 8
+  embedding_paddings: []
+  share_single_variable_networks: False
+
+distribution: NormalDistribution
+
+optimizer:
+  lr: 0.001
+  weight_decay: 1.e-4
+  amsgrad: True
+
+metric:
+  module: model.metric.bundle.regression.distribution.v0
+  time_modes: ['future']
+  loss_weight:
+    s1: 1
+    root: 1
+    log_prob: 1

@@ -1,0 +1,20 @@
+
+module: hyperopt.bayes.module.BayesHyperopt
+type: bayes
+smoke_test: False
+
+
+schedule:
+  metric: loss
+  time_attr: training_iteration
+  mode: min
+  max_t: 5
+  grace_period: 5
+  reduction_factor: 5
+
+reporter:
+  metric_columns : [loss, training_iteration]
+
+resources_per_trial:
+  cpu: 8
+  gpu: 0.4

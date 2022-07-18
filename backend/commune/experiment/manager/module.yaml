@@ -1,0 +1,9 @@
+module: experiment.manager.module.ExperimentManager
+
+mlflow: 
+  tracking_uri: !ENV ${MLFLOW_TRACKING_URI}
+  registry_uri: null
+
+client: get_cfg(client.manager)
+actor:
+  name: experiment_manager

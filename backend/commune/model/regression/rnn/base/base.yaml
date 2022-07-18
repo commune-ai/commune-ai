@@ -1,0 +1,44 @@
+module: "model.complete.regression.RNN_Base"
+predicted_columns:  ["tokenPriceUSD"] 
+periods:
+  # the input period
+  input: 128
+  output: 12
+device: cuda
+
+rnn:
+  temporal_features:  []
+  categorical_features: {}
+  known_future_features: []
+  embedding_sizes: {}
+  embedding_size: 8
+  predict_past: "ENC"
+  encoder_bidirectional: False
+  encoder_mh_attn_heads: 4
+  decoder_mh_attn_heads: 4
+  rnn_hidden_size: 8
+  final_hidden_size: 8
+  dropout_rnn: 0.3
+  dropout_final: 0.3
+  final_num_layers: 2
+  infuser_attn: True
+  teacher_prob: 0.5
+
+optimizer:
+  lr: 0.001
+  weight_decay: 1.e-4
+  amsgrad: True
+
+metric:
+  module: model.metric.bundle.regression.base.v0
+  time_modes: ['past', 'future']
+  loss_weight:
+    s1: 1
+    root: 1
+    log_prob: 1
+
+
+inference:
+  mc_dropout:
+    num_samples: 100
+    output_mode: "bounds"
