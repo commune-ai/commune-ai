@@ -62,7 +62,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile.backend
+      dockerfile: Dockerfile
     ports:
       - 8501:8501 # for the user streamlit app
       - 8265:8265
