@@ -4,7 +4,7 @@ pipeline: get_cfg(data.regression.crypto.sushiswap.pipeline)
 tokens:  get_cfg(config.meta.crypto.tokens.commune_app)
 # tokens: ['WETH']
 timescales: [90m]
-actor_count: 4
+actor_count: 1
 delay_threshold: 15
 pipeline_override:
   load_block_data:

@@ -40,3 +40,4 @@ pytest
 mlflow
 uvicorn
 numpy>=1.23.1
+PyWavelets

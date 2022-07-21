@@ -27,10 +27,9 @@ class ContractModule(ContractBaseModule):
         print(self.cfg['contract'])
 if __name__ == "__main__":
 
-    # contract_module = ContractModule.deploy()
-    # contract_module.run()
+    contract_module = ContractModule.deploy()
+    contract_module.run()
     print('FUCK')
-
     # print(portfolio.valueRatios)
 
 
