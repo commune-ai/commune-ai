@@ -11,7 +11,7 @@ import datetime
 import streamlit as st
 
 class ContractModule(ContractBaseModule):
-    default_cfg_path = f"{os.getenv('PWD')}/commune/config/contract/model/portfolio/module.yaml"
+    default_cfg_path = f"{os.getenv('PWD')}/commune/contract/model/portfolio/module.yaml"
 
 
 
@@ -37,6 +37,7 @@ class ContractModule(ContractBaseModule):
         return self.cache[cache_key]
 
     def process(self, **kwargs):
+        print(self.account, 'ACCOUNT')
         self.build()
         
 
@@ -172,9 +173,9 @@ class ContractModule(ContractBaseModule):
 
 
 if __name__ == "__main__":
-
-    contract_module_list = [ContractModule.deploy(actor=True, override={'name':f"Trader_{i}", 'actor.name': f"actor{i}" }) for i in range(1)]
     import ray
+    # with ray.init(address="auto",namespace="commune"):
+    contract_module_list = [ContractModule.deploy(actor=True, override={'name':f"Trader_{i}", 'actor.name': f"actor{i}" }) for i in range(1)]
     ray.get([contract_module.run.remote() for contract_module in contract_module_list])
 
     # print(portfolio.valueRatios)

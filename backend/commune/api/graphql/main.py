@@ -6,7 +6,7 @@ import sys
 os.environ['PWD'] = os.getcwd()
 sys.path.append(os.getcwd())
 from fastapi import FastAPI
-from starlette.graphql import GraphQLApp
+from starlette_graphene3 import GraphQLApp
 from commune.api.graphql.query import schema
 import datetime
 import ray

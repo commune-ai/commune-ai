@@ -1,7 +1,0 @@
-# exclude everything
-ipfs/*
-mongodb/*
-postgresql/*
-s3/*
-# exception to the rule
-!*/.gitkeep 

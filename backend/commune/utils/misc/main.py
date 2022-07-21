@@ -144,15 +144,16 @@ def get_object(path,prefix = 'commune', handle_failure= False):
     object_name = path.split('.')[-1]
     module_path = '.'.join(path.split('.')[:-1])
 
+
+
     try:
         submodule = import_module(module_path)
         module = getattr(submodule, object_name)
     except (ModuleNotFoundError, AttributeError) as e:
-        if handle_failure:
+        if handle_failure :
             return None
         else:
             raise e 
-
 
     return module
 

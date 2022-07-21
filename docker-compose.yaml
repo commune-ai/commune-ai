@@ -89,7 +89,7 @@ services:
       - postgres
       - mlflow
       - s3
-      # - ganache
+      - ganache
 
   ganache:
     container_name: ganache
@@ -107,11 +107,9 @@ services:
     build:
       context: ./frontend/.
       dockerfile: Dockerfile
-
     env_file:
       - .env
     volumes:
-
       - './frontend/src:/app/src'
       - './frontend/public:/app/public'
       - './backend/artifacts:/app/src/artifacts'

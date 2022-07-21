@@ -20,7 +20,6 @@ class ActorBase:
             Option 1: dictionary config (passes dictionary) 
             Option 2: absolute string path pointing to config
         """
-
         return ActorBase.config_loader.load(path=cfg, 
                                     local_var_dict=local_var_dict, 
                                      override=override)
@@ -61,6 +60,7 @@ class ActorBase:
 
     @staticmethod
     def get_object(key, prefix = 'commune', handle_failure= False):
+
         return get_object(path=key, prefix=prefix, handle_failure=handle_failure)
 
     @classmethod

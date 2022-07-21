@@ -11,7 +11,7 @@ import datetime
 import streamlit as st
 
 class ContractModule(ContractBaseModule):
-    default_cfg_path = f"{os.getenv('PWD')}/commune/config/contract/model/token/depositNFT/module.yaml"
+    default_cfg_path = f"{os.getenv('PWD')}/commune/contract/model/portfolio/token/depositNFT/module.yaml"
 
 
     def process(self, **kwargs):
@@ -27,7 +27,7 @@ class ContractModule(ContractBaseModule):
         print(self.cfg['contract'])
 if __name__ == "__main__":
 
-    contract_module = ContractModule.start()
+    contract_module = ContractModule.deploy()
     contract_module.run()
 
     # print(portfolio.valueRatios)

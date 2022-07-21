@@ -10,3 +10,9 @@
 	path = subtensor
 	url = https://github.com/commune-ai/subtensor.git
 	
+[submodule "backend/bittensor"]
+	path = backend/bittensor
+	url = https://github.com/commune-ai/bittensor.git
+[submodule "backend/brownie"]
+	path = backend/brownie
+	url = https://github.com/commune-ai/brownie.git
