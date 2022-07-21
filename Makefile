@@ -1,15 +1,14 @@
 kill_all:
-	c=$(docker ps -q) && [[ $c ]] && docker kill $c
+	 docker kill $(docker ps -q)
 
 up:
-	docker-compose up -d --remove-orphans
+	docker compose up -d --remove-orphans
 
 down:
 	docker-compose down
 restart:
 	docker-compose down; docker-compose up -d --remove-orphans;
-
-backend:
+backend_env:
 	docker exec -it backend bash
 
 frontend:

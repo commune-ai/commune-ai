@@ -34,18 +34,18 @@ RUN pip install -e ./ipfsspec
 # RUN pip install bittensor
 
 # ADD ./brownie/ /app/brownie/
-RUN pip install eth-brownie
 # RUN rm -r ./ipfsspec
-
+# RUN pip install bittensor
 # ADD ./brownie/ /app/brownie/
 # RUN pip install -e ./brownie
 ## -- Enter Virtual Env Installs our requirements into the Docker image
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-ADD ./bittensor/ /app/bittensor/
-RUN pip install -e ./bittensor
+# RUN pip install eth-brownie
 
+# ADD ./bittensor/ /app/bittensor/
+# RUN pip install -e ./bittensor
 
 
 
@@ -59,3 +59,4 @@ RUN chmod +x ./scripts/*
 
 
 RUN npm install -g ganache-cli
+RUN pip install bittensor
