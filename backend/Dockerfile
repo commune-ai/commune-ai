@@ -44,8 +44,6 @@ RUN pip install -r requirements.txt
 
 # RUN pip install eth-brownie
 
-# ADD ./bittensor/ /app/bittensor/
-# RUN pip install -e ./bittensor
 
 
 
@@ -59,4 +57,7 @@ RUN chmod +x ./scripts/*
 
 
 RUN npm install -g ganache-cli
-RUN pip install bittensor
+# RUN pip install bittensor
+
+ADD ./bittensor/ /app/bittensor/
+RUN python3 -m pip install -e bittensor/
