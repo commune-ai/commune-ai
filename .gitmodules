@@ -4,7 +4,7 @@
 	branch=feature/write
 [submodule "frontend"]
 	path = frontend
-	url = https://github.com/commune-ai/Tree-Bulder.git
+	url = https://github.com/commune-ai/frontend.git
 	branch=refactor/func2class
 [submodule "subtensor"]
 	path = subtensor
