@@ -41,6 +41,7 @@ class PostgresManager(ActorBase):
         self.port = self.con_kwargs['port']
         self.con = psycopg2.connect(**self.con_kwargs)
         self.con.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
+        self.engine = self.create_alchemy_engine()
     # def connect(self, dbname=None):
 
 
@@ -116,16 +117,15 @@ class PostgresManager(ActorBase):
                                        information_schema.columns
                                     WHERE 
                                         table_name = '{table_name}';
-                                    """, self.con)
+                                    """, self.engine)
 
     def columns(self, table_name):
         return list(pd.read_sql_query(f'''select *
         from {table_name}
-        where false;''', con=self.con).columns)
+        where false;''', con=self.create_alchemy_engine()).columns)
 
 
         # commit the query
-
 
 
     def insert_df(self, table, df, upsert=True):
@@ -143,7 +143,7 @@ class PostgresManager(ActorBase):
             workers = 1
 
         if workers == 1:
-            insert_list_dict(con=self.con,
+            insert_list_dict(con=self.engine,
                              table=table,
                              input_list=documents,
                              upsert_key=upsert_key,
@@ -179,7 +179,7 @@ class PostgresManager(ActorBase):
                                 FROM pg_catalog.pg_tables
                                 WHERE schemaname != 'pg_catalog' AND 
                                     schemaname != 'information_schema';
-                                """, con=self.con)['tablename'].tolist()
+                                """, con=self.engine)['tablename'].tolist()
 
         return tables
 
@@ -195,7 +195,7 @@ class PostgresManager(ActorBase):
                         WHERE       (t.typrelid = 0 OR (SELECT c.relkind = 'c' FROM pg_catalog.pg_class c WHERE c.oid = t.typrelid)) 
                         AND     NOT EXISTS(SELECT 1 FROM pg_catalog.pg_type el WHERE el.oid = t.typelem AND el.typarray = t.oid)
                         AND     n.nspname NOT IN ('pg_catalog', 'information_schema');
-                        """, self.con)
+                        """, self.engine)
 
     def delete_table(self,table):
         self.execute(f'''DROP TABLE IF EXISTS {table} CASCADE ''', fetch=None)
@@ -208,6 +208,8 @@ class PostgresManager(ActorBase):
     def __del__(self):
         if hasattr(self, 'con'):
             self.con.close()
+        if hasattr(self, 'engine'):
+            self.engine.close()
 
 
     def write_pandas_table(self,

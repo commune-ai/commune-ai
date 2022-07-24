@@ -363,6 +363,9 @@ class Dataset(BaseProcess):
                 self.cfg['pipeline']['dag'][process_key]['refresh'] = bool(process_cfg.get('refresh'))
                 self.cfg['pipeline']['dag'][process_key]['run'] = bool(process_cfg.get('run'))
                 print(process_cfg)
+
+
+
 if __name__=="__main__":
 
     with ray.init(address="auto", namespace='commune'):

@@ -5,7 +5,7 @@ client: get_cfg(client.manager)
 num_workers: 16
 swap_tokens: get_cfg(config.meta.crypto.tokens/commune_app)
 block_skip: 1
-start_time: "2021-01-01T00:00"
+start_time: "2021-06-01T00:00"
 end_time: "utcnow"
 queries_per_worker: 100
 
