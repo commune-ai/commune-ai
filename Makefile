@@ -1,5 +1,5 @@
 kill_all:
-	 docker kill $(docker ps -q)
+	 docker kill $(docker ps -q) && docker rm $(docker ps -q)
 
 up:
 	docker compose up -d --remove-orphans

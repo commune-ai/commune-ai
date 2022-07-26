@@ -209,7 +209,7 @@ class PostgresManager(ActorBase):
         if hasattr(self, 'con'):
             self.con.close()
         if hasattr(self, 'engine'):
-            self.engine.close()
+            del self.engine
 
 
     def write_pandas_table(self,

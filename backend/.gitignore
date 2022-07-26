@@ -1,3 +1,5 @@
 .hypothesis/
 /nohup/**
+node_modules
+package-lock.json
 !*/.gitkeep

@@ -2,7 +2,7 @@
 
 dbdata/**
 !dbdata/**/.gitkeep
-
+backend/package-lock.json
 # misc
 .DS_Store
 npm-debug.log*
