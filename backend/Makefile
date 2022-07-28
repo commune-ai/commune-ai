@@ -24,7 +24,7 @@ app_portfolio:
 app_api:
 	streamlit run commune/api/graphql/app.py
 app_sandbox:
-	streamlit run commune/app/run_app_sandbox.py 
+	streamlit run sandbox.py 
 
 start: 
 	ray start --head 

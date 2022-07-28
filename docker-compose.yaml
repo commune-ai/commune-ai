@@ -136,40 +136,40 @@ services:
       - CARGO_HOME=/var/www/node-subtensor/.cargo
     command: bash -c "/usr/local/bin/node-subtensor --base-path /root/.local/share/node-subtensor/ --chain /subtensor/specs/nakamotoSpecRaw.json --rpc-external --ws-external --rpc-cors all --no-mdns --ws-max-connections 10000 --in-peers 500 --out-peers 500"
 
-  kafka:
-    image: "bitnami/kafka:2"
-    logging:
-      driver: none
-    ports:
-      - "9092:9092"
-      - "9093:9093"
-    environment:
-      - KAFKA_BROKER_ID=1
-      - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
-      - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:9093
-      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9092,EXTERNAL://localhost:9093
-      - KAFKA_INTER_BROKER_LISTENER_NAME=CLIENT
-    depends_on:
-      - zookeeper
+  # kafka:
+  #   image: "bitnami/kafka:2"
+  #   logging:
+  #     driver: none
+  #   ports:
+  #     - "9092:9092"
+  #     - "9093:9093"
+  #   environment:
+  #     - KAFKA_BROKER_ID=1
+  #     - ALLOW_PLAINTEXT_LISTENER=yes
+  #     - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+  #     - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
+  #     - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:9093
+  #     - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9092,EXTERNAL://localhost:9093
+  #     - KAFKA_INTER_BROKER_LISTENER_NAME=CLIENT
+  #   depends_on:
+  #     - zookeeper
 
-  pulsar:
-    image: apachepulsar/pulsar:2.10.0
-    ports:
-      - 8080:8080
-      - 6650:6650
-    environment:
-      PULSAR_MEM: " -Xms512m -Xmx512m -XX:MaxDirectMemorySize=1g"
-    command: bin/pulsar standalone
+  # pulsar:
+  #   image: apachepulsar/pulsar:2.10.0
+  #   ports:
+  #     - 8080:8080
+  #     - 6650:6650
+  #   environment:
+  #     PULSAR_MEM: " -Xms512m -Xmx512m -XX:MaxDirectMemorySize=1g"
+  #   command: bin/pulsar standalone
 
-  zookeeper:
-    image: "bitnami/zookeeper:3.7"
-    ports:
-      - "2181:2181"
-    environment:
-      - ALLOW_ANONYMOUS_LOGIN=yes
-    networks:
-      - app-tier
-    logging:
-      driver: none
+  # zookeeper:
+  #   image: "bitnami/zookeeper:3.7"
+  #   ports:
+  #     - "2181:2181"
+  #   environment:
+  #     - ALLOW_ANONYMOUS_LOGIN=yes
+  #   networks:
+  #     - app-tier
+  #   logging:
+  #     driver: none
