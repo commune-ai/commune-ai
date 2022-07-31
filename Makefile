@@ -11,8 +11,22 @@ setup_env:
 	docker exec -it $ (arg) bash
 logs:
 	docker logs ${arg}
+
+bash:
+	docker exec -it ${arg} bash
+
+sh:
+	docker exec -it ${arg} bash
+	
 frontend:
 	docker exec -it frontend bash
+
+start:
+	docker compose up ${arg} -d 
+
+	
+purge: 
+	docker compose stop ${arg}; docker compose rm ${args};
 
 speedtest:
 	curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -

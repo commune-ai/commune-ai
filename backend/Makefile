@@ -23,7 +23,7 @@ app_portfolio:
 	./scripts/app/portfolio.sh
 app_api:
 	streamlit run commune/api/graphql/app.py
-app_sandbox:
+sandbox:
 	streamlit run sandbox.py 
 
 start: 
@@ -39,3 +39,6 @@ graphql_api:
 
 pip_freeze:
 	pip freeze > requirements.txt
+
+purge:
+	docker-stop $(docker ps -a -q) && docker rm $(docker ps -a -q);

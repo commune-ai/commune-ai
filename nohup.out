@@ -1,0 +1,217 @@
+nohup: ignoring input
+#1 [internal] load .dockerignore
+#1 ...
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.84kB done
+#2 ...
+
+#1 [internal] load .dockerignore
+#1 transferring context: 180B done
+#1 DONE 43.7s
+
+#2 [internal] load build definition from Dockerfile
+#2 DONE 50.6s
+
+#3 [internal] load metadata for docker.io/nvidia/cuda:11.2.1-base
+#3 DONE 0.0s
+
+#4 [stage-0  1/23] FROM docker.io/nvidia/cuda:11.2.1-base
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context:
+#5 transferring context: 7.17kB done
+#5 ...
+
+#6 FROM docker.io/library/docker:latest
+#6 resolve docker.io/library/docker:latest
+#6 ...
+
+#7 FROM docker.io/docker/compose:latest
+#7 resolve docker.io/docker/compose:latest
+#7 resolve docker.io/docker/compose:latest 11.9s done
+#7 DONE 11.9s
+
+#5 [internal] load build context
+#5 DONE 12.0s
+
+#6 FROM docker.io/library/docker:latest
+#6 ...
+
+#7 FROM docker.io/docker/compose:latest
+#7 CACHED
+
+#8 [stage-0  5/23] RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y apt-utils curl git cmake build-essential unzip python3-pip  wget iproute2 software-properties-common
+#8 CACHED
+
+#9 [stage-0  6/23] RUN add-apt-repository ppa:deadsnakes/ppa
+#9 CACHED
+
+#10 [stage-0 10/23] RUN apt-get install -y npm
+#10 CACHED
+
+#11 [stage-0  4/23] RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/7fa2af80.pub
+#11 CACHED
+
+#12 [stage-0  8/23] RUN python3 -m pip install --upgrade pip
+#12 CACHED
+
+#13 [stage-0  2/23] RUN apt-key del 7fa2af80
+#13 CACHED
+
+#14 [stage-0 11/23] RUN apt-get install -y gcc
+#14 CACHED
+
+#15 [stage-0 12/23] WORKDIR /app
+#15 CACHED
+
+#16 [stage-0  3/23] RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
+#16 CACHED
+
+#17 [stage-0  7/23] RUN apt-get install python3 python3-dev -y
+#17 CACHED
+
+#18 [stage-0  9/23] RUN apt-get install -y libssl-dev
+#18 CACHED
+
+#19 [stage-0 13/23] ADD ./ipfsspec/ /app/ipfsspec/
+#19 CACHED
+
+#6 FROM docker.io/library/docker:latest
+#6 resolve docker.io/library/docker:latest 12.3s done
+#6 sha256:75290344f118171da5c4525a3d08d726b8ec339808b21eec0ee792f35e55a30b 549B / 549B done
+#6 sha256:5782329618eaf703204c70f61c1697a428275bc8d8e5a58fa324798e78e31937 2.20kB / 2.20kB done
+#6 sha256:61d75b305666b5c672c2dc789c526f405402c3d37eb44a77470e9217790b9a41 8.41kB / 8.41kB done
+#6 ...
+
+#20 [stage-0 14/23] RUN pip install -e ./ipfsspec
+#20 ...
+
+#6 FROM docker.io/library/docker:latest
+#6 sha256:d1c203384d5b9b22606055f5a6708153653df701158a6c04748cb77be8238c9e 0B / 153B 18.4s
+#6 sha256:d1c203384d5b9b22606055f5a6708153653df701158a6c04748cb77be8238c9e 153B / 153B 19.2s
+#6 sha256:d1c203384d5b9b22606055f5a6708153653df701158a6c04748cb77be8238c9e 153B / 153B 24.3s
+#6 sha256:530afca65e2ea04227630ae746e0c85b2bd1a179379cbf2b6501b49c4cab2ccc 0B / 2.80MB 29.0s
+#6 sha256:d1c203384d5b9b22606055f5a6708153653df701158a6c04748cb77be8238c9e 153B / 153B 29.4s
+#6 sha256:530afca65e2ea04227630ae746e0c85b2bd1a179379cbf2b6501b49c4cab2ccc 2.80MB / 2.80MB 30.8s
+#6 sha256:d1c203384d5b9b22606055f5a6708153653df701158a6c04748cb77be8238c9e 153B / 153B 34.5s
+#6 sha256:530afca65e2ea04227630ae746e0c85b2bd1a179379cbf2b6501b49c4cab2ccc 2.80MB / 2.80MB 35.9s
+#6 sha256:33702c1843d19cf7c37af730bcf50c456ac6456ed789053432b000db75d3bed3 0B / 2.02MB 38.0s
+#6 sha256:33702c1843d19cf7c37af730bcf50c456ac6456ed789053432b000db75d3bed3 2.02MB / 2.02MB 38.5s
+#6 sha256:d1c203384d5b9b22606055f5a6708153653df701158a6c04748cb77be8238c9e 153B / 153B 38.2s done
+#6 sha256:530afca65e2ea04227630ae746e0c85b2bd1a179379cbf2b6501b49c4cab2ccc 2.80MB / 2.80MB 39.1s done
+#6 extracting sha256:530afca65e2ea04227630ae746e0c85b2bd1a179379cbf2b6501b49c4cab2ccc
+#6 extracting sha256:530afca65e2ea04227630ae746e0c85b2bd1a179379cbf2b6501b49c4cab2ccc 0.1s done
+#6 sha256:33702c1843d19cf7c37af730bcf50c456ac6456ed789053432b000db75d3bed3 2.02MB / 2.02MB 42.5s done
+#6 ...
+
+#20 [stage-0 14/23] RUN pip install -e ./ipfsspec
+#20 42.29 Obtaining file:///app/ipfsspec
+#20 42.29 ERROR: file:///app/ipfsspec does not appear to be a Python project: neither 'setup.py' nor 'pyproject.toml' found.
+#20 43.30 --- Logging error ---
+#20 43.30 Traceback (most recent call last):
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_internal/utils/logging.py", line 177, in emit
+#20 43.30     self.console.print(renderable, overflow="ignore", crop=False, style=style)
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_vendor/rich/console.py", line 1673, in print
+#20 43.30     extend(render(renderable, render_options))
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_vendor/rich/console.py", line 1305, in render
+#20 43.30     for render_output in iter_render:
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_internal/utils/logging.py", line 134, in __rich_console__
+#20 43.30     for line in lines:
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_vendor/rich/segment.py", line 249, in split_lines
+#20 43.30     for segment in segments:
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_vendor/rich/console.py", line 1283, in render
+#20 43.30     renderable = rich_cast(renderable)
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_vendor/rich/protocol.py", line 36, in rich_cast
+#20 43.30     renderable = cast_method()
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_internal/self_outdated_check.py", line 130, in __rich__
+#20 43.30     pip_cmd = get_best_invocation_for_this_pip()
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_internal/utils/entrypoints.py", line 58, in get_best_invocation_for_this_pip
+#20 43.30     if found_executable and os.path.samefile(
+#20 43.30   File "/usr/lib/python3.8/genericpath.py", line 101, in samefile
+#20 43.30     s2 = os.stat(f2)
+#20 43.30 FileNotFoundError: [Errno 2] No such file or directory: '/usr/bin/pip3.8'
+#20 43.30 Call stack:
+#20 43.30   File "/usr/local/bin/pip", line 8, in <module>
+#20 43.30     sys.exit(main())
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_internal/cli/main.py", line 70, in main
+#20 43.30     return command.main(cmd_args)
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_internal/cli/base_command.py", line 101, in main
+#20 43.30     return self._main(args)
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_internal/cli/base_command.py", line 223, in _main
+#20 43.30     self.handle_pip_version_check(options)
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_internal/cli/req_command.py", line 190, in handle_pip_version_check
+#20 43.30     pip_self_version_check(session, options)
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_internal/self_outdated_check.py", line 236, in pip_self_version_check
+#20 43.30     logger.info("[present-rich] %s", upgrade_prompt)
+#20 43.30   File "/usr/lib/python3.8/logging/__init__.py", line 1446, in info
+#20 43.30     self._log(INFO, msg, args, **kwargs)
+#20 43.30   File "/usr/lib/python3.8/logging/__init__.py", line 1589, in _log
+#20 43.30     self.handle(record)
+#20 43.30   File "/usr/lib/python3.8/logging/__init__.py", line 1599, in handle
+#20 43.30     self.callHandlers(record)
+#20 43.30   File "/usr/lib/python3.8/logging/__init__.py", line 1661, in callHandlers
+#20 43.30     hdlr.handle(record)
+#20 43.30   File "/usr/lib/python3.8/logging/__init__.py", line 954, in handle
+#20 43.30     self.emit(record)
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_internal/utils/logging.py", line 179, in emit
+#20 43.30     self.handleError(record)
+#20 43.30 Message: '[present-rich] %s'
+#20 43.30 Arguments: (UpgradePrompt(old='22.2', new='22.2.1'),)
+#20 ...
+
+#6 FROM docker.io/library/docker:latest
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 0B / 65.51MB 58.6s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 7.34MB / 65.51MB 60.2s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 11.53MB / 65.51MB 60.3s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 19.92MB / 65.51MB 60.5s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 24.12MB / 65.51MB 60.6s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 33.55MB / 65.51MB 60.8s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 37.75MB / 65.51MB 60.9s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 47.19MB / 65.51MB 61.1s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 52.43MB / 65.51MB 61.2s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 56.62MB / 65.51MB 61.3s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 65.51MB / 65.51MB 61.5s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 65.51MB / 65.51MB 66.6s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 65.51MB / 65.51MB 71.7s
+#6 extracting sha256:33702c1843d19cf7c37af730bcf50c456ac6456ed789053432b000db75d3bed3 0.1s done
+#6 sha256:cee6b871713b8386f334ada3f80a6f187b8e9130ce7d69236e34fee9f9d44556 0B / 14.45MB 74.7s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 65.51MB / 65.51MB 76.9s
+#6 sha256:cee6b871713b8386f334ada3f80a6f187b8e9130ce7d69236e34fee9f9d44556 3.15MB / 14.45MB 77.2s
+#6 sha256:cee6b871713b8386f334ada3f80a6f187b8e9130ce7d69236e34fee9f9d44556 4.19MB / 14.45MB 77.3s
+#6 sha256:cee6b871713b8386f334ada3f80a6f187b8e9130ce7d69236e34fee9f9d44556 5.24MB / 14.45MB 77.4s
+#6 sha256:cee6b871713b8386f334ada3f80a6f187b8e9130ce7d69236e34fee9f9d44556 8.39MB / 14.45MB 77.6s
+#6 sha256:cee6b871713b8386f334ada3f80a6f187b8e9130ce7d69236e34fee9f9d44556 9.44MB / 14.45MB 77.7s
+#6 sha256:cee6b871713b8386f334ada3f80a6f187b8e9130ce7d69236e34fee9f9d44556 11.53MB / 14.45MB 77.9s
+#6 sha256:cee6b871713b8386f334ada3f80a6f187b8e9130ce7d69236e34fee9f9d44556 13.63MB / 14.45MB 78.0s
+#6 sha256:cee6b871713b8386f334ada3f80a6f187b8e9130ce7d69236e34fee9f9d44556 14.45MB / 14.45MB 78.1s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 65.51MB / 65.51MB 82.1s
+#6 sha256:cee6b871713b8386f334ada3f80a6f187b8e9130ce7d69236e34fee9f9d44556 14.45MB / 14.45MB 83.2s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 65.51MB / 65.51MB 87.2s
+#6 sha256:db8946a7c6c2c651e2344e7e9ebb692ff53ae6ab2b108a5f484384e165056beb 0B / 9.38MB 87.6s
+#6 sha256:cee6b871713b8386f334ada3f80a6f187b8e9130ce7d69236e34fee9f9d44556 14.45MB / 14.45MB 88.2s
+#6 sha256:db8946a7c6c2c651e2344e7e9ebb692ff53ae6ab2b108a5f484384e165056beb 6.29MB / 9.38MB 89.1s
+#6 sha256:db8946a7c6c2c651e2344e7e9ebb692ff53ae6ab2b108a5f484384e165056beb 9.38MB / 9.38MB 89.2s
+#6 sha256:146feb07c33136aba6d87c2a8d6882cd4d438d957eaaa8f388f59214f1269bd0 65.51MB / 65.51MB 91.4s done
+#6 ...
+
+#20 [stage-0 14/23] RUN pip install -e ./ipfsspec
+#20 ERROR: executor failed running [/bin/sh -c pip install -e ./ipfsspec]: exit code: 1
+
+#6 FROM docker.io/library/docker:latest
+#6 CANCELED
+------
+ > [stage-0 14/23] RUN pip install -e ./ipfsspec:
+#20 43.30   File "/usr/lib/python3.8/logging/__init__.py", line 1599, in handle
+#20 43.30     self.callHandlers(record)
+#20 43.30   File "/usr/lib/python3.8/logging/__init__.py", line 1661, in callHandlers
+#20 43.30     hdlr.handle(record)
+#20 43.30   File "/usr/lib/python3.8/logging/__init__.py", line 954, in handle
+#20 43.30     self.emit(record)
+#20 43.30   File "/usr/local/lib/python3.8/dist-packages/pip/_internal/utils/logging.py", line 179, in emit
+#20 43.30     self.handleError(record)
+#20 43.30 Message: '[present-rich] %s'
+#20 43.30 Arguments: (UpgradePrompt(old='22.2', new='22.2.1'),)
+------
+failed to solve: executor failed running [/bin/sh -c pip install -e ./ipfsspec]: exit code: 1
