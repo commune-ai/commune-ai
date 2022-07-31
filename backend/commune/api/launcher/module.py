@@ -30,7 +30,7 @@ from commune.process import BaseProcess
 
 
 
-class Launcher(BaseProcess):
+class LauncherProcess(BaseProcess):
     
     default_cfg_path = f"process.launcher.module"
     def setup(self):
@@ -119,10 +119,6 @@ class Launcher(BaseProcess):
                 #     queue_topic = self.job2queue.get(job.hex(), self.cfg['queue']['in'])
                 #     out_item = ray.get(job)
                 #     self.client['ray'].queue.put(topic=queue_topic,item=ray.get(job))
-
-
-
-
 
 
     def load_balance(self, proposed_actor = None):

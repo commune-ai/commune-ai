@@ -164,8 +164,8 @@ class BaseProcess(ActorBase):
         self.object_dict = kwargs
         self.object_override()
 
-        self.object_dict = self.get_trigger_queue(mode='in')
-        self.object_override()
+        # self.object_dict = self.get_trigger_queue(mode='in')
+        # self.object_override()
 
 
 
@@ -178,15 +178,18 @@ class BaseProcess(ActorBase):
 
     def run(self, **kwargs):
         self.preprocess(**kwargs)
-        self.process(**self.object_dict)
+        return_obj  = self.process(**self.object_dict)
+        if isinstance(return_obj, dict):
+            self.object_dict = return_obj
         self.postprocess(**self.object_dict)
         return self.object_dict
+
         
     def postprocess(self, **kwargs):
         self.get_explain()
         self.write_state()   
         self.last_run_timestamp = datetime.datetime.utcnow().timestamp()
-        self.get_trigger_queue(item=self.object_dict, mode='out')
+        # self.get_trigger_queue(item=self.object_dict, mode='out')
 
     @property
     def last_run_delay(self):
@@ -197,9 +200,6 @@ class BaseProcess(ActorBase):
 
     def run_again(self, threshold=3600):
         return self.last_run_delay > threshold
-
-
-
 
     @staticmethod
     def default_clients(clients =[], cfg=None):
@@ -261,20 +261,11 @@ class BaseProcess(ActorBase):
             if  store_dict.get('ignore'):
                 continue
 
+            # only supported for 
             assert hasattr(self,object_key.split('.')[0]), f"{object_key} not found in self"
             object_value = dict_get(self.__dict__,object_key)
             self.client_manager.write(data=object_value,client=store_dict['client'],
                                                                 params=store_dict['params'])
-
-
-    def get_explain(self):
-        if 'explain' in self.cfg:
-            explain_cfg = deepcopy(self.cfg['explain'])
-            if dict_has(explain_cfg, 'sub_module.process'):
-                del explain_cfg['sub_module']['process']
-            explain_module = self.get_module(explain_cfg)
-            explain_module.run(override={'module.process': self})
-            self.cfg['explain'] = explain_module.cfg
 
     def cancel_loop(self):
         self.loop_running = False
@@ -286,3 +277,12 @@ class BaseProcess(ActorBase):
         while self.loop_running:
             self.run(**kwargs)
             self.loop_count += 1
+
+    def get_explain(self):
+        if 'explain' in self.cfg:
+            explain_cfg = deepcopy(self.cfg['explain'])
+            if dict_has(explain_cfg, 'sub_module.process'):
+                del explain_cfg['sub_module']['process']
+            explain_module = self.get_module(explain_cfg)
+            explain_module.run(override={'module.process': self})
+            self.cfg['explain'] = explain_module.cfg

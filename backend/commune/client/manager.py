@@ -35,7 +35,7 @@ class ClientManager(ActorBase):
 
 
 
-    def load(self, params, client, verbose=False):
+    def read(self, params, client, verbose=False):
 
         params = deepcopy(params)
 
@@ -59,6 +59,10 @@ class ClientManager(ActorBase):
             if verbose:
                 print(f'{client} does not have write method')
 
+    def load(*args, **kwargs):
+        return self.read(*args, **kwargs)
+    def save(*args, **kwargs):
+        return self.write(*args, **kwargs)
 
 if __name__ == "__main__":
     ClientManager.deploy(actor=False)

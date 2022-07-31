@@ -1,4 +1,4 @@
-module: 'process.launcher.module.Launcher'
+module: 'api.launcher.module.Launcher'
 name: launcher
 # clients
 client: get_cfg(client.manager)

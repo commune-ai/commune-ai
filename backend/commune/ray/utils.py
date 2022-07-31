@@ -104,3 +104,20 @@ def create_actor(cls,
 
         
         return ray.get_actor(name)
+
+
+def custom_getattr(obj, key):
+    root_key = key.split('.')[0]
+    rest_of_keys_path = '.'.join(key.split('.')[1:])
+
+    if isinstance(obj, dict) and (root_key in obj):
+        new_obj = obj[root_key]
+    elif hasattr(obj, root_key):
+        new_obj = getattr(obj, root_key)
+    else:
+        raise AttributeError(f'{root_key} not found')
+
+    if len(rest_of_keys_path)>0:
+        new_obj = custom_getattr(obj=new_obj,key=rest_of_keys_path)
+
+    return new_obj

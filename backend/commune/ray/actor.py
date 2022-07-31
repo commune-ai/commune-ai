@@ -1,10 +1,15 @@
 import ray
 from commune.config import ConfigLoader
-from commune.ray.utils import create_actor, actor_exists, kill_actor
+from commune.ray.utils import create_actor, actor_exists, kill_actor, custom_getattr
 from commune.utils.misc import dict_put, get_object, dict_get
 import os
 import datetime
 from types import ModuleType
+
+
+
+
+
 
 class ActorBase: 
     config_loader = ConfigLoader(load_config=False)
@@ -46,7 +51,9 @@ class ActorBase:
             process_class = ActorBase.get_object(key=cfg, handle_failure=True)
 
         if isinstance(process_class, type):
+            print('default cfg', cfg)
             cfg = process_class.default_cfg()
+       
         else:
 
             cfg = ActorBase.load_config(cfg)
@@ -118,12 +125,7 @@ class ActorBase:
         return self.getattr(key)
 
     def getattr(self, key):
-        if hasattr(self, key.split('.')[0]): 
-            obj = getattr(self, key.split('.')[0])
-            rest_of_keys = '.'.join(key.split('.')[1:])
-            if len(rest_of_keys)>0:
-                obj =  dict_get(input_dict=obj, keys=rest_of_keys)
-            return obj
+        return custom_getattr(obj=self, key=key)
 
     def down(self):
         self.kill_actor(self.cfg['actor']['name'])
@@ -149,6 +151,13 @@ class ActorBase:
     def actor_name(self):
         return self.cfg['actor']['name']
     
+
+    @property
+    def actor_handle(self):
+        if not hasattr(self, '_actor_handle'):
+            self._actor_handle = self.get_actor(self.actor_name)
+        return self._actor_handle
+
     @property
     def module(self):
         return self.cfg['module']
@@ -156,3 +165,18 @@ class ActorBase:
     @property
     def name(self):
         return self.cfg.get('name', self.module)
+
+    def mapattr(self, from_to_attr_dict={}):
+        for from_key, to_key in from_to_attr_dict.items():
+            self.copyattr(from_key=from_key, to_key=to_key)
+
+    def copyattr(self, from_key, to_key):
+        '''
+        copy from and to a desintatio
+        '''
+        attr_obj = getattr(self, from_key)  if hasattr(self, from_key) else None
+        setattr(self, to, attr_obj)
+
+
+    # def __del__(self):
+    #     print()

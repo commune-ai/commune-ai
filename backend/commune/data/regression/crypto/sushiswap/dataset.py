@@ -368,7 +368,7 @@ class Dataset(BaseProcess):
 
 if __name__=="__main__":
 
-    with ray.init(address="auto", namespace='commune'):
+    with ray.init(address="auto", namespace='commune') as bro:
         dataset = Dataset.deploy(actor={'refresh': True})
         ray.get(dataset.run.remote(update=False))
 

@@ -73,8 +73,7 @@ class QueryModule(BaseProcess):
         
         self.cache[job_hash] = out_dict
         return out_dict
-if __name__ == "__main__":
-
+if __name__ == "__main__":r
     with ray.init(address="auto",namespace="commune"):
         
         process = QueryModule.deploy(actor=False)

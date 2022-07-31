@@ -32,6 +32,9 @@ class RayObjectServer(ActorBase):
                     return self.cache[key]  
         return self.cache[key]
 
+    def ls(self, key):
+        return [k.startswith(key) for k in self.cache.keys()]
+
     def delete(self, key):
         del self.cache[key]
 

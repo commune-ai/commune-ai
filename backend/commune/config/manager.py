@@ -17,8 +17,7 @@ class ConfigManager(BaseProcess):
         }
 
         """
-        self.object_dict['config'] =  self.find_module(module=module, tags=tags)
-
+        self.object_dict['config'] =  self.find_modules(module=module, tags=tags)
     def list_modules(self, query={}, select=[]):
 
         documents = self.find_modules(query=query, select=['module',*select])
@@ -82,10 +81,12 @@ if __name__ == "__main__":
     import json
 
 
-    with ray.init(address="auto",namespace="commune"):
-        process = ConfigManager.deploy(actor=False)
-        cfg = process.list_modules()
-        # cfg = process.run(module= 'data.regression.crypto.sushiswap.dataset')
+    try:
+        with ray.init(address="auto",namespace="commune"):
+            process = ConfigManager.deploy(actor=False)
+            cfg = process.list_modules()
+            # cfg = process.run(module= 'data.regression.crypto.sushiswap.dataset')
 
-        print(cfg)
+            print(cfg)
+    ex
         
