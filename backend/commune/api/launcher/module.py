@@ -30,7 +30,7 @@ from commune.process import BaseProcess
 
 
 
-class LauncherProcess(BaseProcess):
+class Launcher(BaseProcess):
     
     default_cfg_path = f"process.launcher.module"
     def setup(self):
@@ -58,12 +58,12 @@ class LauncherProcess(BaseProcess):
         self.client['ray'].queue.put(topic=self.cfg['queue']['in'], item=job_kwargs, block=block )
         
 
-    def run_job(self, module, fn, kwargs={}, override={}, cron=None):
+    def run_job(self, module, fn, kwargs={}, args=[], override={}, cron=None):
 
        
         actor, actor_name = self.launch_actor(module=module,override=override)
 
-        job_id = getattr(actor, fn).remote(**kwargs)
+        job_id = getattr(actor, fn).remote(*args,**kwargs)
         job_kwargs = {'actor_name':actor_name,
                         'fn': fn,
                         'kwargs': kwargs}

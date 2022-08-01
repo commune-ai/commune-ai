@@ -8,7 +8,7 @@ import bittensor
 import streamlit as st
 sys.path[0] = os.environ['PWD']
 from commune.config import ConfigLoader
-from commune.utils.misc import  chunk
+from commune.utils.misc import  chunk, dict_put
 from commune.utils import format_token_symbol
 import ray
 import random
@@ -39,9 +39,6 @@ class BitModule(BaseProcess):
         self.sync(network=self.network, block=self.block)
 
 
-    @property
-    def block(self):
-        return self.subtensor.block
 
     @property
     def block(self):
@@ -83,7 +80,9 @@ class BitModule(BaseProcess):
         assert network in self._NETWORKS
         print("setter of x called")
         self.sync(network=network, block=self.block)
+
         self._network = network
+        dict_put()
 
 
 
@@ -106,16 +105,21 @@ class BitModule(BaseProcess):
     def process(self, **kwargs):
         print(self.graph)
     
+    def graph_state(self,mode:str='df'):
+        if mode == in ['df', 'pandas', da
+        return self.graph.to_dataframe()
+
     def get_graph(self, network=None,block=None,  subtensor=None , save=True):
         # Fetch data from URL here, and then clean it up.
         graph = bittensor.metagraph(network=network, subtensor=subtensor)
         graph.load(network=network)
-        st.write(self.current_block)
 
         # graph.sync(block=block)
         if save:
             graph.save(network=network)
         return graph
+
+    
 
 
     @staticmethod
@@ -167,7 +171,7 @@ class BitModule(BaseProcess):
 
 if __name__ == '__main__':
 
-    with ray.init(address="auto", namespace='bro') as bro:
-        print(bro)
+    with ray.init(address='auto', namespace='serve'):
         bt = BitModule.deploy(actor=True)
+
         # print(ray.get(bt.process.remote()))

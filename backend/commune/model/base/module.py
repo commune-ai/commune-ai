@@ -150,29 +150,32 @@ class GenericBaseModel(torch.nn.Module,BaseProcess):
         object_name = '/'.join(path_list[1:])
         return bucket_name, object_name
 
-    def save(self):
+    @property
+    def path(self)
         artifact_uri = self.cfg['experiment']['run']['artifact_uri']
         self.cfg['model_uri'] = os.path.join(artifact_uri, 'model.pth')
-        buffer = io.BytesIO()
-        torch.save(self.state_dict(), buffer)
-        buffer.seek(0)
-        self.client['minio'].put_object(path=self.cfg['model_uri'],
-                                    data=buffer,
-                                    length= len(buffer.getvalue()))
+        path = self.cfg['model_uri']
+    def save(self, path=None):
+        if path is None:
+            path = self.path
+
+        self.client['minio'].save_model(path=path,
+                                    data=self.state_dict(),
+                                    length= len(buffer.getvalue()),
+                                    mode = 'torch.state_dict')
         
     
-    def load(self):
-        buffer = io.BytesIO(self.client['minio'].get_object(path=self.cfg['model_uri']).read())
-        state_dict = torch.load(buffer)
+    def load(self, path=None):
+        if path is None:
+            path = self.path
+        state_dict = self.client['minio'].save_model(path=path, mode = 'torch.state_dict')
         self.load_state_dict(state_dict)
         self.resolve_device()
 
-
-
     def resolve_device(self,device=None):
         # resolves the device
-        default_device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        if device == None:
+        if device is None:
+            default_device = 'cuda' if torch.cuda.is_available() else 'cpu'
             device = self.cfg.get('device', default_device)
         self.to(device) 
 

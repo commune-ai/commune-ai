@@ -1,6 +1,7 @@
 # Use nvidia/cuda image
 FROM nvidia/cuda:11.2.1-base
 
+
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV TZ=Europe/London
@@ -18,51 +19,43 @@ RUN python3 -m pip install --upgrade pip
 
 # Install linux dependencies
 RUN apt-get install -y libssl-dev
-RUN apt-get install -y npm
 RUN apt-get install -y gcc
+RUN apt-get install -y npm
+
+# install ganache for simulating evm vm
+RUN npm install -g ganache-cli
+
+
 
 WORKDIR /app
 
-# RUNNING THESE IN THE EXECUTE COMMAND 
-
-# add BITTENSOR commune fork
-
-# TEMPORARY UNTIL MERGE WITH FSSPEC add ipfsspec
-ADD ./ipfsspec/ /app/ipfsspec/
-RUN pip install -e ./ipfsspec
-
-# RUN pip install bittensor
-
-# ADD ./brownie/ /app/brownie/
-# RUN rm -r ./ipfsspec
-# RUN pip install bittensor
-# ADD ./brownie/ /app/brownie/
-# RUN pip install -e ./brownie
-## -- Enter Virtual Env Installs our requirements into the Docker image
-COPY ./requirements.txt .
+# Install dependencies:
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# RUN pip install eth-brownie
+
+# add BITTENSOR commune fork
+ADD bittensor /app/bittensor
+RUN python3 -m pip install -e ./bittensor
+
+COPY ipfsspec /app/ipfsspec
+RUN pip install -e ./ipfsspec
+# RUNNING THESE IN THE EXECUTE COMMAND 
 
 
 
+# TEMPORARY UNTIL MERGE WITH FSSPEC add ipfsspec
 
 
+
+# RUN pip install brownie
+# ADD ./brownie/ /app/brownie/
+# RUN pip install -e ./brownie
 
 COPY ./scripts scripts
 RUN chmod +x ./scripts/*
 
-# set working directory
-
-
-
-RUN npm install -g ganache-cli
-# RUN pip install bittensor
-
-ADD ./bittensor/ /app/bittensor/
-RUN python3 -m pip install -e bittensor/
 RUN python3 -m  pip install "ray[serve]"
-
 
 # COPY --from=library/docker:latest /usr/local/bin/docker /usr/bin/docker
 # COPY --from=docker/compose:latest /usr/local/bin/docker-compose /usr/bin/docker-compose

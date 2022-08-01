@@ -191,6 +191,29 @@ class MinioManager(ActorBase, Minio):
 
 
 
+    def save_model(self, path, data, mode='torch.state_dict'):
+
+        if mode == 'torch.state_dict':
+            buffer = io.BytesIO()
+            torch.save(data, buffer)
+            buffer.seek(0)
+            self.put_object(path=path,
+                            data=buffer,
+                            length= len(buffer.getvalue()))
+
+        else:
+            raise NotImplementedError    
+    
+    def load_model(self, path, mode='state_dict'):
+        if mode == 'torch.state_dict':
+            buffer = io.BytesIO(self.get_object(path=path).read())
+            state_dict = torch.load(buffer)
+            return state_dict
+        else:
+            raise NotImplementedError    
+
+
+
 
     def put_object(self,
                     bucket_name=None, 
