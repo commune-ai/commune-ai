@@ -14,9 +14,21 @@ from types import ModuleType
 class ActorBase: 
     config_loader = ConfigLoader(load_config=False)
     default_cfg_path = None
-    def __init__(self, cfg):
-        self.cfg = cfg 
+    def __init__(self, cfg=None):
+
+        self.cfg = self.resolve_config(cfg=cfg)
         self.start_timestamp = datetime.datetime.utcnow().timestamp()
+
+    def resolve_config(self, cfg, override={}, local_var_dict={}):
+        if cfg == None:
+            assert isinstance(self.default_cfg_path, str)
+            cfg = self.default_cfg_path
+
+        cfg = self.load_config(cfg=cfg, 
+                             override=override, 
+                            local_var_dict=local_var_dict)
+
+        return cfg
 
     @staticmethod
     def load_config(cfg=None, override={}, local_var_dict={}):
@@ -75,15 +87,14 @@ class ActorBase:
         """
         deploys process as an actor or as a class given the config (cfg)
         """
+
         if cfg == None:
+            assert isinstance(cls.default_cfg_path, str)
             cfg = cls.default_cfg_path
 
         cfg = cls.load_config(cfg=cfg, 
                              override=override, 
                             local_var_dict=local_var_dict)
-
-
-
 
         if actor:
             if isinstance(actor, dict):

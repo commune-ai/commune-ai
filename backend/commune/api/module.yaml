@@ -1,21 +1,22 @@
-module: graphql.manager.QueryModule
+module: api.manager.QueryModule
+name: QueryModule
 
 client: get_cfg(client.manager)
 
 sub_module:
   config_manager:
     module: config.manager.ConfigManager
-    actor: {refresh: True}
+    actor: False
   experiment_manager:
     module: experiment.manager.module.ExperimentManager
-    actor: {refresh: True}
-  launcher:
-    module: process.launcher.module
     actor: False
+  launcher:
+    module: process.launcher.module.Launcher
+    actor: {refresh: False}
 
 refresh: True
 
 actor:
-  name: local_copy(module)
+  name: local_copy(name)
 
 

@@ -40,11 +40,14 @@ class QueryModule(BaseProcess):
         return ray.get(job_id)
 
 
-    def get_config(self,path):
+    def get_config(self,path, clones=True):
         output_dict = {}
         output_dict['template'] =  self.load_config(cfg=path )
-    
         output_dict['clones'] = ray.get(self.config_manager.find_modules.remote(module=output_dict['template']['module']))
+        
+        if not clones:
+            return output_dict['template']
+
         return output_dict
 
     def get_module_tree(self, root='/app/commune'):
@@ -73,7 +76,14 @@ class QueryModule(BaseProcess):
         
         self.cache[job_hash] = out_dict
         return out_dict
-if __name__ == "__main__":r
+
+    @classmethod
+    def start(*args,**kwargs):
+        with ray.init(address="auto",namespace="commune"):
+            return self.deploy(*args,**kwargs)
+        
+
+if __name__ == "__main__":
     with ray.init(address="auto",namespace="commune"):
         
         process = QueryModule.deploy(actor=False)

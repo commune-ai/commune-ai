@@ -12,15 +12,17 @@ import datetime
 import ray
 from fastapi.middleware.cors import CORSMiddleware
 
-os.environ["MKL_SERVICE_FORCE_INTEL"] = "1"
-app = FastAPI()
-app.add_middleware(
-  CORSMiddleware,
-  # allow_origins=["http://localhost:3000"],
-  allow_origins=["*"],
-  allow_credentials=True,
-  allow_methods=["*"],
-  allow_headers=["*"]
-)
 
-app.add_route("/", GraphQLApp(schema=schema))
+with ray.init(address='auto', namespace='serve'):
+  os.environ["MKL_SERVICE_FORCE_INTEL"] = "1"
+  app = FastAPI()
+  app.add_middleware(
+    CORSMiddleware,
+    # allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+  )
+
+  app.add_route("/", GraphQLApp(schema=schema))

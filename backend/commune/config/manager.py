@@ -88,5 +88,6 @@ if __name__ == "__main__":
             # cfg = process.run(module= 'data.regression.crypto.sushiswap.dataset')
 
             print(cfg)
-    ex
+    except:
+        pass
         

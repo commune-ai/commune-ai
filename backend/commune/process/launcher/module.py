@@ -31,7 +31,7 @@ from commune.process import BaseProcess
 
 
 class Launcher(BaseProcess):
-    
+
     default_cfg_path = f"process.launcher.module"
     def setup(self):
         self.actor_map = {}
@@ -58,12 +58,12 @@ class Launcher(BaseProcess):
         self.client['ray'].queue.put(topic=self.cfg['queue']['in'], item=job_kwargs, block=block )
         
 
-    def run_job(self, module, fn, kwargs={}, override={}, cron=None):
+    def run_job(self, module, fn, kwargs={}, args=[], override={}, cron=None):
 
        
         actor, actor_name = self.launch_actor(module=module,override=override)
 
-        job_id = getattr(actor, fn).remote(**kwargs)
+        job_id = getattr(actor, fn).remote(*args,**kwargs)
         job_kwargs = {'actor_name':actor_name,
                         'fn': fn,
                         'kwargs': kwargs}
@@ -119,10 +119,6 @@ class Launcher(BaseProcess):
                 #     queue_topic = self.job2queue.get(job.hex(), self.cfg['queue']['in'])
                 #     out_item = ray.get(job)
                 #     self.client['ray'].queue.put(topic=queue_topic,item=ray.get(job))
-
-
-
-
 
 
     def load_balance(self, proposed_actor = None):

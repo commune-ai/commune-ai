@@ -9,8 +9,9 @@ import numpy as np
 import json
 from commune.api.graphql.manager import QueryModule
 # experiment_manager = ExperimentManager.initialize(spawn_ray_actor=False, actor_name='experiment_manager')
-# context = ray.init(address='auto', namespace='graphql')
-query_module = QueryModule.deploy(actor=False)
+
+
+
 # inference_manager = InferenceManager.deploy(actor=False)
 class Query(graphene.ObjectType):
     alltokens = graphene.Field(graphene.List(graphene.String),
@@ -31,6 +32,8 @@ class Query(graphene.ObjectType):
 
         return out_dict
 
-# inference_manager = InferenceManager.initialize()
-schema = graphene.Schema(query=Query)
-    
+with ray.init(address='auto', namespace='serve'):
+    query_module = QueryModule.deploy(actor=False)
+    # inference_manager = InferenceManager.initialize()
+    schema = graphene.Schema(query=Query)
+    # inference_manager = InferenceManager.initialize()

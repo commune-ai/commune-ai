@@ -30,3 +30,7 @@ purge:
 
 speedtest:
 	curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
+
+
+api:
+	python3 commune/api/main.py 

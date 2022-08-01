@@ -106,8 +106,10 @@ class BitModule(BaseProcess):
         print(self.graph)
     
     def graph_state(self,mode:str='df'):
-        if mode == in ['df', 'pandas', da
-        return self.graph.to_dataframe()
+        if mode in ['df', 'pandas']:
+            return self.graph.to_dataframe()
+        elif mode in ['torch.state_dict']:
+            return self.graph.state_dict()
 
     def get_graph(self, network=None,block=None,  subtensor=None , save=True):
         # Fetch data from URL here, and then clean it up.

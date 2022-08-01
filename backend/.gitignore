@@ -2,5 +2,5 @@
 /nohup/**
 node_modules
 package-lock.json
-!*/.gitkeep
-.bittensor/
+.bittensor/*
+!.bittensor/.gitkeep

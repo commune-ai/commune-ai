@@ -1,4 +1,5 @@
 module: graphql.manager.QueryModule
+name: QueryModule
 
 client: get_cfg(client.manager)
 
@@ -16,6 +17,6 @@ sub_module:
 refresh: True
 
 actor:
-  name: local_copy(module)
+  name: local_copy(name)
 
 

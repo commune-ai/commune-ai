@@ -33,13 +33,13 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-
 # add BITTENSOR commune fork
-ADD bittensor /app/bittensor
+ADD ./bittensor /app/bittensor
 RUN python3 -m pip install -e ./bittensor
 
-COPY ipfsspec /app/ipfsspec
-RUN pip install -e ./ipfsspec
+
+COPY ./ipfsspec/ /app/ipfsspec/
+RUN python3 -m pip install -e ./ipfsspec
 # RUNNING THESE IN THE EXECUTE COMMAND 
 
 
@@ -56,6 +56,7 @@ COPY ./scripts scripts
 RUN chmod +x ./scripts/*
 
 RUN python3 -m  pip install "ray[serve]"
+RUN alias
 
 # COPY --from=library/docker:latest /usr/local/bin/docker /usr/bin/docker
 # COPY --from=docker/compose:latest /usr/local/bin/docker-compose /usr/bin/docker-compose

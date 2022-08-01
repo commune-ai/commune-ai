@@ -15,7 +15,7 @@ write:
       collection: config
       query:
         module: local_copy(module)
-        token: "{token}"
+        network: {network}
 
 
 actor:

@@ -30,16 +30,15 @@ class BaseProcess(ActorBase):
     default_client_cfg = ActorBase.load_config(default_client_cfg_path)
     config_loader = ConfigLoader(load_config=False)
     module = {}
+    loop_running = False
 
     cache = {} # for caching things
     def __init__(
             self, 
-            cfg, 
+            cfg=None, 
             ):
-
-        super().__init__(cfg)
-
-        self.cfg=cfg
+        
+        ActorBase.__init__(self,cfg)
         self.connect_clients()
         self.get_sub_modules()
 
@@ -66,6 +65,7 @@ class BaseProcess(ActorBase):
             dict_put(input_dict=self.__dict__,keys=k, value=v)
 
     def get_sub_modules(self):
+        self.sub_modules = {}
         if 'sub_module' in self.cfg:
             assert isinstance(self.cfg['sub_module'], dict)
 
@@ -125,6 +125,8 @@ class BaseProcess(ActorBase):
                 dict_put(input_dict=self.__dict__,
                                     keys= module_key,
                                     value= module)
+                self.sub_modules[module_key] = module
+
 
     def change_state(self):
         pass

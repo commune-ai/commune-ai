@@ -30,14 +30,14 @@ if st.button("Query"):
     '''.format(json_string=query_dict_str)
 
 
-    query = '''
+    # query = '''
 
-    {{
-        config(path: "client.mongo.manager")
-    }}
-    '''.format()
+    # {{
+    #     config(path: "client.mongo.manager")
+    # }}
+    # '''.format()
 
     st.write(query)
     st.write(json.loads(client['graphql'].query(query=query, return_one=True)))
 
-    client['mongo'].write(database='streamlit',  collection='historical_apis', data=query_dict)
+    # client['mongo'].write(database='streamlit',  collection='historical_apis', data=query_dict)

@@ -67,6 +67,7 @@ services:
       - 8501:8501 # for the user streamlit app
       - 8265:8265
       - 8000:8000
+      - 8001:8001
       
     shm_size: 30gb
     container_name: backend
@@ -85,7 +86,7 @@ services:
     #        - driver: nvidia
     #          count: 'all'
     #          capabilities: [gpu]
-    command: bash -c "./scripts/startup.sh"
+    command: bash -c "./scripts/startup.sh; tail -F anything"
     links:
       - mongo
       - postgres
@@ -137,6 +138,9 @@ services:
     environment:
       - CARGO_HOME=/var/www/node-subtensor/.cargo
     command: bash -c "/usr/local/bin/node-subtensor --base-path /root/.local/share/node-subtensor/ --chain /subtensor/specs/nakamotoSpecRaw.json --rpc-external --ws-external --rpc-cors all --no-mdns --ws-max-connections 10000 --in-peers 500 --out-peers 500"
+
+
+
 
   # kafka:
   #   image: "bitnami/kafka:2"
