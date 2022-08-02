@@ -60,22 +60,27 @@ class ActorBase:
         process_class = None
         if isinstance(cfg, str):
             # check if object is a path to module, return None if it does not exist
-            process_class = ActorBase.get_object(key=cfg, handle_failure=True)
+            module_class = ActorBase.get_object(key=cfg, handle_failure=True)
+
 
         if isinstance(process_class, type):
-            print('default cfg', cfg)
-            cfg = process_class.default_cfg()
+            
+            cfg = module_class.default_cfg()
        
         else:
 
             cfg = ActorBase.load_config(cfg)
-            assert isinstance(cfg, dict)
-            assert 'module' in cfg
-            process_class = ActorBase.get_object(cfg['module'])
+            ActorBase.check_config(cfg)
+            module_class = ActorBase.get_object(cfg['module'])
 
-                
+        return module_class.deploy(cfg=cfg, override=override, actor=actor)
 
-        return process_class.deploy(cfg=cfg, override=override, actor=actor)
+    @staticmethod
+    def check_config(cfg):
+        assert isinstance(cfg, dict)
+        assert 'module' in cfg
+
+
 
     @staticmethod
     def get_object(key, prefix = 'commune', handle_failure= False):

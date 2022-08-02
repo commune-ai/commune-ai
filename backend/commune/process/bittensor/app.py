@@ -141,6 +141,25 @@ class BitModule:
 manual =  st.expander('bro')
 
 bt  = BitModule()
-bt2  = BitModule()
+bt.st_sidebar()
+st.write(bt.graph.to_dataframe())
+bt.sync()
 
-st.write(repr(bt)==repr(bt2), 'bro')
+st.write(bt.graph.addresses)
+
+
+
+
+
+st.write()
+# st.write(dir(subtensor))
+# wallet = bittensor.wallet()
+# st.write(dir(wallet))
+# wallet.get_coldkey('saller101@')
+# st.write(wallet.get_coldkey('saller101@'))
+# st.write(wallet.coldkey)
+# BitModule.describe('wallet')
+# wallet = bittensor.wallet()
+# st.write(dir(wallet))
+# st.write(bittensor.cli().create_new_coldkey())
+# st.write(wallet.new_coldkey(overwrite=True))

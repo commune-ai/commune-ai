@@ -133,18 +133,14 @@ def get_object(path,prefix = 'commune', handle_failure= False):
     {module_path}.{object_name}
     ie.
     {model.block.nn.rnn}.{LSTM}
-
-
-
     '''
-    if prefix != path[:len(prefix)] and \
-            isinstance(prefix, str):
+    assert isinstance(prefix, str)
+
+    if prefix != path[:len(prefix)]:
         path = '.'.join([prefix, path])
 
-    object_name = path.split('.')[-1]
     module_path = '.'.join(path.split('.')[:-1])
-
-
+    object_name = path.split('.')[-1]
 
     try:
         submodule = import_module(module_path)
@@ -158,6 +154,9 @@ def get_object(path,prefix = 'commune', handle_failure= False):
     return module
 
 def try_fn_n_times(fn, kwargs, try_count_limit):
+    '''
+    try a function n times
+    '''
     try_count = 0
     return_output = None
     while try_count < try_count_limit:
@@ -496,6 +495,9 @@ def dict_hash(dictionary: Dict[str, Any]) -> str:
 
 
 def dict_equal(*args):
+    '''
+    compares a list of dictionaries that are hasable by dict_hash
+    '''
 
     if not all([ isinstance(arg, dict) for arg in args]):
         return False

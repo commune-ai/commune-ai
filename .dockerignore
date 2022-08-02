@@ -1,7 +1,3 @@
-.hypothesis
-node_modules
-package-*.json
-
 backend/bittensor/**
 !backend/bittensor/bittensor
 backend/ipfsspec/**

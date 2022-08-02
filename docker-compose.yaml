@@ -68,13 +68,12 @@ services:
       - 8265:8265
       - 8000:8000
       - 8001:8001
+      - 7860-7870:7860-7870
       
     shm_size: 30gb
     container_name: backend
     volumes:
-      - ./backend/bittensor/bittensor:/app/bittensor/bittensor
-      - ./backend/brownie/brownie:/app/brownie/brownie
-      - ./backend/ipfsspec/ipfsspec:/app/ipfsspec/ipfsspec
+      - ./backend:/app
       - ./backend/.brownie:/root/.brownie
       - ./backend/.bittensor:/root/.bittensor
 
@@ -82,13 +81,13 @@ services:
     working_dir: ${MODEL_WDIR}
     env_file: 
       - .env
-    # deploy:
-    #   resources:
-    #      reservations:
-    #        devices:
-    #        - driver: nvidia
-    #          count: 'all'
-    #          capabilities: [gpu]
+    deploy:
+      resources:
+         reservations:
+           devices:
+           - driver: nvidia
+             count: 'all'
+             capabilities: [gpu]
     command: bash -c "./scripts/startup.sh; tail -F anything"
 
   ganache:

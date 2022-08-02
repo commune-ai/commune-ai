@@ -28,15 +28,16 @@ RUN npm install -g ganache-cli
 
 
 WORKDIR /app
+RUN pip3 install --upgrade pip
 
 # Install dependencies:
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-
 COPY ./ipfsspec/ /app/ipfsspec/
 RUN python3 -m pip install -e ./ipfsspec
 # RUNNING THESE IN THE EXECUTE COMMAND 
+
 
 # add BITTENSOR commune fork
 ADD ./bittensor /app/bittensor
@@ -55,7 +56,8 @@ COPY ./scripts scripts
 RUN chmod +x ./scripts/*
 
 RUN python3 -m  pip install "ray[serve]"
-RUN alias
+
+RUN alias python=python3
 
 # COPY --from=library/docker:latest /usr/local/bin/docker /usr/bin/docker
 # COPY --from=docker/compose:latest /usr/local/bin/docker-compose /usr/bin/docker-compose
