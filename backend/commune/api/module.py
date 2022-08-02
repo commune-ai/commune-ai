@@ -51,7 +51,6 @@ class APIBase(BaseProcess):
                     module_path = config_path.replace('.yaml', '.py')
                     module_key_path = os.path.dirname(module_path).replace(root, '').lstrip('/').replace('/', '.')
                     
-                    print(module_key_path)
                     dict_put(out_dict,
                                 keys=module_key_path,
                                 value= {'config': config_path, 'module': module_path})

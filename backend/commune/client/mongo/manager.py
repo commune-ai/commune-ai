@@ -231,7 +231,7 @@ class MongoManager(ActorBase):
             ray.get(finished_jobs)
 
 
-    def write(self, collection:str, database:str, data:dict={}, query:dict={}, root_key='', workers:int=1, upsert:bool=True, add_query:bool=True):
+    def save(self, collection:str, database:str, data:dict={}, query:dict={}, root_key='', workers:int=1, upsert:bool=True, add_query:bool=True):
 
         if root_key:
             root_data = {}
@@ -267,9 +267,6 @@ class MongoManager(ActorBase):
                         query=query,
                         projection=projection,
                         workers=workers)
-
-        if 'name' in query:
-            print(query['name'], len(documents))        
 
         for i in range(len(documents)):
             if remove_id:
@@ -344,3 +341,9 @@ class MongoManager(ActorBase):
     @classmethod
     def create_actor(cls, **kwargs):
         create_actor(cls=cls, **kwargs)
+
+    def read(self, *args, **kwargs):
+        self.load(*args, **kwargs)
+
+    def write(self, *args, **kwargs):
+        self.save(*args, **kwargs)

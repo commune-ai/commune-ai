@@ -414,17 +414,18 @@ def dict_delete(input_dict,keys ):
         assert isinstance(keys, list)
     
     key = keys[0]
-    if len(keys) == 1:
+    if key in input_dict:    
+        if len(keys) == 1:
+            assert isinstance(input_dict,dict), f"{keys}, {input_dict}"
+            del input_dict[key]
 
-        assert isinstance(input_dict,dict), f"{keys}, {input_dict}"
-        del input_dict[key]
+        elif len(keys) > 1:
+            dict_delete(input_dict=input_dict[key],
+                                keys=keys[1:])
+    else:
+        return None
 
-    elif len(keys) > 1:
-        if key not in input_dict:
-            input_dict[key] = {}
-        dict_put(input_dict=input_dict[key],
-                             keys=keys[1:],
-                             value=value)
+        
 def dict_has(input_dict,keys):
     """
     insert keys that are dot seperated (key1.key2.key3) recursively into a dictionary

@@ -2,9 +2,3 @@
 node_modules
 package-*.json
 
-backend/bittensor/**
-!backend/bittensor/bittensor
-backend/ipfsspec/**
-!backend/ipfsspec/ipfsspec
-backend/brownie/**
-!backend/brownie/brownie
