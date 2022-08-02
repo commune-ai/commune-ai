@@ -72,9 +72,12 @@ services:
     shm_size: 30gb
     container_name: backend
     volumes:
-      - ./backend:/app
+      - ./backend/bittensor/bittensor:/app/bittensor/bittensor
+      - ./backend/brownie/brownie:/app/brownie/brownie
+      - ./backend/ipfsspec/ipfsspec:/app/ipfsspec/ipfsspec
       - ./backend/.brownie:/root/.brownie
       - ./backend/.bittensor:/root/.bittensor
+
 
     working_dir: ${MODEL_WDIR}
     env_file: 
@@ -87,12 +90,6 @@ services:
     #          count: 'all'
     #          capabilities: [gpu]
     command: bash -c "./scripts/startup.sh; tail -F anything"
-    links:
-      - mongo
-      - postgres
-      - mlflow
-      - s3
-      - ganache
 
   ganache:
     container_name: ganache

@@ -33,16 +33,14 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# add BITTENSOR commune fork
-ADD ./bittensor /app/bittensor
-RUN python3 -m pip install -e ./bittensor
-
 
 COPY ./ipfsspec/ /app/ipfsspec/
 RUN python3 -m pip install -e ./ipfsspec
 # RUNNING THESE IN THE EXECUTE COMMAND 
 
-
+# add BITTENSOR commune fork
+ADD ./bittensor /app/bittensor
+RUN python3 -m pip install -e ./bittensor
 
 # TEMPORARY UNTIL MERGE WITH FSSPEC add ipfsspec
 
@@ -52,6 +50,7 @@ RUN python3 -m pip install -e ./ipfsspec
 # ADD ./brownie/ /app/brownie/
 # RUN pip install -e ./brownie
 
+
 COPY ./scripts scripts
 RUN chmod +x ./scripts/*
 
@@ -60,4 +59,3 @@ RUN alias
 
 # COPY --from=library/docker:latest /usr/local/bin/docker /usr/bin/docker
 # COPY --from=docker/compose:latest /usr/local/bin/docker-compose /usr/bin/docker-compose
-

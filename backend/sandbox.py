@@ -18,9 +18,6 @@ class BitModule:
         return self.subtensor.block
 
 
-
-
-
     @property
     def block(self):
         print("getter of x called")
@@ -74,8 +71,10 @@ class BitModule:
     def n(self):
         return self.subtensor.max_n
 
-    def sync(self,network='nakamoto',  block=None):
+    def sync(self,network=None,  block=None):
         # Fetch data from URL here, and then clean it up.
+        if network == None:
+            network = self.network
         if network != self.network:
             self.subtensor = self.get_subtensor(network=network)
         if block != self.block or not hasattr(self, 'graph'):
@@ -87,8 +86,6 @@ class BitModule:
         # Fetch data from URL here, and then clean it up.
         graph = bittensor.metagraph(network=network, subtensor=subtensor)
         graph.load(network=network)
-        st.write(self.current_block)
-
         # graph.sync(block=block)
         if save:
             graph.save(network=network)
@@ -145,15 +142,10 @@ manual =  st.expander('bro')
 
 bt  = BitModule()
 bt.st_sidebar()
+st.write(bt.graph.to_dataframe())
+bt.sync()
 
-# with manual:
-#     src='https://docs.streamlit.io/library/components/components-api'
-#     st.components.v1.iframe(src, width=None, height=1000, scrolling=False)
-
-bt.describe(bt.graph)
-
-
-st.write(bt.graph)
+st.write(bt.graph.addresses)
 
 
 
