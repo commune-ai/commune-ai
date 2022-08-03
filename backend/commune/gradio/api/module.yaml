@@ -1,0 +1,10 @@
+module: gradio.api.module.GradioAPI
+name: GradioModule
+
+client: get_cfg(client.manager)
+
+
+actor:
+  name: local_copy(name)
+
+

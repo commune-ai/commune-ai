@@ -77,17 +77,16 @@ services:
       - ./backend/.brownie:/root/.brownie
       - ./backend/.bittensor:/root/.bittensor
 
-
     working_dir: ${MODEL_WDIR}
     env_file: 
       - .env
-    deploy:
-      resources:
-         reservations:
-           devices:
-           - driver: nvidia
-             count: 'all'
-             capabilities: [gpu]
+    # deploy:
+    #   resources:
+    #      reservations:
+    #        devices:
+    #        - driver: nvidia
+    #          count: 'all'
+    #          capabilities: [gpu]
     command: bash -c "./scripts/startup.sh; tail -F anything"
 
   ganache:

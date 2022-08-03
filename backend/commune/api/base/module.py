@@ -10,10 +10,8 @@ from commune.process.launcher.module import Launcher
 
 # experiment_manager = ExperimentManager.initialize(spawn_ray_actor=False, actor_name='experiment_manager')
 
-
-
-class APIBase(BaseProcess):
-    default_cfg_path = f"api.module"
+class BaseAPI(BaseProcess):
+    default_cfg_path = f"api.base.module"
     def launch(self,module:str='process.bittensor.module.BitModule', fn:str='sync', args:str='[]', kwargs:str='{}', override:dict={} ):
         # print(fn, args, kwargs, 'BRO')
         if isinstance(args, str):
@@ -57,6 +55,9 @@ class APIBase(BaseProcess):
                    
         # self.cache[job_hash] = out_dict
         return out_dict
+
+
+
 
 
 if __name__ == "__main__":

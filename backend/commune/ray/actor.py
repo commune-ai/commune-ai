@@ -52,13 +52,13 @@ class ActorBase:
         if isinstance(cfg,type):
             return cfg
 
-        process_class = None
+        module_class = None
         if isinstance(cfg, str):
             # check if object is a path to module, return None if it does not exist
             module_class = ActorBase.get_object(key=cfg, handle_failure=True)
 
 
-        if isinstance(process_class, type):
+        if isinstance(module_class, type):
             
             cfg = module_class.default_cfg()
        

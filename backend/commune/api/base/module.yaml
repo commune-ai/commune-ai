@@ -1,5 +1,5 @@
-module: api.manager.QueryModule
-name: QueryModule
+module: api.manager.BaseAPI
+name: BaseAPI
 
 client: get_cfg(client.manager)
 

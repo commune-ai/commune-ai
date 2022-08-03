@@ -35,13 +35,13 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY ./ipfsspec/ /app/ipfsspec/
-RUN python3 -m pip install -e ./ipfsspec
+RUN pip install -e ./ipfsspec
 # RUNNING THESE IN THE EXECUTE COMMAND 
 
 
 # add BITTENSOR commune fork
 ADD ./bittensor /app/bittensor
-RUN python3 -m pip install -e ./bittensor
+RUN pip install -e ./bittensor
 
 # TEMPORARY UNTIL MERGE WITH FSSPEC add ipfsspec
 

@@ -1,8 +1,13 @@
+import os, sys
+sys.path.append(os.environ["PWD"])
+
 import requests
 import gradio as gr
 import socket
 import random
 from inspect import getfile
+
+from commune.process.base import BaseProcess
 
 DOCKER_LOCAL_HOST = 'localhost'
 
@@ -21,14 +26,18 @@ class bcolor:
     
 
 
-class Gradio:
-    num_ports = 20
-    port_range = (7860, 7865)
+class GradioModule(BaseProcess):
+    default_cfg_path = 'gradio.module'
+    
     active_port_map = {}
     port_count = 0
+    def __init__(self, cfg=None):
+        BaseProcess.__init__(self, cfg=cfg)
 
-    def __init__(self) -> None:
-        self.cls = cls()
+        self.num_ports = self.cfg.get('num_ports', 10)
+        self.port_range = self.cfg.get('port_range', [7860, 7865])
+
+
 
     def get_funcs(self):
         return [func for func in dir(self.cls) if not func.startswith("__") and callable(getattr(self.cls, func, None)) ]
@@ -53,7 +62,7 @@ class Gradio:
                                                     outputs=param['outputs'],
                                                     live=live,
                                                     allow_flagging=allow_flagging,
-                                                    theme=theme))
+                                                    theme=theme)
             print(f"{func}....{bcolor.BOLD}{bcolor.OKGREEN} done {bcolor.ENDC}")
 
         print("\nHappy Visualizing... 🚀")
@@ -77,7 +86,7 @@ class Gradio:
 
         gradio_metadata = {"port" : server_port, "host" : gradio_url, "file" : getfile(self.cls.__class__), "name" : self.cls.__class__.__name__, "kwargs" : kwargs}
         try:
-            requests.post(f"{api_url}/api/append/port", json=gradio_metadata)
+            self.client['api'].post(endpoint=, json=gradio_metadata)
         except Exception:
             print(f"**{bcolor.BOLD}{bcolor.FAIL}CONNECTION ERROR{bcolor.ENDC}** 🐛The listening api is either not up or you choose the wrong port.🐛")
             return
@@ -102,7 +111,7 @@ class Gradio:
     
     def determinePort(self, max_trial_count=10):
         trial_count = 0 
-        for port in range(*self.port_range)
+        for port in range(*self.port_range):
             if not self.portConnection(port):
                 return port
         raise Exception(f'There does not exist an open port between {self.port_range}')
@@ -126,3 +135,11 @@ class Gradio:
                     return None
             return wrap
         return register_gradio
+
+
+if __name__== '__main__':
+    import streamlit as st
+
+    gr = GradioModule()
+    st.write(gr.client['api'].get(endpoint=''))
+    

@@ -79,7 +79,7 @@ class BaseProcess(ActorBase):
     def list_submodules():
         self.sub_modules.keys()
 
-    def rm_submodule(self, key:str)
+    def rm_submodule(self, key:str):
         if self.has_submodule(key):
             del self.sub_modules[key]
             del self.__dict__[key]

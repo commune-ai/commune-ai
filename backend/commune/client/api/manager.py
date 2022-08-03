@@ -35,13 +35,13 @@ class APIManager(ActorBase):
             
         return requests.get(url=url, params=params, **kwargs).json()
 
-    def post(self, url:str=None, endpoint:str=None, params:dict={},**kwargs):
+    def post(self, url:str=None, endpoint:str=None, **kwargs):
         if url is None:
             url = self.url
             
         if endpoint:
             url = os.path.join(url, endpoint)
-        return requests.post(url=url, params=params, **kwargs).json()
+        return requests.post(url=url, **kwargs).json()
 
 if __name__ == '__main__':
     api = APIManager.deploy(actor=False)

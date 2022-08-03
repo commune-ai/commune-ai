@@ -8,8 +8,10 @@ sys.path.append(os.getcwd())
 from fastapi import FastAPI
 import ray
 from ray import serve
+from commune.utils.misc import SimpleNamespace
 from commune.process.launcher.module import Launcher
-from commune.api.module import APIBase
+from commune.api.base.module import BaseAPI
+from commune.gradio.api.module import GradioAPI
 
 
 from fastapi.middleware.cors import CORSMiddleware
@@ -28,28 +30,30 @@ app.add_middleware(
 )
 
 ray.init(address='auto', namespace='serve')
-serve.start(detached=True)
+serve.start(detached=False)
 
+
+  
 @serve.deployment(route_prefix='/')
 @serve.ingress(app)
-class API(APIBase):
+class API(BaseAPI, GradioAPI) :
   def __init__(self):
-      APIBase.__init__(self)
-      # self.launcher = Launcher.deploy(actor={'refresh':True})
-#   @app.get("/")
-#   def get(self):
-#       return {"count": self.count}
+    BaseAPI.__init__(self)
+    GradioAPI.__init__(self)
+
   @app.get("/launch")
-  async def launch(self,module:str='process.bittensor.module.BitModule', fn:str='sync', args:str='[]', kwargs:str='{}', override:dict={} ):
-    return APIBase.launch(self=self, module=module, fn=fn, args=args, kwargs=kwargs)  
+  async def launch(self,module:str='process.bittensor.module.BitModule', fn:str='sync', args:str='[]', kwargs:str='{}' ):
+    return BaseAPI.launch(self, module=module, fn=fn, args=args, kwargs=kwargs)  
 
   @app.get("/actors")
   async def actors(self):
-    return APIBase.actors(self)
+    return BaseAPI.actors(self)
 
   @app.get("/module_tree")
   async def module_tree(self):
-    return APIBase.module_tree(self)
+    return BaseAPI.module_tree(self)
+
+
 
 
 
@@ -59,4 +63,5 @@ api = API.get_handle()
 
 import requests
 
-print(requests.get('http://localhost:8000/module_tree', params= dict(module='process.bittensor.module.BitModule', fn='getattr', args='["n"]')).text)
+print(requests.get('http://localhost:8000/actors').text, 'BRO')
+# print(ray.get(api.module_tree.remote()))

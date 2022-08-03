@@ -6,10 +6,12 @@ sys.path.append(os.environ['PWD'])
 from commune.process import BaseProcess
 from commune.utils.misc import dict_fn, dict_get, dict_has
 import streamlit as st
+from commune.config import ConfigLoader
 
 class ConfigManager(BaseProcess):
-    from commune.config import ConfigLoader
-    default_cfg_path =  f"{os.environ['PWD']}/commune/config/manager.yaml"
+
+    default_cfg_path =  "config.manager"
+
 
     # def process(self, module, tags={}):
     #     """
@@ -56,7 +58,7 @@ class ConfigManager(BaseProcess):
                     module_path = config_path.replace('.yaml', '.py')
                     module_key_path = os.path.dirname(module_path).replace(root, '').lstrip('/').replace('/', '.')
                     
-                    if os.path.exists(module_path)
+                    if os.path.exists(module_path):
                         info_dict = {'config': config_path, 'module': module_path}
                         if tree:
 
