@@ -3,8 +3,12 @@ name: GradioModule
 
 client: get_cfg(client.manager)
 
+num_ports: 10
+port_range: [7860, 7870]
+host: '0.0.0.0'
 
-actor:
-  name: local_copy(name)
 
-
+sub_module:
+  config_manager:
+    module: config.manager.ConfigManager
+    actor: False

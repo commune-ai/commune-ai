@@ -26,8 +26,6 @@ def generate_client(client_kwargs):
     return client
 
 
-
-
 def update(collection,
            database,
            updates,
@@ -57,7 +55,7 @@ def update(collection,
 def find_query(database,
                collection,
                skip_n = 0, # no skip default
-               limit_n = 0, # no limit default
+               limit_n = 100, # no limit default
                client=None,
                client_kwargs = None,
                query={},
@@ -90,13 +88,17 @@ def find_query(database,
     return output
 
 
+
+
+
+
 def insert(database,
-           collection,
-           documents,
-           write_type="insert_many",
-           client=None,
-           client_kwargs=None,
-           transient_client=False):
+        collection,
+        documents,
+        write_type="insert_many",
+        client=None,
+        client_kwargs=None,
+        transient_client=False):
 
     # try:
     if client is None:
@@ -104,10 +106,22 @@ def insert(database,
 
     insert_fn = getattr(client[database][collection], write_type)
 
-    insert_fn(documents)
-    # except:
-    #     pass
-    # finally:
-    #     if transient_client:
-    #         client.close()
-    #         del client
+    return insert_fn(documents)
+
+
+def delete(database,
+        collection,
+        query,
+        write_type="delete_many",
+        client=None,
+        client_kwargs=None,
+        transient_client=False):
+
+    # try:
+    if client is None:
+        client = generate_client(client_kwargs=client_kwargs)
+
+    delete_fn = getattr(client[database][collection], write_type)
+
+    return delete_fn(query)
+

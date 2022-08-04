@@ -52,12 +52,11 @@ class ConfigLoader:
         return cfg
 
 
-
-    def load(self, path, local_var_dict={}, override={}, parse_only=False):
+    def load(self, path, local_var_dict={}, override={}, recursive=True):
         self.local_var_dict = local_var_dict
         self.cfg = self.parse_config(path=path)
        
-        if not parse_only:
+        if recursive:
             self.cfg = self.resolver_methods(cfg=self.cfg)
             self.cfg = self.override_cfg(cfg=self.cfg, override=override)
         return self.cfg

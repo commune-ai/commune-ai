@@ -30,7 +30,7 @@ app.add_middleware(
 )
 
 ray.init(address='auto', namespace='serve')
-serve.start(detached=False)
+serve.start(detached=True)
 
 
   
@@ -63,5 +63,5 @@ api = API.get_handle()
 
 import requests
 
-print(requests.get('http://localhost:8000/actors').text, 'BRO')
+print(requests.get('http://localhost:8000/module_tree').text, 'BRO')
 # print(ray.get(api.module_tree.remote()))

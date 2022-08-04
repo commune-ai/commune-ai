@@ -68,6 +68,7 @@ services:
       - 8265:8265
       - 8000:8000
       - 8001:8001
+
       - 7860-7870:7860-7870
       
     shm_size: 30gb
@@ -88,7 +89,12 @@ services:
     #          count: 'all'
     #          capabilities: [gpu]
     command: bash -c "./scripts/startup.sh; tail -F anything"
-
+    # links:
+    #   - s3
+    #   - postgres
+    #   - mlflow
+    #   - mongo
+    #   - frontend
   ganache:
     container_name: ganache
     ports: 

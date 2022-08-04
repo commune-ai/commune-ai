@@ -228,8 +228,32 @@ if __name__=="__main__":
             print(client['ray'].queue.get('launcher.out'))
 # 
 
+    @staticmethod     
+    def module_tree(root='/app/commune', tree=True, linear=True):
+        # job_hash = inspect.currentframe().f_code.co_name + dict_hash(kwargs)
+        # if job_hash in self.cache:
+        #     return self.cache[job_hash]
+
+
+        out_dict = {}
+
+        for local_root, dirs, files in os.walk(root, topdown=False):
+            for name in files:
+                file_path = os.path.join(local_root, name)
+                if '.' in file_path and 'yaml' == file_path.split('.')[-1]:
+                    config_path = file_path
+                    module_path = config_path.replace('.yaml', '.py')
+                    module_key_path = os.path.dirname(module_path).replace(root, '').lstrip('/').replace('/', '.')
                     
-
-        
-
+                    if linear and tree:
+                        dict_put(out_dict,
+                                    keys=module_key_path,
+                                    value= {'config': config_path, 'module': module_path})
+                    else:
+                        out_dict[module_key_path] = {'config': config_path, 'module': module_path}
+                   
+        if tree:
+            return out_dict
+        else:
+            return list(out_dict.values())
 

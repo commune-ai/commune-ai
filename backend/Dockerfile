@@ -58,6 +58,7 @@ RUN chmod +x ./scripts/*
 RUN python3 -m  pip install "ray[serve]"
 
 RUN alias python=python3
+RUN pip install --upgrade fastapi
 
 # COPY --from=library/docker:latest /usr/local/bin/docker /usr/bin/docker
 # COPY --from=docker/compose:latest /usr/local/bin/docker-compose /usr/bin/docker-compose

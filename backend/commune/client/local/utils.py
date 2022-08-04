@@ -4,6 +4,12 @@ import json
 import pickle
 
 
+def str_is_dict(input_str):
+    try:
+        assert dict(json.loads(str))
+    except Exception as e:
+        print('ERROR: Not a dict buddy')
+        raise e
 
 def ensure_dir_path(dir_path):
     """
@@ -12,13 +18,16 @@ def ensure_dir_path(dir_path):
     if not os.path.isdir(dir_path):
         os.makedirs(dir_path)
 
-def load_json(path):
+def load_json(path, handle_error = True):
     try:
         with open(path) as json_file:
             data = json.load(json_file)
         return data
     except FileNotFoundError as e:
-        return None
+        if handle_error:
+            return None
+        else:
+            raise e
 
 def write_json(path, data):
         # Directly from dictionary
@@ -28,10 +37,10 @@ def write_json(path, data):
             json.dump(data, outfile)
     
     elif isinstance(data, str):
+        str_is_dict(data) 
         # Using a JSON string
         with open(path, 'w') as outfile:
             outfile.write(data)
-    
 
 def put_pickle(bucket_name, object_name, data, client): 
     bytes_file = pickle.dumps(data)

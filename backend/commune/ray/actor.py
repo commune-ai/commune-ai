@@ -1,11 +1,11 @@
 import ray
 from commune.config import ConfigLoader
 from commune.ray.utils import create_actor, actor_exists, kill_actor, custom_getattr
-from commune.utils.misc import dict_put, get_object, dict_get
+from commune.utils.misc import dict_put, get_object, dict_get, get_module_file
 import os
 import datetime
 from types import ModuleType
-
+from importlib import import_module
 class ActorBase: 
     config_loader = ConfigLoader(load_config=False)
     default_cfg_path = None
@@ -14,19 +14,20 @@ class ActorBase:
         self.cfg = self.resolve_config(cfg=cfg)
         self.start_timestamp = datetime.datetime.utcnow().timestamp()
 
-    def resolve_config(self, cfg, override={}, local_var_dict={}):
+    def resolve_config(self, cfg, override={}, local_var_dict={}, recursive=True):
         if cfg == None:
             assert isinstance(self.default_cfg_path, str)
             cfg = self.default_cfg_path
 
         cfg = self.load_config(cfg=cfg, 
                              override=override, 
-                            local_var_dict=local_var_dict)
+                            local_var_dict=local_var_dict,
+                            recursive=True)
 
         return cfg
 
     @staticmethod
-    def load_config(cfg=None, override={}, local_var_dict={}):
+    def load_config(cfg=None, override={}, local_var_dict={}, recursive=True):
         """
         cfg: 
             Option 1: dictionary config (passes dictionary) 
@@ -34,7 +35,8 @@ class ActorBase:
         """
         return ActorBase.config_loader.load(path=cfg, 
                                     local_var_dict=local_var_dict, 
-                                     override=override)
+                                     override=override,
+                                     recursive=True)
 
     @classmethod
     def default_cfg(cls, override={}, local_var_dict={}):
@@ -81,6 +83,13 @@ class ActorBase:
     def get_object(key, prefix = 'commune', handle_failure= False):
 
         return get_object(path=key, prefix=prefix, handle_failure=handle_failure)
+
+
+    @staticmethod
+    def import_module(key):
+        return import_module(key)
+
+
 
     @classmethod
     def deploy(cls, cfg=None, actor=False , override={}, local_var_dict={}):

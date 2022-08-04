@@ -12,8 +12,8 @@ from time import sleep
 KAFKA_IP = os.getenv("KAFKA_IP", "kafka")
 KAFKA_PORT = os.getenv("KAFKA_PORT", "9092")
 KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "created_objects")
-
- default_cfg_path = f"{os.path.dirname(__file__)}/manager.yaml"
+class KafkaManager(BaseProcess):
+    default_cfg_path = f"{os.path.dirname(__file__)}/manager.yaml"
     def __init__(self, cfg={}):
 
         # self.client_kwargs = kwargs
@@ -40,9 +40,10 @@ KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "created_objects")
         return self.client.create_producer(topic)
         
 
-    def read(topic, *args, **kwargs):
+    def read(self, topic, *args, **kwargs):
         self.get(topic=topic, *args, **kwargs)
-    def write(data=None, topic, *args, **kwargs):
+
+    def write(self, data, topic, *args, **kwargs):
         self.send(x=data, topic=topic, *args, **kwargs)
 
 
@@ -84,7 +85,7 @@ KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "created_objects")
             self._producer_send(msg=x, producer=producer)
 
     @staticmethod
-    def _producer_send(msg, producer, msg_type=dict)
+    def _producer_send(msg, producer, msg_type=dict):
         if isinstance(msg, dict):
             producer.send(msg.encode("utf8"))
             producer.flush()

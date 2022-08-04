@@ -127,6 +127,32 @@ Methods for Getting Abstractions
 
 """
 
+def get_module_file(path,prefix = 'commune', handle_failure= False):
+    '''
+    gets the object
+    {module_path}.{object_name}
+    ie.
+    {model.block.nn.rnn}.{LSTM}
+    '''
+    assert isinstance(prefix, str)
+
+    if prefix != path[:len(prefix)]:
+        path = '.'.join([prefix, path])
+
+    module_path = '.'.join(path.split('.'))
+
+    try:
+        module = import_module(module_path)
+    except (ModuleNotFoundError) as e:
+        if handle_failure :
+            return None
+        else:
+            raise e 
+
+    return module
+
+
+
 def get_object(path,prefix = 'commune', handle_failure= False):
     '''
     gets the object
@@ -142,16 +168,22 @@ def get_object(path,prefix = 'commune', handle_failure= False):
     module_path = '.'.join(path.split('.')[:-1])
     object_name = path.split('.')[-1]
 
+    module_class = None
+
     try:
-        submodule = import_module(module_path)
-        module = getattr(submodule, object_name)
-    except (ModuleNotFoundError, AttributeError) as e:
+        module = import_module(module_path)
+        module_class = getattr(module, object_name)
+
+
+
+    except (AttributeError, ModuleNotFoundError) as e:
         if handle_failure :
+            print(module, module_class, module_path, object_name)
             return None
         else:
             raise e 
 
-    return module
+    return module_class
 
 def try_fn_n_times(fn, kwargs, try_count_limit):
     '''
@@ -522,4 +554,3 @@ def dict_equal(*args):
 #             v= input[k]
 #             linear_dict['.'.join(key_path)] = input
         
-

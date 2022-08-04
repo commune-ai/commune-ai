@@ -62,7 +62,7 @@ class QueryModule(BaseProcess):
                 file_path = os.path.join(local_root, name)
                 if '.' in file_path and 'yaml' == file_path.split('.')[-1]:
                     
-                    cfg = self.config_loader.load(file_path, parse_only=True) 
+                    cfg = self.config_loader.load(file_path, parse_only=False) 
                     if 'module' in cfg:
                         key_path = file_path.replace(root, '').split('.')[0].replace('/', '.')
                         if key_path[0] == '.':

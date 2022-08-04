@@ -124,30 +124,6 @@ Methods for Getting Abstractions
 
 """
 
-def get_object(path,prefix = 'commune'):
-    '''
-    gets the object
-    {module_path}.{object_name}
-    ie.
-    {model.block.nn.rnn}.{LSTM}
-
-    '''
-    if prefix != path[:len(prefix)] and \
-            isinstance(prefix, str):
-        path = '.'.join([prefix, path])
-
-    object_name = path.split('.')[-1]
-    module_path = '.'.join(path.split('.')[:-1])
-    submodule = import_module(module_path)
-    return getattr(submodule, object_name)
-
-def get_module(model_path):
-    model_class = model_path.split(".")[-1]
-    model_module_path = ".".join(model_path.split(".")[:-1])
-    submodule = import_module(f"model.{model_module_path}")
-    return getattr(submodule, model_class)
-
-
 def get_trainer(trainer_path):
     trainer_class = trainer_path.split(".")[-1]
     trainer_module_path = ".".join(trainer_path.split(".")[:-1])

@@ -35,4 +35,6 @@ uvicorn
 eth-brownie
 PyWavelets>=1.1.1
 fastapi==0.68.0
-starlette==0.14.2
+starlette==0.14.
+pulsar
+kafka

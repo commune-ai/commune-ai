@@ -6,6 +6,7 @@ import json
 import pulsar
 import types
 from time import sleep
+from commune.ray.actor import ActorBase
 
 
 PULSAR_IP = os.getenv("PULSAR_IP", "pulsar")
@@ -40,9 +41,9 @@ class PulsarManager(ActorBase):
         return self.client.create_producer(topic)
         
 
-    def read(topic, *args, **kwargs):
+    def read(self, topic, *args, **kwargs):
         self.get(topic=topic, *args, **kwargs)
-    def write(data=None, topic, *args, **kwargs):
+    def write(self, data, topic, *args, **kwargs):
         self.send(x=data, topic=topic, *args, **kwargs)
 
 
@@ -84,7 +85,7 @@ class PulsarManager(ActorBase):
             self._producer_send(msg=x, producer=producer)
 
     @staticmethod
-    def _producer_send(msg, producer, msg_type=dict)
+    def _producer_send(msg, producer, msg_type=dict):
         if isinstance(msg, dict):
             producer.send(msg.encode("utf8"))
             producer.flush()

@@ -6,6 +6,7 @@ import multiprocessing as mp
 from pymongo import MongoClient, UpdateOne
 from commune.utils.misc import chunk
 import itertools
+from commune.utils.streamlit import describe
 
 
 from commune.utils.misc import dict_put, dict_get
@@ -15,14 +16,15 @@ from commune.client.mongo.utils import (MongoConnection,
                     generate_client,
                     update,
                     insert,
-                    find_query)
+                    find_query, delete)
 import ray
 
 
 class MongoManager(ActorBase):
-    default_cfg_path = f"{os.environ['PWD']}/commune/config/client/block/mongo.yaml"
-    def __init__(self, cfg ):
-        self.client_kwargs = cfg['client_kwargs']
+    default_cfg_path = f"client.mongo.manager"
+    def __init__(self, cfg=None ):
+        ActorBase.__init__(self, cfg)
+        self.client_kwargs = self.cfg['client_kwargs']
         self.client_kwargs['port'] = int(self.client_kwargs['port'])
 
         self.client = MongoClient(**self.client_kwargs)
@@ -97,36 +99,6 @@ class MongoManager(ActorBase):
         db = self.client[database]
         return [c for c in db.list_collection_names() if re.match(collection, c)]
 
-
-    def delete_database(self,
-                        database: str
-                        ):
-
-        '''
-        drop client
-        '''
-        assert database in self.client.list_database_names()
-
-        # dont delete this hit
-        assert database not in ['admin', 'config', 'local']
-
-        self.client.drop_database(database)
-
-    def delete_collection(self,
-                          database: str,
-                          collection: str,
-                          verbose=False):
-        '''
-        drop collection
-
-        '''
-
-        self.client[database][collection].drop()
-        if verbose:
-            print(f'Mongo Manager: Dropped {col_name}')
-
-
-
     def find(self,
                collection,
                database,
@@ -149,7 +121,7 @@ class MongoManager(ActorBase):
                        query=query,
                        projection=projection,
                        skip_n=0,
-                       limit_n=0,
+                       limit_n=1000,
                        client = self.client,
                        client_kwargs=None,
                        transient_client=False)
@@ -288,7 +260,6 @@ class MongoManager(ActorBase):
         return documents
 
 
-
     def insert(self,
                collection,
                database,
@@ -347,3 +318,73 @@ class MongoManager(ActorBase):
 
     def write(self, *args, **kwargs):
         self.save(*args, **kwargs)
+
+
+
+    def delete_database(self,
+                        database: str
+                        ):
+
+        '''
+        drop client
+        '''
+        assert database in self.client.list_database_names()
+
+        # dont delete this hit
+        assert database not in ['admin', 'config', 'local']
+
+        self.client.drop_database(database)
+
+    def delete_collection(self,
+                          database: str,
+                          collection: str,
+                          verbose=False):
+        '''
+        drop collection
+
+        '''
+
+        self.client[database][collection].drop()
+        if verbose:
+            print(f'Mongo Manager: Dropped {col_name}')
+
+
+    def collection(self, database, collection):
+        return self.client[database][collection]
+
+    def database(self, database):
+        return self.client[database]
+
+    def delete(self,
+               collection:str,
+               database:str,
+               query:dict,
+               write_type:str = "delete_many",
+               ):
+        """
+
+        update list of documents
+        """
+
+        return delete(collection=collection,
+                database=database,
+                query=query,
+                write_type= write_type,
+                client = self.client,
+                client_kwargs=None,
+                transient_client=False)
+
+if __name__ == '__main__':
+    import streamlit as st
+    mongo = MongoManager()
+    dir(mongo)
+
+    st.write()
+    doc = {'whadup': 'fam', 'tag': 'bro'}
+    mongo.write(database='demo', collection='demo', data=doc , query=doc )
+    # st.write(mongo.find(database='demo', collection='demo',query={'whadup': 'fa*'} ))
+    
+    # mongo.delete(collection='demo', database='demo', query=doc)
+    
+    st.write(list(mongo.client.demo.demo.find()))
+

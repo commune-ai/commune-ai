@@ -1,4 +1,4 @@
-module: graphql.manager.QueryModule
+module: api.graphql.module.QueryModule
 name: QueryModule
 
 client: get_cfg(client.manager)

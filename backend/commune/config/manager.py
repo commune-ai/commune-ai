@@ -1,16 +1,23 @@
 
 import os, sys
+sys.path.append(os.environ['PWD'])
+
+
 import ray
 from copy import deepcopy
-sys.path.append(os.environ['PWD'])
 from commune.process import BaseProcess
-from commune.utils.misc import dict_fn, dict_get, dict_has
+from commune.utils.misc import dict_fn, dict_get, dict_has, dict_put
 import streamlit as st
 from commune.config import ConfigLoader
+from commune.process.launcher import Launcher
 
 class ConfigManager(BaseProcess):
 
     default_cfg_path =  "config.manager"
+    def __init__(self, cfg=None):
+        BaseProcess.__init__(self, cfg=None)
+        self.database = self.cfg.get('database', 'commune')
+        self.collection = self.cfg.get('collection', 'config')
 
 
     # def process(self, module, tags={}):
@@ -29,26 +36,33 @@ class ConfigManager(BaseProcess):
         '''
         return self.config_loader.load(path=path, local_var_dict={}, override={}) 
     
-    def save(data:dict,tag:str=None, collection:str=None, database:str=None):
+    def save(data:dict,tag:str=None):
         
         if tag:
             data['tag'] = tag
 
-        if collection is None:
-            collection = self.colleciton
-        if databaase is None:
-            database = self.database
-
-        return self.client['mongo'].write(data=data, collection=collection, database=database)
+        return self.client['mongo'].write(data=data, 
+                                         collection=self.collection, database=self.database)
 
 
+    def delete(module:str ,tag:str=None, query:dict={}):
+        if module:
+             query['module'] = module
+        if tag:
+            query['tag'] = tag
 
-    def ls_templates(self, root='/app/commune'):
-        '''
-        get all of the module templates
-        '''
+        return self.client['mongo'].delete(query=query, 
+                                         collection=self.collection, database=self.database)
 
-        template_list = {}
+
+    def ls_templates(self, *args,**kwargs):
+        return self.module_tree( *args,**kwargs)
+
+    @staticmethod     
+    def module_tree(root:str='/app/commune', tree:bool=True, linear:bool=True):
+
+
+        out_dict = {}
 
         for local_root, dirs, files in os.walk(root, topdown=False):
             for name in files:
@@ -58,23 +72,25 @@ class ConfigManager(BaseProcess):
                     module_path = config_path.replace('.yaml', '.py')
                     module_key_path = os.path.dirname(module_path).replace(root, '').lstrip('/').replace('/', '.')
                     
-                    if os.path.exists(module_path):
-                        info_dict = {'config': config_path, 'module': module_path}
-                        if tree:
+                    if linear and tree:
+                        dict_put(out_dict,
+                                    keys=module_key_path,
+                                    value= {'config': config_path, 'module': module_path})
+                    else:
+                        out_dict[module_key_path] = {'config': config_path, 'module': module_path}
+                   
+        if tree:
+            return out_dict
+        else:
+            return list(out_dict.values())
 
-                            dict_put(out_dict,
-                                        keys=module_key_path,
-                                        value= info_dict)
-                        else:
-                            template_list.append(info_dict)
-                    
-        # self.cache[job_hash] = out_dict
-        return template_list
+    @staticmethod
+    def config2module(cfg_path):
+        return BaseProcess.get_object(BaseProcess.load_config(cfg_path, recursive=False)['module'])
 
     def ls(self, module=None, tag=None, query={}, select=[]):
         documents = self.find(module=module, tag=tag, query=query, select=['module',*select])
         return documents
-
 
     def find(self, module=None, tag=None, query={}, select=[]):
         if module:
@@ -82,12 +98,12 @@ class ConfigManager(BaseProcess):
         if tag:
             data['tag'] = tag
 
-        cfg = self.client['mongo'].load(collection='config',
-                                        database='commune', 
+        cfg = self.client['mongo'].load(collection=self.collection,
+                                        database=self.database, 
                                         query=query, 
                                         projection= {s:1 for s in select} if select else None,
                                        return_one=False, remove_id=True)
-        cfg = dict_fn(cfg,self.resolve_pipeline_cfg)
+        # cfg = dict_fn(cfg,self.resolve_pipeline_cfg)
         return cfg 
             
 
@@ -95,17 +111,12 @@ if __name__ == "__main__":
     import plotly.graph_objects as go
     from commune.utils.misc import dict_fn
     import json
+    import streamlit as st
 
+    cm = ConfigManager.deploy(actor=False)
+    st.write(cm.ls_templates())
+    # cfg = process.run(module= 'data.regression.crypto.sushiswap.dataset')
 
-    try:
-        with ray.init(address="auto",namespace="commune"):
-            process = ConfigManager.deploy(actor=False)
-            cfg = process.list_modules()
-            # cfg = process.run(module= 'data.regression.crypto.sushiswap.dataset')
-
-            print(cfg)
-    except:
-        pass
         
 
 '''

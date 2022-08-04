@@ -2,6 +2,3 @@ module: 'gradio.module.GradioModule'
 # clients
 client: get_cfg(client.manager)
 
-num_ports: 20
-port_range: [7860, 7865]
-

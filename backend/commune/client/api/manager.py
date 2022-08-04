@@ -16,20 +16,25 @@ class APIManager(ActorBase):
         # port= 8000
     ):
         self.host = cfg['host']
-        self._url = f"http://{cfg['host']}:{cfg['port']}"
+        self.port = cfg['port']
+
+        # self._url = f"http://{cfg['host']}:{cfg['port']}"
 
     @property
     def url(self):
-        return self._url
+        return self.get_url(host=self.host, port=self.port)
 
-    @url.setter
-    def url(self, url):
-        self._url = url
+    def get_url(self,host=None, port=None ):
+        if host is None:
+            host = self.host
+        if port is None:
+            port = self.port
+        return f"http://{host}:{port}"
 
-    def get(self, url:str=None,endpoint:str=None, params={},**kwargs):
+    def get(self, url:str=None, host=None, port=None,endpoint:str=None, params={},**kwargs):
         if url is None:
-            url = self.url
-
+            url = self.get_url(host=host, port=port)
+        
         if endpoint:
             url = os.path.join(url, endpoint)
             
@@ -37,8 +42,7 @@ class APIManager(ActorBase):
 
     def post(self, url:str=None, endpoint:str=None, **kwargs):
         if url is None:
-            url = self.url
-            
+            url = self.get_url(host=host, port=port)
         if endpoint:
             url = os.path.join(url, endpoint)
         return requests.post(url=url, **kwargs).json()

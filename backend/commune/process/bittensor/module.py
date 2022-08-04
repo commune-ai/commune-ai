@@ -142,8 +142,6 @@ class BitModule(BaseProcess):
     @staticmethod
     def describe(module =None, sidebar = True, detail=False, expand=True):
         
-
-
         _st = st.sidebar if sidebar else st
         st.sidebar.markdown('# '+str(module))
         fn_list = list(filter(lambda fn: callable(getattr(module,fn)) and '__' not in fn,  dir(module)))

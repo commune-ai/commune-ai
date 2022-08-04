@@ -1,4 +1,4 @@
-module: api.manager.BaseAPI
+module: api.base.BaseAPI
 name: BaseAPI
 
 client: get_cfg(client.manager)
