@@ -26,11 +26,8 @@ class bcolor:
     
 
 
-class GradioModule:
+class GradioClient:
     api = GradioAPI()
-    @staticmethod
-    def get_funcs(self):
-        return [func for func in dir(self) if not func.startswith("__") and callable(getattr(self, func, None)) ]
 
     @staticmethod
     def compile(self, live=False, flagging='never', theme='default' **kwargs):
@@ -126,27 +123,19 @@ if __name__== '__main__':
         def __init__(self):
             GradioModule.run(self)
 
-
-        @GradioModule.register(inputs=["text", "text", gr.Radio(["morning", "evening", "night"])], outputs="text")
+        @gradioClient.register(inputs=["text", "text", gr.Radio(["morning", "evening", "night"])], outputs="text")
         def Hello(self, Lname : str, Fname : str, day : 'list[any]'=["morning", "evening", "night"]) -> str:
             return "Hello, {} {}".format(Fname, Lname)  
 
-        @GradioModule.register(inputs=["text", "text"], outputs="text")
+        @gradioClient.register(inputs=["text", "text"], outputs="text")
         def goodbye(self, Fname : str, Lname : str) -> str:
             return "Goodbye, {} {}".format(Fname, Lname)  
         
-        @GradioModule.register(inputs=["text", gr.Checkbox() , gr.Slider(0, 60)], outputs=["text", "number"])
+        @gradioClient.register(inputs=["text", gr.Checkbox() , gr.Slider(0, 60)], outputs=["text", "number"])
         def greet(self, name, is_morning, temperature):
             salutation = "Good morning" if is_morning else "Good evening"
             greeting = "%s %s. It is %s degrees today" % (salutation, name, temperature)
             celsius = (temperature - 32) * 5 / 9
             return (greeting, round(celsius, 2))
-
-
-    
-    st.write()
-    # gr = GradioModule()
-    # st.write(gr.client['api'])
-    # st.write(gr.client['api'].get(endpoint='module_tree'))
     
 

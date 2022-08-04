@@ -9,7 +9,6 @@ import streamlit as st
 sys.path[0] = os.environ['PWD']
 from commune.config import ConfigLoader
 from commune.utils.misc import  chunk, dict_put
-from commune.utils import format_token_symbol
 import ray
 import random
 from copy import deepcopy
@@ -42,7 +41,6 @@ class BitModule(BaseProcess):
 
     @property
     def block(self):
-        print("getter of x called")
         if self._block is None:
             return self.current_block
         return self._block
@@ -78,13 +76,10 @@ class BitModule(BaseProcess):
     @network.setter
     def network(self, network):
         assert network in self._NETWORKS
-        print("setter of x called")
         self.sync(network=network, block=self.block)
 
         self._network = network
         dict_put()
-
-
 
     @property
     def current_block(self):
@@ -94,31 +89,43 @@ class BitModule(BaseProcess):
     def n(self):
         return self.subtensor.max_n
 
-    def sync(self,network='nakamoto',  block=None):
+    def sync(self,network=None,  block=None):
         # Fetch data from URL here, and then clean it up.
+
+        network = network if network else self.network
+        block = block if block else self.block
+
         if network != self.network:
             self.subtensor = self.get_subtensor(network=network)
         if block != self.block or not hasattr(self, 'graph'):
-            self.graph = self.get_graph(subtensor=self.subtensor , block=block)
-
+            self.graph = self.get_graph( block=block)
 
     def process(self, **kwargs):
-        print(self.graph)
-    
+        self.sync
+        
+    def switch_network(self, network:str):
+        self.network = network
+
+
     def graph_state(self,mode:str='df'):
         if mode in ['df', 'pandas']:
             return self.graph.to_dataframe()
         elif mode in ['torch.state_dict']:
             return self.graph.state_dict()
 
-    def get_graph(self, network=None,block=None,  subtensor=None , save=True):
+    def get_graph(self,block=None , save=True):
+        network =  self.network
+        block =  self.block
+        subtensor =  self.subtensor
+
+
         # Fetch data from URL here, and then clean it up.
         graph = bittensor.metagraph(network=network, subtensor=subtensor)
         graph.load(network=network)
-
-        # graph.sync(block=block)
+        print(graph.block)
+        graph.sync(block=block)
         if save:
-            graph.save(network=network)
+            graph.save()
         return graph
 
     
@@ -169,9 +176,45 @@ class BitModule(BaseProcess):
         self.network = st.sidebar.selectbox('Network', self._NETWORKS, default_network_index)
 
 
+
+def d3_graph_example():
+    # Import library
+    from d3graph import d3graph, vec2adjmat
+
+    # Set source and target nodes
+    source = ['node A','node F','node B','node B','node B','node A','node C','node Z']
+    target = ['node F','node B','node J','node F','node F','node M','node M','node A']
+    weight = [5.56, 0.5, 0.64, 0.23, 0.9, 3.28, 0.5, 0.45]
+
+    # Create adjacency matrix
+    adjmat = vec2adjmat(source, target, weight=weight)
+
+    # target  node A  node B  node F  node J  node M  node C  node Z
+    # source                                                        
+    # node A    0.00     0.0    5.56    0.00    3.28     0.0     0.0
+    # node B    0.00     0.0    1.13    0.64    0.00     0.0     0.0
+    # node F    0.00     0.5    0.00    0.00    0.00     0.0     0.0
+    # node J    0.00     0.0    0.00    0.00    0.00     0.0     0.0
+    # node M    0.00     0.0    0.00    0.00    0.00     0.0     0.0
+    # node C    0.00     0.0    0.00    0.00    0.50     0.0     0.0
+    # node Z    0.45     0.0    0.00    0.00    0.00     0.0     0.0
+
+    # Initialize
+    d3 = d3graph()
+
+    # Build force-directed graph with default settings
+    d3.graph(adjmat)
+
+
+    return d3.show()
+
+
+
 if __name__ == '__main__':
+    
+    bt = BitModule.deploy(actor=False)
 
-    with ray.init(address='auto', namespace='serve'):
-        bt = BitModule.deploy(actor=True)
+    st.write(bt)
 
-        # print(ray.get(bt.process.remote()))
+
+    # print(ray.get(bt.process.remote()))

@@ -74,23 +74,33 @@ class GradioAPI(BaseProcess):
 
 
 
-    # def list_modules(self, mode='config'):
+    def list_modules(self, mode='config'):
 
-    #     assert mode in ['config', 'module']
+        assert mode in ['config', 'module']
 
-    #     '''
-    #     mode: options are active (running modules) all and inactive
-    #     '''
+        '''
+        mode: options are active (running modules) all and inactive
+        '''
 
-    #     module_config_list = list(map( lambda x: x['config'], self.config_manager.module_tree(tree=False)))
-
-    #     for m_cfg_path in module_config_list:
-    #         st.write(m_cfg_path)
-    #         m_cfg = self.config_loader.load(m_cfg)['module']
+        module_config_list = list(map( lambda x: x['config'], self.config_manager.module_tree(tree=False)))
 
 
+        module_list = []
+        for m_cfg_path in module_config_list:
 
-    #     return module_list
+            try:
+                m_cfg = self.config_loader.load(m_cfg_path)
+
+                object_module = self.get_object(m_cfg['module'])
+                if self.has_gradio(object_module):
+                    module_list.append(object_module)
+            except:
+                continue
+
+
+        st.write(module_list)
+
+        return module_list
 
 
     def active_port(self, port):
@@ -216,4 +226,5 @@ if __name__ == '__main__':
         module_classes = [c for c in clsmembers if c[1].default_cfg_path]
 
     api = GradioAPI()
+    # st.write(api.list_modules())
     st.write(api)

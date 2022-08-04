@@ -1,4 +1,0 @@
-module: 'gradio.module.GradioModule'
-# clients
-client: get_cfg(client.manager)
-
