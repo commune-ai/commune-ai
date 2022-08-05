@@ -10,10 +10,14 @@ class MinioManager(ActorBase, Minio):
     default_cfg_path = f"{os.environ['PWD']}/commune/config/client/block/minio.yaml"
     
     def __init__(self, cfg):
-        Minio.__init__(self, **cfg['client_kwargs'])
+        ActorBase.__init__(self,cfg=cfg)
+        Minio.__init__(self, **self.cfg['client_kwargs'])
 
         self.client_kwargs = cfg['client_kwargs']
         self.client = Minio(**self.client_kwargs)
+
+
+
 
     def bucket_exists(self, bucket):
         return self.client.bucket_exists(bucket)
@@ -74,7 +78,7 @@ class MinioManager(ActorBase, Minio):
                     object_name=None,
                     path=None,
                     data=None,
-                    type='pickle'):
+                    type='pickle', **kwargs):
 
 
         # if type == None:
@@ -88,11 +92,15 @@ class MinioManager(ActorBase, Minio):
         if type == 'pickle':
             self.put_pickle(bucket_name=bucket_name,
                     object_name=object_name,
-                    data=data)
+                    data=data, **kwargs)
         if type == 'json':
             self.put_json(bucket_name=bucket_name,
                     object_name=object_name,
-                    data=data)
+                    data=data, **kwargs)
+        if type == 'model':
+            self.put_model(bucket_name=bucket_name,
+                    object_name=object_name,
+                    data=data, **kwargs)
 
         
     def load(self,bucket_name=None,
@@ -143,11 +151,38 @@ class MinioManager(ActorBase, Minio):
 
     @staticmethod
     def resolve_path(path):
-        path = path.split('//')[1]
+
+        if '//' in path:
+            '''
+            remove s3://database/object_path
+            '''
+            path = path.split('//')[1]
+
+            
+        extension = os.path.splitext(path)[1]
+        assert len(extension)>0, f'extension is empty bro, PATH={path}'
+
+
+        if '/' not in path:
+            '''
+            supports dot notation
+            '''
+            path = path.replace(extension,'').replace('.', '/')
+            path  = '.'.join([path,extension])
+
+        
         path_list = path.split('/')
         bucket_name = path_list[0]
         object_name = '/'.join(path_list[1:])
         return bucket_name, object_name
+
+    def get_json(self, bucket_name, object_name):
+        """
+        get stored json object from the bucket
+        """
+        data = self.client.get_object(bucket_name, object_name)
+        return json.load(io.BytesIO(data.data))
+
 
 
     def put_json(self, bucket_name, object_name, data):
@@ -182,18 +217,12 @@ class MinioManager(ActorBase, Minio):
                             object_name=object_name).read()
                     )
 
-    def get_json(self, bucket_name, object_name):
-        """
-        get stored json object from the bucket
-        """
-        data = self.client.get_object(bucket_name, object_name)
-        return json.load(io.BytesIO(data.data))
-
 
 
     def save_model(self, path, data, mode='torch.state_dict'):
 
         if mode == 'torch.state_dict':
+
             buffer = io.BytesIO()
             torch.save(data, buffer)
             buffer.seek(0)
@@ -204,15 +233,13 @@ class MinioManager(ActorBase, Minio):
         else:
             raise NotImplementedError    
     
-    def load_model(self, path, mode='state_dict'):
+    def load_model(self, path, mode='torch.state_dict'):
         if mode == 'torch.state_dict':
             buffer = io.BytesIO(self.get_object(path=path).read())
             state_dict = torch.load(buffer)
             return state_dict
         else:
             raise NotImplementedError    
-
-
 
 
     def put_object(self,

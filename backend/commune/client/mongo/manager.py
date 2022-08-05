@@ -6,7 +6,7 @@ import multiprocessing as mp
 from pymongo import MongoClient, UpdateOne
 from commune.utils.misc import chunk
 import itertools
-from commune.utils.streamlit import describe
+from commune.streamlit.utils import describe
 
 
 from commune.utils.misc import dict_put, dict_get

@@ -9,13 +9,10 @@ from mlflow.tracking import MlflowClient
 import datetime
 from streamlit_agraph import agraph, Node, Edge, Config
 
-
-
-
                     # **kwargs e.g. node_size=1000 or node_color="blue"
                     
 
-class d3Dag:
+class DagModule:
     nodes = []
     edges = []
     graph = []
@@ -24,7 +21,7 @@ class d3Dag:
     Edge = Edge
 
     cfg = dict(
-            width=500, 
+            width=800, 
             height=500, 
             directed=True,
             nodeHighlightBehavior=True, 
@@ -123,43 +120,43 @@ class d3Dag:
     def add_graph(self,*args, **kwargs):
         return  self.run(*args, **kwargs)
 
-    
+    @staticmethod
+    def st_example():
+        import streamlit as st
+
+        nodes = [
+            dict(id="Spiderman", 
+                        label="Peter Parker", 
+                        color='blue',
+                        size=600),
+
+            dict(id="Superman", 
+                        label="Peter Parker", 
+                        color='green',
+                        size=600),
+            dict(id="Captain_Marvel", 
+                        size=400, 
+                        svg="http://marvel-force-chart.surge.sh/marvel_force_chart_img/top_captainmarvel.png") 
+                        
+        ]
+
+
+        edges = [dict(source="Captain_Marvel", target="Spiderman"), dict(source="Superman", target="Spiderman")]
+
+
+
+        dag = DagModule()
+
+        dag.add_graph(nodes=nodes, edges=edges)
+
+
+
 
 
 if __name__ == '__main__':
-    import streamlit as st
 
 
-    nodes = [
-        dict(id="Spiderman", 
-                    label="Peter Parker", 
-                    color='blue',
-                    size=600),
-
-        dict(id="Superman", 
-                    label="Peter Parker", 
-                    color='green',
-                    size=600),
-        dict(id="Captain_Marvel", 
-                    size=400, 
-                    svg="http://marvel-force-chart.surge.sh/marvel_force_chart_img/top_captainmarvel.png") 
-                    
-    ]
-
-
-    edges = [dict(source="Captain_Marvel", target="Spiderman"), dict(source="Superman", target="Spiderman")]
-
-
-
-    dag = d3Dag()
-
-    dag.add_graph(nodes=nodes, edges=edges)
-
-    dag.add_node(node=dict(id="Bro", 
-                    label="Peter Parker", 
-                    color='blue',
-                    size=600), update=False)
-
+    DagModule.st_example()
 
     
     # import json

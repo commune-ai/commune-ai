@@ -197,6 +197,15 @@ class ActorBase:
         attr_obj = getattr(self, from_key)  if hasattr(self, from_key) else None
         setattr(self, to, attr_obj)
 
+    @classmethod
+    def functions(cls):
+        fn_list = []
+        for fn_name in dir(cls):
+            if not (fn_name.startswith('__') and fn_name.endswith('__')):
+                fn = getattr(cls, fn_name)
+                if callable(fn):
+                    fn_list.append(fn_name)
+
 
     # def __del__(self):
     #     print()

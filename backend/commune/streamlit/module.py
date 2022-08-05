@@ -6,20 +6,23 @@ import plotly.graph_objects as go
 import pandas as pd
 import plotly.express as px
 from mlflow.tracking import MlflowClient
+from commune.plot.dag import DagModule 
 class StreamlitPlotModule:
     def __init__(self):
-        self.sync_plot_things()
+        self.add_plot_tools()
 
         self.cols= st.columns([1,3])
 
         
-    def sync_plot_things(self):
+    def add_plot_tools(self):
         # sync plots from express
         for fn_name in dir(px):
             if not (fn_name.startswith('__') and fn_name.endswith('__')):
                 plt_obj = getattr(px, fn_name)
                 if callable(plt_obj):
                     setattr(self, fn_name, plt_obj)
+
+        self.dag = DagModule()
 
     @property
     def streamlit_functions(self):

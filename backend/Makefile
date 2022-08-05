@@ -44,3 +44,6 @@ purge:
 	docker-stop $(docker ps -a -q) && docker rm $(docker ps -a -q);
 api:
 	python3 commune/api/main.py 
+
+kill_streamlit:
+	pkill -9 streamlit

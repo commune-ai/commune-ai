@@ -292,6 +292,7 @@ class BaseProcess(ActorBase):
             self.client_manager.write(data=object_value,client=store_dict['client'],
                                                                 params=store_dict['params'])
 
+
     def cancel_loop(self):
         self.loop_running = False
         self.loop_count= False

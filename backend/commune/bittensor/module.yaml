@@ -1,9 +1,12 @@
-module: 'process.bittensor.module.BitProcess'
+module: 'bittensor.BitModule'
 # clients
 client: get_cfg(client.manager)
 
 network: nobunaga
 block: null
+
+
+blocks_behind_sync_threshold: 100
 
 
 read: {}
