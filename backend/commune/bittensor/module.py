@@ -124,6 +124,7 @@ class BitModule(BaseProcess):
 
         self.graph_state =  self.sample_graph_state(graph_state=graph_state, sample_n=sample_n, sample_mode=sample_mode, **kwargs)
 
+        st.write({k:v.shape for k,v in self.graph_state.items()})
 
     def sample_graph_state(self, graph_state , sample_n=None,  sample_mode='rank', **kwargs ):
         '''
@@ -139,7 +140,7 @@ class BitModule(BaseProcess):
         if sample_mode == 'rank':
             metric=kwargs.get('rank', 'ranks')
             descending = kwargs.get('descending', True)
-            sampled_uid_indices = self.argsort_uids(metric=metric, descending=descending)
+            sampled_uid_indices = self.argsort_uids(metric=metric, descending=descending)[:sample_n]
         elif sample_mode == 'random':
             sampled_uid_indices = torch.randperm(self.n)[:sample_n]
         else:
@@ -149,9 +150,11 @@ class BitModule(BaseProcess):
         for k,v in graph_state.items():
             if len(v.shape)==0:
                 continue
-
-            if v.shape[0] == self.n:
+            elif (len(v.shape) == 1 and v.shape[0] == self.n) or k in ['endpoints'] :
                 sampled_graph_state[k] = v[sampled_uid_indices]
+            elif len(v.shape) == 2 and v.shape[0] == self.n and v.shape[1] == self.n:
+                sampled_graph_state[k] = v[sampled_uid_indices]
+                sampled_graph_state[k] = sampled_graph_state[k][:, sampled_uid_indices]
             else:
                 sampled_graph_state[k] = v
             
@@ -229,6 +232,7 @@ class BitModule(BaseProcess):
 
     def describe_graph_state(self, shape=True):
         return {k:dict(shape=v.shape, type=v.dtype ) for k,v in  self.graph_state.items()}
+
 
     @property
     def graph_params(self):
