@@ -1,14 +1,16 @@
+
+import os
+import sys
+sys.path[0] = os.environ['PWD']
+import numpy as np
 import requests
 import json
 import datetime
 import pandas as pd
-import os
-import sys
 import bittensor
 import streamlit as st
-sys.path[0] = os.environ['PWD']
 from commune.config import ConfigLoader
-from commune.utils.misc import  chunk, dict_put
+from commune.utils.misc import  chunk, dict_put, round_sig
 import ray
 import random
 import torch
@@ -22,13 +24,16 @@ from ray.util.queue import Queue
 import itertools
 from commune.process.extract.crypto.utils import run_query
 from commune.plot.dag import DagModule
-from commune.streamlit import StreamlitPlotModule
+from commune.streamlit import StreamlitPlotModule, row_column_bundles
 
 class BitModule(BaseProcess):
+    sample_n = 400
+    sample_mode = 'rank'
+    sample_metric = 'ranks'
+    sample_descending = True
     
     default_cfg_path=f"bittensor.module"
     force_sync = False
-    _NETWORKS = ['nakamoto', 'nobunaga', 'local']
     def __init__(self,
                  cfg=None, sync=False, **kwargs):
         BaseProcess.__init__(self, cfg) 
@@ -119,12 +124,11 @@ class BitModule(BaseProcess):
         if not self.should_sync_graph:
             self.set_graph_state()
         
+
+
     def set_graph_state(self, sample_n=None, sample_mode='rank', **kwargs):
         graph_state = self.graph.state_dict()
-
         self.graph_state =  self.sample_graph_state(graph_state=graph_state, sample_n=sample_n, sample_mode=sample_mode, **kwargs)
-
-        st.write({k:v.shape for k,v in self.graph_state.items()})
 
     def sample_graph_state(self, graph_state , sample_n=None,  sample_mode='rank', **kwargs ):
         '''
@@ -133,18 +137,21 @@ class BitModule(BaseProcess):
                 the method of sampling the neurons data. There are two 
 
         '''
-        if sample_n == None:
-            sample_n = self.cfg.get('sample_n', 100)
 
+        sample_n = sample_n if sample_n != None else self.sample_n
+        sample_mode = sample_mode if sample_mode != None else self.sample_mode
+        metric=kwargs.get('metric', self.sample_metric)
+        descending = kwargs.get('descending', self.sample_descending)
 
         if sample_mode == 'rank':
-            metric=kwargs.get('rank', 'ranks')
-            descending = kwargs.get('descending', True)
             sampled_uid_indices = self.argsort_uids(metric=metric, descending=descending)[:sample_n]
         elif sample_mode == 'random':
             sampled_uid_indices = torch.randperm(self.n)[:sample_n]
         else:
             raise NotImplementedError
+
+
+        self.sampled_uid_indices = sampled_uid_indices
 
         sampled_graph_state = {}
         for k,v in graph_state.items():
@@ -160,13 +167,11 @@ class BitModule(BaseProcess):
             
         return sampled_graph_state
 
-
-
     def sync_graph(self):
         self.graph.sync()
         # once the graph syncs, set the block
         self.block = self.graph.block.item()
-        self.graph_state = self.graph.state_dict()
+        self.set_graph_state()
 
 
     def save_graph(self):
@@ -235,16 +240,40 @@ class BitModule(BaseProcess):
 
 
     @property
-    def graph_params(self):
+    def graph_state_params(self):
         return self.graph_state.keys()
 
-    
-    def st_metrics(self):
-        cols = st.columns(3)
-        cols[0].metric("Synced Block", bt.block, f'{-bt.blocks_behind} Blocks Behind')
-        cols[1].metric("Current Block", bt.current_block, "-8%")
-        cols[2].metric("Humidity", "86%", "4%")
+    def agg_param(self, param='rank', agg='sum', decimals=2):
+        param_tensor = getattr(self.graph, param)
+        return round(getattr(torch,agg)(param_tensor).item(), decimals)
 
+
+    @property
+    def networks(self):
+        return bittensor.__networks__
+
+    def st_select_network(self):
+
+        network2idx = {n:n_idx for n_idx, n in  enumerate(self.networks)}
+        default_idx = network2idx[self.network]
+        st.sidebar.selectbox('Choose a Network', self.networks,default_idx)
+        # ''')
+
+    def st_metrics(self):
+
+        metrics = [ 'trust', 'stake', 'consensus']
+        fn_list = []
+        fn_args_list = []
+        from copy import deepcopy
+        for metric in metrics:
+            metric_show = 'Total '+ metric[0].upper() + metric[1:].lower()
+            # st_fn = 
+            metric_value = self.agg_param(metric)
+            st.write()
+            fn_args_list.append([metric_show, metric_value])
+            fn_list.append(lambda name, value: st.metric(name, value ))
+
+        row_column_bundles(fn_list= fn_list, fn_args_list=fn_args_list, cols_per_row=3)
 
     @classmethod
     def describe(cls, module =None, sidebar = True, detail=False, expand=True):
@@ -277,61 +306,91 @@ class BitModule(BaseProcess):
 
     def view_graph(self):
 
+        n= 20
+        edge_density = 0.4
         nodes=[dict(id=f"uid-{i}", 
                                 label=f"uid-{i}", 
-                                color='blue',
-                                size=20) for i in range(4000)]
-        
-        edges = [() for i in range(100)]
-        # for e in range(10000):
-        #     edges = [dict]
+                                color='red',
+                                size=100) for i in range(n)]
+
+        st.write('bro')
+        edges = torch.nonzero(torch.rand(n,n)>edge_density).tolist()
+
+
+        edges = [dict(source=f'uid-{i}', target=f'uid-{j}') for i,j in edges]
+
+        st.write(edges)
+
+
         self.plot.dag.build(nodes=nodes, edges=edges)
     
-    
+    def st_describe_graph_state(self):
+        with st.sidebar.expander('Graph Params'):
+            st.write(bt.describe_graph_state())
+
     def plot_sandbox(self):
         self.plot.run(data=self.graph.to_dataframe())
     
     def st_sidebar(self):
+        st.sidebar.markdown('''
+        # BitDashboard
+
+        ---
+        ''')
+        self.st_select_network()
         # self.block = st.sidebar.slider('Block', 0, )
+        st.sidebar.metric("Synced Block", f'{self.block}', f'{-self.blocks_behind} Blocks Behind')
+        st.sidebar.metric("Current Block", self.current_block)
+        st.sidebar.metric("Neurons ", self.n)
+        self.st_sample_params()
 
-        default_network_index = 0
-        for i, n in enumerate(self._NETWORKS):
-            if  n == self.DEFAULT_NETWORK:
-                default_network_index = i
-        self.network = st.sidebar.selectbox('Network', self._NETWORKS, default_network_index)
+    def st_main(self):
+        
+        df = self.graph_df()
+        with st.expander('Graph Dataframe'):
+            st.write(df)
 
+        fig = self.plot.histogram(df, x='stake')
+        st.write(fig)
+        self.view_graph()
+        
+    def st_run(self):
+        self.st_sidebar()
+        self.st_main()
+
+
+    def graph_df(self):
+        df_dict= {
+                'uid': self.graph_state['uids'],
+                'active': self.graph_state['active'],             
+                'stake': self.graph_state['stake'],             
+                'rank': self.graph_state['ranks'],            
+                'trust': self.graph_state['trust'],             
+                'consensus': self.graph_state['consensus'],             
+                'incentive': self.graph_state['incentive'],             
+                'dividends': self.graph_state['dividends'],          
+                'emission': self.graph_state['emission']
+            }
+
+
+        return pd.DataFrame(df_dict)
+
+    def st_sample_params(self):
+        with st.sidebar.form("sample_n_form"):
+            self.sample_n = st.slider('Sample N', 1, self.n, self.sample_n )
+            self.sample_mode = st.selectbox('Sample Mode', ['rank', 'random'], 0 )
+            self.sample_metric = st.selectbox('Sample Metric', ['ranks', 'trust'], 0 )
+            self.sample_descending = 'descending'== st.selectbox('Sample Metric', ['descending', 'ascending'], 0 )
+            submitted = st.form_submit_button("Sample")
+
+            if submitted:
+                self.set_graph_state()
 
 if __name__ == '__main__':
     
-    st.sidebar.write('# Bittensor')
-    bt = BitModule.deploy(actor=False)
 
-    # st.sidebar.write(torch.nonzero(bt.graph.weights).numpy())
-    # st.write(bt.graph.uids.shape)
+    BitModule.deploy(actor=False).st_run()
 
-    with st.sidebar.expander('Graph Params'):
-        st.write(bt.describe_graph_state())
-
-    st.write(bt.graph.block.item())
-    # st.write(bt.graph.uids[])
-    bt.st_metrics()
-    # bt.view_graph()
     import random
+
     
-    # st.write(bt.graph.ranks)
-    # st.write(torch.nonzero(bt.graph.weights).shape)
-    
-    # st.write(bt.graph.to_dataframe())
-
-    # with st.expander('Plot Sandbox'):
-    #     bt.plot_sandbox()
-
-
-    # with st.expander('dataframe'):
-    #     
-    
-
-
-
-
-    # print(ray.get(bt.process.remote()))

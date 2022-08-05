@@ -19,3 +19,20 @@ def describe(module =None, sidebar = True, detail=False, expand=True):
             content_fn()
     else:
         content_fn()
+
+
+def row_column_bundles(fn_list, fn_args_list,cols_per_row=3):     
+    
+    cols = cols_per_row
+    item_count = len(fn_list)
+    rows = item_count // cols
+    row2cols = []
+
+    for row_idx in range(rows+1):
+        row2cols.append(st.columns(cols))
+
+    for fn_idx, fn in enumerate(fn_list):
+        row_idx = fn_idx // cols
+        col_idx = fn_idx % cols
+        with row2cols[row_idx][col_idx]:
+            fn(*fn_args_list[fn_idx])

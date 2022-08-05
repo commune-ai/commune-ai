@@ -6,7 +6,7 @@ network: nobunaga
 block: null
 
 
-blocks_behind_sync_threshold: 100
+blocks_behind_sync_threshold: 50000
 
 
 read: {}

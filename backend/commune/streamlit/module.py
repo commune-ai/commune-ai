@@ -1,13 +1,24 @@
 
 
 import os
+import sys
+sys.path[0] = os.environ['PWD']
 import streamlit as st
 import plotly.graph_objects as go
 import pandas as pd
 import plotly.express as px
 from mlflow.tracking import MlflowClient
 from commune.plot.dag import DagModule 
+
+
+
+
+
 class StreamlitPlotModule:
+
+    height=1000
+    width=1000
+    theme= 'plotly_dark'
     def __init__(self):
         self.add_plot_tools()
 
@@ -29,22 +40,32 @@ class StreamlitPlotModule:
         return [fn for fn in dir(self) if fn.startswith('st_')]  
 
 
-    def run(self, data):
+    def run(self, data, plots=[]):
+
+        if len(plots) == 0:
+            plots = self.plot_options
+
+
+        supported_types = [pd.DataFrame]
         if isinstance(data, pd.DataFrame):
-            self.run_df(df=data)
+            with self.cols[1]:
+                name2index = {_name:_idx for _idx, _name in enumerate(plots)}
+                plot = 'st_'+st.selectbox('Choose a Plot', plots, name2index['histogram'])
+            fig = getattr(self, plot)(df)
+        else:
+            raise NotImplementedError(f'Broooooo, hold on, you can only use the following {supported_types}')
         
+        self.show(fig)
+        
+    @property
+    def plot_options(self):
+        plot_options = list(map(lambda fn: fn.replace('st_',''), self.streamlit_functions))
+        return plot_options
 
-    def run_df(self, df):
-            
+
+    def show(self, fig):
         with self.cols[1]:
-            plot_options = list(map(lambda fn: fn.replace('st_',''), self.streamlit_functions))
-            st.markdown("## Compare Hyperparameters Performance Across Experiments")
-            # plot_mode = st.radio("",plot_options , 1)
-            plot_mode = 'st_'+st.selectbox('Pick one', plot_options, 1)
-
-        plot_fn = getattr(self, plot_mode)
-        plot_fn(df)
-
+            st.plotly_chart(fig)
 
     def st_scatter2D(self, df=None):
         df = df if isinstance(df, pd.DataFrame) else self.df
@@ -64,12 +85,13 @@ class StreamlitPlotModule:
             marker_size = st.slider("Select Marker Size", 5, 30, 20)
 
             df["size"] = [marker_size for _ in range(len(df))]
-        with self.cols[1]:
-            fig = px.scatter(df, x=x_col, y=y_col, size="size", **color_args)
-            fig.update_layout(width=1000,
-                            height=800)
 
-            st.plotly_chart(fig)
+        
+        fig = px.scatter(df, x=x_col, y=y_col, size="size", **color_args)
+        fig.update_layout(width=1000,
+                        height=800)
+
+        return fig
 
 
 
@@ -78,25 +100,24 @@ class StreamlitPlotModule:
         df = df if isinstance(df, pd.DataFrame) else self.df
         column_options = list(df.columns)
 
+        plotly_kwargs = {}
         with self.cols[0]:
             st.markdown("## X Axis")
-            x_col = st.selectbox("X Axis", column_options, 0)
+            plotly_kwargs['x'] = st.selectbox("X Axis", column_options, 0)
             st.markdown("## Y Axis")
-            y_col = st.selectbox("Y Axis", column_options, 1)
+            plotly_kwargs['y'] = st.selectbox("Y Axis", column_options, 1)
             st.markdown("## Z Axis")
-            z_col = st.selectbox("Z Axis", column_options, 2)
-
+            plotly_kwargs['z'] = st.selectbox("Z Axis", column_options, 2)
             st.markdown("## Color Axis")
-            color_col = st.selectbox("Color", column_options + [None], 0)
-            color_args = {"color": color_col} if color_col is not None else {}
+            plotly_kwargs['color'] = st.selectbox("## Color", [None] + column_options, 0)
             marker_size = st.slider("Select Marker Size", 5, 30, 20)
             df["size"] = [marker_size for _ in range(len(df))]
+            plotly_kwargs['size']= 'size'
+            plotly_kwargs['template'] = self.theme
 
-
-        with self.cols[1]:
-            fig = px.scatter_3d(df, x=x_col, y=y_col, z=z_col, size="size", **color_args)
-            fig.update_layout(width=800, height=1000, font_size=15)
-            st.plotly_chart(fig)  
+        fig = px.scatter_3d(df, **plotly_kwargs)
+        fig.update_layout(width=self.width, height=self.height, font_size=15)
+        return fig
 
 
     def st_box(self, df=None):
@@ -104,52 +125,77 @@ class StreamlitPlotModule:
 
         df = df if isinstance(df, pd.DataFrame) else self.df
         column_options = list(df.columns)
+        plotly_kwargs = {}
         with self.cols[0]:
             st.markdown("## X Axis")
-            x_col = st.selectbox("X Axis", column_options, 0 )
-
+            plotly_kwargs['x'] = st.selectbox("X Axis", column_options, 0)
             st.markdown("## Y Axis")
-            y_col = st.selectbox("Y Axis", column_options, 0)
-
-
+            plotly_kwargs['y'] = st.selectbox("Y Axis", column_options, 1)
             st.markdown("## Color Axis")
-            color_col = st.selectbox("Color", column_options + [None] ,  0)
-            color_args = {"color":color_col} if color_col is not None else {}
-
+            plotly_kwargs['color'] = st.selectbox("## Color", [None] + column_options, 0)
+            marker_size = st.slider("Select Marker Size", 5, 30, 20)
+            df["size"] = [marker_size for _ in range(len(df))]
+            plotly_kwargs['template'] = self.theme
             st.markdown("## Box Group Mode")
-            boxmode = st.selectbox("Choose Box Mode", ["group", "overlay"], 0)
+            plotly_kwargs['boxmode'] = st.selectbox("Choose Box Mode", ["group", "overlay"], 0)
 
-        with self.cols[1]:
-            fig = px.box(df, x=x_col, y=y_col ,boxmode=boxmode, points=False, **color_args)
-            fig.update_layout(width=1000, height=800, font_size=20)
-            st.plotly_chart(fig)
+        fig = px.box(df, **plotly_kwargs)
+        fig.update_layout(width=self.width, height=self.height, font_size=20)
+        return fig
 
     def st_bar(self, df=None):
 
         df = df if isinstance(df, pd.DataFrame) else self.df
         column_options = list(df.columns)
 
+
+        plot_kwargs = {}
         with self.cols[0]:
 
+            
             st.markdown("## X Axis")
-            x_col = st.selectbox("X Axis",column_options , 0 )
+            plot_kwargs['x'] = st.selectbox("X Axis",column_options , 0 )
 
             st.markdown("## Y Axis")
-            y_col = st.selectbox("Y Axis", column_options, 0)
-            barmode = st.selectbox("Choose Bar Mode", ["relative", "group", "overlay"], 1)
+            plot_kwargs['y'] = st.selectbox("Y Axis", column_options, 0)
+            plot_kwargs['barmode'] = st.selectbox("Choose Bar Mode", ["relative", "group", "overlay"], 1)
 
             st.markdown("## Color Axis")
-            color_col = st.selectbox("Color",  column_options + [None], 0 )
-            color_args = {"color":color_col} if color_col is not None else {}
+            plot_kwargs['color'] = st.selectbox("Color",  [None] + column_options, 0 )
 
-        with self.cols[1]:
-            fig = px.bar(df, x=x_col, y=y_col,barmode=barmode, **color_args)
+        fig = px.bar(df, **plot_kwargs)
 
-            fig.update_layout(width=1000, height=800, font_size=20)
-            st.plotly_chart(fig)
+        fig.update_layout(width=self.width, height=self.height, font_size=20)
+        return fig
 
 
 
+
+    def st_histogram(self, df=None):
+
+        df = df if isinstance(df, pd.DataFrame) else self.df
+        column_options = list(df.columns)
+        # Choose X, Y and Color Axis
+        with self.cols[0]:
+            plot_kwargs = {}
+            st.markdown("### X-axis")
+            plot_kwargs['x'] = st.selectbox("Choose X-Axis Feature", column_options, 0)
+            plot_kwargs['nbins'] = st.slider("Number of Bins", 10, 100, 10)
+
+            st.markdown("### Y-axis")
+            plot_kwargs['y'] = st.selectbox("Choose Y-Axis Feature", column_options, 0)
+
+            st.markdown("## Color Axis")
+            plot_kwargs['color'] = st.selectbox("Color",  [None]+ column_options , 0 )
+            # color_args = {"color":color_col} if color_col is not None else {}
+            
+            plot_kwargs['barmode'] = st.selectbox("Choose Bar Mode", ["relative", "group", "overlay"], 2)
+
+        
+
+        fig = px.histogram(df, **plot_kwargs)
+        fig.update_layout(width=self.width, height=self.height, font_size=20)
+        return fig
 
 
     def st_heatmap(self, df=None):
@@ -157,36 +203,31 @@ class StreamlitPlotModule:
         df = df if isinstance(df, pd.DataFrame) else self.df
         column_options = list(df.columns)
         # Choose X, Y and Color Axis
+
+        plotly_kwargs = {}
         with self.cols[0]:
             st.markdown("### X-axis")
-            x_col = st.selectbox("Choose X-Axis Feature", column_options, 0)
-            nbinsx = st.slider("Number of Bins", 10, 100, 10)
+            plotly_kwargs['x'] = st.selectbox("Choose X-Axis Feature", column_options, 0)
+            plotly_kwargs['nbinsx'] = st.slider("Number of Bins", 10, 100, 10)
 
             st.markdown("### Y-axis")
-            y_col = st.selectbox("Choose Y-Axis Feature", column_options, 0)
-            nbinsy = st.slider("Number of Bins (Y-Axis)", 10, 100, 10)
+            plotly_kwargs['y'] = st.selectbox("Choose Y-Axis Feature", [None]+column_options, 0)
+            plotly_kwargs['nbinsy'] = st.slider("Number of Bins (Y-Axis)", 10, 100, 10)
 
             st.markdown("### Z-axis")
-            z_col = st.selectbox("Choose Z-Axis Feature", column_options, 0)
-            agg_func = st.selectbox("Aggregation Function", ["avg", "sum", "min", "sum", "count"], 0)
+            plotly_kwargs['z'] = st.selectbox("Choose Z-Axis Feature", column_options, 0)
+            plotly_kwargs['histfunc'] = st.selectbox("Aggregation Function", ["avg", "sum", "min", "sum", "count"], 0)
+            plotly_kwargs['template'] = self.theme
 
-        with self.cols[1]:
+        fig = px.density_heatmap(df, **plotly_kwargs)
+        fig.update_layout(width=self.width, height=self.height, font_size=20)
 
-            fig = px.density_heatmap(df,
-                                x=x_col,
-                                y=y_col,
-                                z=z_col,
-                                nbinsx=nbinsx,
-                                nbinsy=nbinsy,
-                                histfunc=agg_func)
-            fig.update_layout(width=100, height=1000, font_size=20)
-            st.plotly_chart(fig)
-
+        return fig
 
 
 
 if __name__ == '__main__':
-
+    st.set_page_config(layout="wide")
     from sklearn.datasets import load_iris
     import pandas as pd
     st_plt = StreamlitPlotModule()
@@ -194,7 +235,7 @@ if __name__ == '__main__':
     df = pd.DataFrame(data=data.data, columns=data.feature_names)
 
     st_plt.run(data=df)
-    st.write(st_plt.streamlit_functions)
+    # st.write(st_plt.streamlit_functions)
 
 
     
