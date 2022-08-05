@@ -3,12 +3,14 @@ import os
 import sys
 sys.path[0] = os.environ['PWD']
 import numpy as np
+import math
 import requests
 import json
 import datetime
 import pandas as pd
 import bittensor
 import streamlit as st
+import plotly.express as px
 from commune.config import ConfigLoader
 from commune.utils.misc import  chunk, dict_put, round_sig
 import ray
@@ -18,13 +20,17 @@ from copy import deepcopy
 # function to use requests.post to make an API call to the subgraph url
 from commune.process import BaseProcess
 from tqdm import tqdm
-
+from plotly.subplots import make_subplots
 from commune.ray.utils import kill_actor, create_actor
 from ray.util.queue import Queue
 import itertools
 from commune.process.extract.crypto.utils import run_query
 from commune.plot.dag import DagModule
 from commune.streamlit import StreamlitPlotModule, row_column_bundles
+
+
+
+
 
 class BitModule(BaseProcess):
     sample_n = 400
@@ -254,12 +260,24 @@ class BitModule(BaseProcess):
 
     def st_select_network(self):
 
-        network2idx = {n:n_idx for n_idx, n in  enumerate(self.networks)}
-        default_idx = network2idx[self.network]
-        st.sidebar.selectbox('Choose a Network', self.networks,default_idx)
+        with st.sidebar.form('Sync Network Options'):
+            network2idx = {n:n_idx for n_idx, n in  enumerate(self.networks)}
+            default_idx = network2idx['nakamoto']
+            network = st.selectbox('Select Network', self.networks,default_idx)
+            block = st.number_input('Select Block', 0,self.current_block, self.block)
+            submitted = st.form_submit_button("Sync")
+
+
         # ''')
 
     def st_metrics(self):
+
+        cols = st.columns(3)
+        # self.block = st.sidebar.slider('Block', 0, )
+        cols[0].metric("Synced Block", f'{self.block}', f'{-self.blocks_behind} Blocks Behind')
+        cols[1].metric("Network", 'nakamoto')
+        cols[2].metric("Active Neurons ", f'{self.n}/{self.n}')
+
 
         metrics = [ 'trust', 'stake', 'consensus']
         fn_list = []
@@ -306,8 +324,8 @@ class BitModule(BaseProcess):
 
     def view_graph(self):
 
-        n= 20
-        edge_density = 0.4
+        n= 100
+        edge_density = 0.1
         nodes=[dict(id=f"uid-{i}", 
                                 label=f"uid-{i}", 
                                 color='red',
@@ -319,42 +337,81 @@ class BitModule(BaseProcess):
 
         edges = [dict(source=f'uid-{i}', target=f'uid-{j}') for i,j in edges]
 
-        st.write(edges)
+
 
 
         self.plot.dag.build(nodes=nodes, edges=edges)
     
     def st_describe_graph_state(self):
         with st.sidebar.expander('Graph Params'):
-            st.write(bt.describe_graph_state())
+            st.write(self.describe_graph_state())
 
     def plot_sandbox(self):
         self.plot.run(data=self.graph.to_dataframe())
     
     def st_sidebar(self):
-        st.sidebar.markdown('''
-        # BitDashboard
-
-        ---
-        ''')
+        bt_url = 'https://yt3.ggpht.com/9fs6F292la5PLdf-ATItg--4bhjzGfu5FlIV1ujfmqlS0pqKzGleXzMjjPorZwgUPfglMz3ygg=s900-c-k-c0x00ffffff-no-rj'
+        bt_url = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAVFBMVEUAAAD///8hISGxsbFgYGBcXFx1dXXn5+dUVFQrKysGBgYZGRmKiore3t6YmJinp6f39/fAwMDIyMhnZ2cQEBBsbGzv7+9BQUHX19fz8/N/f3/h4eHkVQerAAAA6klEQVR4nO3Yu27CQBRFURNjIAbCIwGc5P//M9gUCGi4Te4YrdV4yqNdjKWpKgAAAAAAAAAAAAAAAAAAAAAAAAB4IU32gIK1bzeWq3X2omLN5pN7H9mbSrV5SDXpsjeVqnlIta2zNxWr3jXTs8W+77Q6nxfZiwr22V6+dR/LX/A5Q6xp9oqRECtArACxAsQKECtArACxAsQKECtArIBrrK82e0vxhliH/nR8z95SvEMfa32qlrtj9pQR6IaHv/m3i+sZ3eWh9Cd7xzjM9r9d7cICAAAAAAAAAAAAAAAAAAAAAAAAAAAA4F/8AYjjA5tLvfqfAAAAAElFTkSuQmCC'
+        st.sidebar.image(bt_url, width=300)
+        # st.markdown('''
+        # # BitDashboard
+        # ---
+        # ''')
         self.st_select_network()
-        # self.block = st.sidebar.slider('Block', 0, )
-        st.sidebar.metric("Synced Block", f'{self.block}', f'{-self.blocks_behind} Blocks Behind')
-        st.sidebar.metric("Current Block", self.current_block)
-        st.sidebar.metric("Neurons ", self.n)
         self.st_sample_params()
+        self.st_describe_graph_state()
 
     def st_main(self):
+
+        self.st_metrics()
         
         df = self.graph_df()
         with st.expander('Graph Dataframe'):
             st.write(df)
+        plot_df = df.drop(['uid', 'active'], axis=1)
+        self.st_distributions(df = plot_df)
+        self.st_scatter(df=plot_df)
+        self.st_relationmap()
 
-        fig = self.plot.histogram(df, x='stake')
-        st.write(fig)
-        self.view_graph()
         
+        with st.expander('Custom Plots'):
+            self.plot.run(data=plot_df)
+
+    def st_relationmap(self):
+        with st.expander('Relation Map'):
+            metric = st.selectbox('Select a ', ['weights', 'bonds'], 0)
+            z = self.graph_state[metric].tolist()
+            fig = self.plot.imshow(z, text_auto=True, title=f'Relation Map of {metric.upper()}')
+            fig.update_layout(autosize=True, width=1000, height=1000)
+            st.write(fig)
+    def st_distributions(self, df):
+        plot_columns = [c for c in df.columns if c not in ['uid', 'active']]
+
+
+        with st.expander('Distibutions'):
+            fn_list = [lambda col: st.write(self.plot.histogram(df, x=col, title=f'Distribution of {col.upper()}', color_discrete_sequence=random.sample(px.colors.qualitative.Plotly,1)))]*len(plot_columns)
+            fn_args_list = [[col,] for col in plot_columns]
+            row_column_bundles(fn_list=fn_list, fn_args_list=fn_args_list)
+
+    def st_scatter(self, df):
+        plot_columns = ['stake', 'rank', 'trust', 'consensus', 'incentive', 'dividends', 'emission']
+        
+        with st.expander('Scatter'):
+            fn_list = []
+            fn_args_list = []
+            for col_x in plot_columns:
+                for col_y in ['rank']:
+                    if col_x != col_y:
+
+                        fn_list += [lambda col_x, col_y: st.write(self.plot.scatter(df, x=col_x, y=col_y, title=f'{col_x.upper()} vs {col_y.upper()}', color_discrete_sequence=random.sample(px.colors.qualitative.Plotly,1)))]
+                        fn_args_list += [[col_x,col_y]]
+        
+            row_column_bundles(fn_list=fn_list, fn_args_list=fn_args_list)
+
+
     def st_run(self):
+        
+        st.set_page_config(layout="wide")
         self.st_sidebar()
         self.st_main()
 

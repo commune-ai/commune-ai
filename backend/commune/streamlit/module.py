@@ -22,7 +22,7 @@ class StreamlitPlotModule:
     def __init__(self):
         self.add_plot_tools()
 
-        self.cols= st.columns([1,3])
+
 
         
     def add_plot_tools(self):
@@ -40,18 +40,28 @@ class StreamlitPlotModule:
         return [fn for fn in dir(self) if fn.startswith('st_')]  
 
 
-    def run(self, data, plots=[]):
+    def run(self, data, plots=[], default_plot  ='histogram'):
 
+        self.cols= st.columns([1,3])
         if len(plots) == 0:
             plots = self.plot_options
 
-
+        if default_plot not in plots:
+            default_plot = plots[0]
         supported_types = [pd.DataFrame]
         if isinstance(data, pd.DataFrame):
+            df = data
             with self.cols[1]:
-                name2index = {_name:_idx for _idx, _name in enumerate(plots)}
-                plot = 'st_'+st.selectbox('Choose a Plot', plots, name2index['histogram'])
-            fig = getattr(self, plot)(df)
+                if len(plots) > 1:
+                    name2index = {_name:_idx for _idx, _name in enumerate(plots)}
+                    plot = st.selectbox('Choose a Plot', plots, name2index[default_plot])
+                else:
+                    plot = plots[0]
+            form = st.form(F'Params for {plot}')
+            with form:
+                fig = getattr(self, 'st_'+ plot)(df)
+                form.form_submit_button("Render")
+
         else:
             raise NotImplementedError(f'Broooooo, hold on, you can only use the following {supported_types}')
         
@@ -132,7 +142,7 @@ class StreamlitPlotModule:
             st.markdown("## Y Axis")
             plotly_kwargs['y'] = st.selectbox("Y Axis", column_options, 1)
             st.markdown("## Color Axis")
-            plotly_kwargs['color'] = st.selectbox("## Color", [None] + column_options, 0)
+            plotly_kwargs['color'] = st.selectbox("Color", [None] + column_options, 0)
             marker_size = st.slider("Select Marker Size", 5, 30, 20)
             df["size"] = [marker_size for _ in range(len(df))]
             plotly_kwargs['template'] = self.theme
@@ -183,7 +193,7 @@ class StreamlitPlotModule:
             plot_kwargs['nbins'] = st.slider("Number of Bins", 10, 100, 10)
 
             st.markdown("### Y-axis")
-            plot_kwargs['y'] = st.selectbox("Choose Y-Axis Feature", column_options, 0)
+            plot_kwargs['y'] = st.selectbox("Choose Y-Axis Feature", [None]+ column_options, 0)
 
             st.markdown("## Color Axis")
             plot_kwargs['color'] = st.selectbox("Color",  [None]+ column_options , 0 )
@@ -234,7 +244,7 @@ if __name__ == '__main__':
     data = load_iris()
     df = pd.DataFrame(data=data.data, columns=data.feature_names)
 
-    st_plt.run(data=df)
+    st_plt.run(data=df, plots=['heatmap'])
     # st.write(st_plt.streamlit_functions)
 
 
