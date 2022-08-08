@@ -19,6 +19,9 @@ class TokenizerModule(BaseProcess):
         self.process = self.load_process()
         self.dag = self.compose_dag()
     
+        process_params = process_cfg.get('params', {})
+        self.inputs = process_cfg.get('input', None)
+        self.outputs = process_cfg.get('output', input_keys)
 
     def compose_dag(self):
         dag = []  
@@ -33,9 +36,7 @@ class TokenizerModule(BaseProcess):
 
             process = self.process[dag_key]
             process_cfg = dag_cfg[dag_key]
-            process_params = process_cfg.get('params', {})
-            input_keys = process_cfg.get('input', None)
-            output_keys = process_cfg.get('output', input_keys)
+
 
             if isinstance(input_keys, str):
                 input_keys = [input_keys]

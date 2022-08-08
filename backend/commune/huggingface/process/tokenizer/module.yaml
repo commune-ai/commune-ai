@@ -1,9 +1,15 @@
 
 module: huggingface.tokenizer.module
 client: get_cfg(client.manager)
+name: bert-base-cased
 
-tokenizer: bert-base-cased
 input: ['text']
+
+params: {}
+
+
+load:
+  path: local_copy(name)
 
 padding: "max_length"
 truncation: True

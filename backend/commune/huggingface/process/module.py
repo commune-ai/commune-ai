@@ -34,7 +34,7 @@ class ProcessModule(BaseProcess):
             process = self.process[dag_key]
             process_cfg = dag_cfg[dag_key]
             process_params = process_cfg.get('params', {})
-            input_keys = process_cfg.get('input', {})
+            input_keys = process_cfg.get('input', None)
             output_keys = process_cfg.get('output', input_keys)
 
             if isinstance(input_keys, str):
@@ -52,6 +52,8 @@ class ProcessModule(BaseProcess):
                     input_args = [inputs[k] for k in input_keys]
                 elif input_keys_type in [dict]:
                     input_kwargs = {k:inputs[v] for k,v in input_keys.items()}
+                elif input_keys = None:
+                    input_args = [inputs]
 
                 outputs = process(*input_arg, **input_kwargs, **process_params)
 
@@ -60,12 +62,6 @@ class ProcessModule(BaseProcess):
                 '''
                 outputs_type = type(outputs) 
                 output_keys_type = type(output_keys)
-
-                if outputs_type not in [list, dict, tuple]:
-                    assert len(output_keys) == 1
-                    outputs = [outputs]
-                    outputs_type = list
-            
                 
                 assert len(outputs) == len(output_keys)
 
@@ -83,6 +79,8 @@ class ProcessModule(BaseProcess):
                         outputs = {k: outputs[k] for k in output_keys}
                 
                     inputs.update(outputs)
+                elif output_keys == None:
+                    return outputs
 
                 return inputs
         

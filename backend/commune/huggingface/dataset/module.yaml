@@ -1,20 +1,16 @@
 
-module: huggingface.HFModule
+module: huggingface.DatasetModule
 
-metrics: []
 
-actor:
-  name: local_copy(module)
-  refresh: False
+dataset: 'squad'
+pipeline: 
+  - 
+    tokenizer: 'bert-base-cased'
+    params:
+      padding: max_length
+      truncation: True 
+
+metric: ['squad']
 
 
 client: get_cfg(client.manager)
-
-pipeline:
-  tokenizer:
-    type: tokenizer
-
-
-load:
-  path: yelp_review_full
-

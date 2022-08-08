@@ -1,15 +1,18 @@
 
-module: huggingface.HFModule
+module: huggingface.base.BaseHuggingFaceModule
 
-model: null
-dataset: null
-tokenizer: null
+model: 
+  path: 'bert-base-cased'
+  num_labels: 5
 
+dataset: 
+  path: "yelp_review_full"
+tokenizer: 
+  path: "bert-base-cased"
 
-metrics: []
+metrics: ['accuracy']
+trainer: 
+  output_dir: test_trainer
+  evaluation_strategy: epoch
 
-actor:
-  name: local_copy(module)
-  refresh: False
-
-client: get_cfg(client.manager)
+client: None

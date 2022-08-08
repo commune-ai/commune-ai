@@ -10,7 +10,7 @@ class ContractBaseModule(BaseProcess):
     contract = None
 
     def __init__(self, cfg):
-        super().__init__(cfg=cfg)
+        BaseProcess.__init__(self, cfg=cfg)
         self.getEnvironment()
         
     @property
@@ -122,13 +122,9 @@ class ContractBaseModule(BaseProcess):
 
     def getEnvironment(self):
 
-
-
         self.cfg['network'] = self.cfg.get('network', dict(name = "dev", launch_rpc=False))
         self.cfg['account'] = self.cfg.get('account', dict(key = 0, mode='index'))
-
         self.template_cfg = deepcopy(self.cfg)
-
 
         self.network = self.getNetwork(**self.cfg['network'])
         self.factory = self.getFactory()
