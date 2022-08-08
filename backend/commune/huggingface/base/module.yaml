@@ -1,0 +1,15 @@
+
+module: huggingface.HFModule
+
+model: null
+dataset: null
+tokenizer: null
+
+
+metrics: []
+
+actor:
+  name: local_copy(module)
+  refresh: False
+
+client: get_cfg(client.manager)

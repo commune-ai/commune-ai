@@ -154,64 +154,19 @@ class DagModule:
 
     @staticmethod
     def st_example():
-            p
+        import torch
+        n= 100
+        edge_density = 0.05
+        nodes=[dict(id=f"uid-{i}", 
+                                label=f"uid-{i}", 
+                                color='red',
+                                size=100) for i in range(n)]
+
+        st.write('bro')
+        edges = torch.nonzero(torch.rand(n,n)>edge_density).tolist()
 
 
-if __name__ == '__main__':
+        edges = [(f'uid{i}',f'uid{j}') for i,j in edges]
 
-    import torch
-    n= 1000
-    edge_density = 0.8
-    nodes=[dict(id=f"uid-{i}", 
-                            label=f"uid-{i}", 
-                            color='red',
-                            size=100) for i in range(n)]
+        dag = DagModule()
 
-    st.write('bro')
-    edges = torch.nonzero(torch.rand(n,n)>edge_density).tolist()
-
-
-    edges = [(f'uid{i}',f'uid{j}') for i,j in edges]
-
-    dag = DagModule()
-
-
-    # DagModule.st_example()
-
-    import graphviz as graphviz
-
-    # Create a graphlib graph object
-    # graph = graphviz.Digraph()
-    # for edge in edges:
-    #     graph.edge(*list(edge.values()))
-
-    import streamlit as st
-    import graphviz as graphviz
-
-    # Create a graphlib graph object
-    graph = graphviz.Digraph()
-
-    # for edge in edges:
-    #    
-    for i in range(300):
-        graph.edge(*edges[i]) 
-    graph.edge('source1', 'edge')
-    graph.edge('run', 'intr')
-    graph.edge('intr', 'runbl')
-    graph.edge('runbl', 'run')
-    graph.edge('run', 'kernel')
-    graph.edge('kernel', 'zombie')
-    graph.edge('kernel', 'sleep')
-    graph.edge('kernel', 'runmem')
-    graph.edge('sleep', 'swap')
-    graph.edge('swap', 'runswap')
-    graph.edge('runswap', 'new')
-    graph.edge('runswap', 'runmem')
-    graph.edge('new', 'runmem')
-    graph.edge('sleep', 'uid')
-
-    st.write('bro')
-    st.graphviz_chart(graph)
-
-    
-    # import json

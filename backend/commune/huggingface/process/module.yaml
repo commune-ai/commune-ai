@@ -1,0 +1,22 @@
+
+module: huggingface.process.module
+client: get_cfg(client.manager)
+
+dag:
+  - 
+    process: tokenizer
+    params:
+      padding: "max_length"
+      truncation: True
+
+    input: 'text'
+    output: 'text' 
+
+load:
+  tokenizer:
+    mode: tokenizer
+    load:
+      path: 'bert-base-cased'
+
+
+

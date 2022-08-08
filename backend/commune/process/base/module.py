@@ -238,10 +238,12 @@ class BaseProcess(ActorBase):
 
     def connect_clients(self):
         
-        self.cfg['client'] = self.cfg.get('client')
-        if isinstance(self.cfg['client'], dict):
-            self.client_manager = self.get_module(cfg=self.cfg['client'])
+        client_cfg = self.cfg.get('client', None)
+        if isinstance(client_cfg, dict):
+            self.client_manager = self.get_module(cfg=client_cfg)
             self.client = self.client_manager.client
+        elif client_cfg == None:
+            self.client, self.client_manager = None, None
         else:
             self.client_manager = self.cfg['client']
             self.cfg['client'] = self.client_manager.cfg['client']
@@ -252,7 +254,7 @@ class BaseProcess(ActorBase):
         raise NotImplementedError("Implement this shizzz fam")
 
     def read_state(self):
-        if 'read' not in self.cfg:
+        if 'read' not in self.cfg or self.client == None:
             return
         for object_key, store_dict in self.cfg['read'].items():
 
@@ -278,7 +280,7 @@ class BaseProcess(ActorBase):
 
 
     def write_state(self):
-        if 'write' not in self.cfg:
+        if 'write' not in self.cfg or self.client == None:
             return
         
 

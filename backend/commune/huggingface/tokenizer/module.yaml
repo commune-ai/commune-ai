@@ -1,0 +1,9 @@
+
+module: huggingface.tokenizer.module
+client: get_cfg(client.manager)
+
+tokenizer: bert-base-cased
+input: ['text']
+
+padding: "max_length"
+truncation: True

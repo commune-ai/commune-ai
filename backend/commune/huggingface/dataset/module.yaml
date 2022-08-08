@@ -1,0 +1,20 @@
+
+module: huggingface.HFModule
+
+metrics: []
+
+actor:
+  name: local_copy(module)
+  refresh: False
+
+
+client: get_cfg(client.manager)
+
+pipeline:
+  tokenizer:
+    type: tokenizer
+
+
+load:
+  path: yelp_review_full
+
