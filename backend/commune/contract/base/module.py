@@ -20,6 +20,8 @@ class ContractBaseModule(BaseProcess):
     def setAccount(self,key=0, mode="index", address=None,  *args, **kwargs):
         if mode == 'index': 
             assert isinstance(key, int), key
+
+            print(self.accounts, key, 'DEBUG')
             self.account = self.accounts[key]
         else:
             raise NotImplementedError
@@ -94,13 +96,15 @@ class ContractBaseModule(BaseProcess):
 
 
     @staticmethod
-    def getNetwork(name = "dev", launch_rpc=False):
+    def getNetwork(network = "mainnet-fork", launch_rpc=True):
 
         """
         connects to neetwork, project/factory , and a account 
         """
+
         if not network.is_connected():
-            network.connect(name,launch_rpc)
+            network.connect(network=network, launch_rpc=launch_rpc)
+
 
         return network
 
@@ -117,14 +121,16 @@ class ContractBaseModule(BaseProcess):
 
     @staticmethod
     def getAccounts():
-        return network.accounts
+        return list(network.accounts)
 
 
     def getEnvironment(self):
 
-        self.cfg['network'] = self.cfg.get('network', dict(name = "dev", launch_rpc=False))
+        self.cfg['network'] = self.cfg.get('network', dict(network = "mainnet-fork", launch_rpc=False))
         self.cfg['account'] = self.cfg.get('account', dict(key = 0, mode='index'))
         self.template_cfg = deepcopy(self.cfg)
+
+        print(self.cfg['network'], 'BROOOO')
 
         self.network = self.getNetwork(**self.cfg['network'])
         self.factory = self.getFactory()
@@ -173,6 +179,5 @@ class ContractBaseModule(BaseProcess):
                     parsedOutputs[output_key] = parseStruct(outputs[i])
         
         return parsedOutputs
-
 
 

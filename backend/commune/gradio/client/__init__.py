@@ -49,14 +49,15 @@ class GradioClient:
         print("\nHappy Visualizing... 🚀")
         return gr.TabbedInterface(demos, names)
     
-
     @staticmethod
     def run(self,host=None, port=None, live=False, replace=True, **kwargs):
 
         port = port if port else GradioModule.api.suggest_port()
         host = host if host else GradioModule.api.host
-        url = SimpleNamespace({ 'api': f'http://{host}:{GradioModule.api.port}',
-                              'gradio' : f'http://{host}:{port}'})
+        url = SimpleNamespace({ 'api': f'{host}:{GradioModule.api.port}',
+                              'gradio' : f'{host}:{port}'})
+
+        print(url)
         
 
         allow_flagging = kwargs.get('flagging', 'never')
@@ -78,16 +79,12 @@ class GradioClient:
 
         GradioModule.api.add_module(port='gradio/add', json=gradio_metadata)
 
-
-
-
     @staticmethod
     def find_registered_functions(self):
         '''
         find the registered functions
         '''
         return GradioModule.api.find_registered_functions()
-
 
     @staticmethod
     def register(inputs, outputs):

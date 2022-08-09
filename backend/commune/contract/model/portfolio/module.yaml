@@ -19,7 +19,6 @@ sub_module:
 
 refresh: True
 
-client: get_cfg(client.manager)
 
 # demo:
 #   test:

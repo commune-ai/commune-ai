@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 import pandas as pd
 import plotly.express as px
 from mlflow.tracking import MlflowClient
-from commune.plot.dag import DagModule 
+# from commune.plot.dag import DagModule 
 
 
 
@@ -33,7 +33,7 @@ class StreamlitPlotModule:
                 if callable(plt_obj):
                     setattr(self, fn_name, plt_obj)
 
-        self.dag = DagModule()
+        # self.dag = DagModule()
 
     @property
     def streamlit_functions(self):

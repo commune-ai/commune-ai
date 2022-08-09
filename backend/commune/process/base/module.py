@@ -76,7 +76,7 @@ class BaseProcess(ActorBase):
             assert dict_has(input_dict=self.__dict__, keys=key)
         return has_submodule
 
-    def list_submodules():
+    def list_submodules(self):
         self.sub_modules.keys()
 
     def rm_submodule(self, key:str):
@@ -318,4 +318,3 @@ class BaseProcess(ActorBase):
             explain_module = self.get_module(explain_cfg)
             explain_module.run(override={'module': self})
             self.cfg['explain'] = explain_module.cfg
-

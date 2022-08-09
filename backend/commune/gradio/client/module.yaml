@@ -11,10 +11,3 @@ sub_module:
   config_manager:
     module: config.manager.ConfigManager
     actor: False
-  launcher:
-    module: process.launcher.module.Launcher
-    actor: {refresh: False}
-
-
-actor:
-  name: local_copy(name)

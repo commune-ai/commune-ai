@@ -1,0 +1,8 @@
+module: 'process.zombie.module.Zombie'
+name: zombie
+# clients
+
+# shifter: get_cfg(process.shifter.module)
+actor:
+  name: local_copy(name)
+  max_concurrency: 4

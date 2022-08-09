@@ -3,49 +3,11 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import PIL
+import os, sys
+sys.path.append(os.environ['PWD'])
+from commune.gradio.module import GradioClient
 
 
-
-
-"""
-@gradio_compile
-class Pictionary:
-
-    def __init__(self) -> None:
-        self.LABELS = Path('./src/examples/data/labels.txt').read_text().splitlines()
-    
-        self.model = nn.Sequential(
-                nn.Conv2d(1, 32, 3, padding='same'),
-                nn.ReLU(),
-                nn.MaxPool2d(2),
-                nn.Conv2d(32, 64, 3, padding='same'),
-                nn.ReLU(),
-                nn.MaxPool2d(2),
-                nn.Conv2d(64, 128, 3, padding='same'),
-                nn.ReLU(),
-                nn.MaxPool2d(2),
-                nn.Flatten(),
-                nn.Linear(1152, 256),
-                nn.ReLU(),
-                nn.Linear(256, len(self.LABELS)),
-                )   
-        state_dict = torch.load('./src/examples/data/pytorch_model.bin',    map_location='cpu')
-        self.model.load_state_dict(state_dict, strict=False)
-        self.model.eval()
-
-    @register(inputs="sketchpad", outputs=gr.Label())
-    def perdict(self, img) -> 'dict[str, float]':
-        if type(img) == type(None): return {}
-        x = torch.tensor(img, dtype=torch.float32).unsqueeze(0).unsqueeze(0) / 255.
-        with torch.no_grad():
-            out = self.model(x)
-        probabilities = torch.nn.functional.softmax(out[0], dim=0)
-        values, indices = torch.topk(probabilities, 5)
-        confidences = {self.LABELS[i]: v.item() for i, v in zip(indices, values)}
-        return confidences
-"""
-
-@gradio_compile
 class HelloWorld_2_0:
 
     @register(inputs=["text", "text", gr.Radio(["morning", "evening", "night"])], outputs="text")

@@ -4,6 +4,7 @@ from commune.ray.utils import create_actor, actor_exists, kill_actor, custom_get
 from commune.utils.misc import dict_put, get_object, dict_get, get_module_file
 import os
 import datetime
+from inspect import getfile
 from types import ModuleType
 from importlib import import_module
 class ActorBase: 
@@ -16,8 +17,11 @@ class ActorBase:
 
     def resolve_config(self, cfg, override={}, local_var_dict={}, recursive=True):
         if cfg == None:
+            cfg = getattr(self,'cfg',  None)
+        if cfg == None:
             assert isinstance(self.default_cfg_path, str)
             cfg = self.default_cfg_path
+
 
         cfg = self.load_config(cfg=cfg, 
                              override=override, 
@@ -97,25 +101,16 @@ class ActorBase:
         deploys process as an actor or as a class given the config (cfg)
         """
 
-        if cfg == None:
-            assert isinstance(cls.default_cfg_path, str)
-            cfg = cls.default_cfg_path
-
-        cfg = cls.load_config(cfg=cfg, 
-                             override=override, 
-                            local_var_dict=local_var_dict)
+        cfg = ActorBase.resolve_config(cls, cfg=cfg, local_var_dict=local_var_dict, override=override)
 
         if actor:
+            cfg['actor'] = cfg.get('actor', {})
             if isinstance(actor, dict):
                 cfg['actor'].update(actor)
             elif isinstance(actor, bool):
                 pass
             else:
                 raise Exception('Only pass in dict (actor args), or bool (uses cfg["actor"] as kwargs)')  
-            return cls.deploy_actor(cfg=cfg, **cfg['actor'])
-
-        elif 'spawn' in cfg.get('actor', {}):
-            del cfg['actor']['spawn']
             return cls.deploy_actor(cfg=cfg, **cfg['actor'])
         else:
             return cls(cfg=cfg)
@@ -206,6 +201,42 @@ class ActorBase:
                 if callable(fn):
                     fn_list.append(fn_name)
 
+        return fn_list
 
-    # def __del__(self):
-    #     print()
+    @classmethod
+    def hasfunc(cls, key):
+        fn_list = cls.functions()
+        return bool(len(list(filter(lambda f: f==key, fn_list)))>0)
+
+    @classmethod
+    def filterfunc(cls, key):
+        fn_list = cls.functions()
+        ## TODO: regex
+        return list(filter(lambda f: key in f, fn_list))
+
+
+    @classmethod
+    def get_module_filepath(cls):
+        return inspect.getfile(cls)
+
+    @classmethod
+    def get_config_path(cls):
+        path =  cls.get_module_filepath().replace('.py', '.yaml')
+        assert os.path.exists(path), f'{path} does not exist'
+        assert os.path.isfile(path), f'{path} is not a dictionary'
+        return path
+
+    # @classmethod
+    # def get_default_cfg(cls): 
+    #     if cls.default_cfg_path == None:
+    #         cls_filepath = inspect.getfile(cls).replace('.py', '.yaml')
+    #         cls.default_cfg_path = cls_filepath
+    #         return cls.load_config(cfg=cls.default_cfg_path)
+
+    #     elif cls.default_cfg != None:
+    #         assert isinstance(cls.default_cfg, dict) 
+    #         assert len(cls.default_cfg)>0
+    #         return cls.load_config(cfg=cls.default_cfg)
+
+    #     else:
+    #         raise Exception('Bro, there is no default config')

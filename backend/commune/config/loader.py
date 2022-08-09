@@ -294,7 +294,6 @@ class ConfigLoader:
 
         if type(path) in [dict, list]:
             return path
-
         assert isinstance(path, str), path
 
         local_var_dict = self.local_var_dict

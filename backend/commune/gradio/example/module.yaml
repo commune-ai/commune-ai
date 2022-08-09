@@ -1,0 +1,9 @@
+module: gradio.example.module.GradioModule
+name: GradioModule
+
+
+module: 
+sub_module:
+  config_manager:
+    module: config.manager.ConfigManager
+    actor: False

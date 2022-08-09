@@ -1,7 +1,9 @@
 
 network:
-  name: dev
+  name: mainnet-fork
   launch_rpc: False
+
+
 
 account: 
   key: 0

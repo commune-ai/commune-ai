@@ -24,8 +24,8 @@ from plotly.subplots import make_subplots
 from commune.ray.utils import kill_actor, create_actor
 from ray.util.queue import Queue
 import itertools
-from commune.process.extract.crypto.utils import run_query
-from commune.plot.dag import DagModule
+from commune .process.extract.crypto.utils import run_query
+# from commune.plot.dag import DagModule
 from commune.streamlit import StreamlitPlotModule, row_column_bundles
 
 

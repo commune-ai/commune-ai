@@ -10,7 +10,6 @@ contract:
 sub_module: {}
 refresh: True
 
-
 client: get_cfg(client.manager)
 read: get_cfg(contract.base.module,read)
 write: get_cfg(contract.base.module,write)

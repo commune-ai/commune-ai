@@ -7,25 +7,16 @@ import gradio
 from commune.process.base import BaseProcess
 from inspect import getfile
 import socket
-from typing import *
-
 from commune.utils.misc import SimpleNamespace
-import streamlit as st
-st.write('FUCK')
-
-class bcolor:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-
 class GradioModule(BaseProcess):
-    default_cfg_path =  'gradio.api.module'
+    default_cfg_path =  'gradio.module'
+
+
+    # without '__reduce__', the instance is unserializable.
+    def __reduce__(self):
+        deserializer = GradioModule
+        serialized_data = (self.cfg,)
+        return deserializer, serialized_data
 
 
     def __init__(self, cfg=None):
@@ -65,7 +56,6 @@ class GradioModule(BaseProcess):
         find the registered functions
         '''
         fn_keys = []
-
         for fn_key in GradioModule.get_funcs(self):
             try:
                 if getattr(getattr(getattr(self,fn_key), '__decorator__', None), '__name__', None) == GradioModule.register.__name__:
@@ -77,9 +67,7 @@ class GradioModule(BaseProcess):
 
     @staticmethod
     def get_funcs(self):
-
-        fn_list =  [func for func in self.functions()]
-        return fn_list
+        return [func for func in dir(self) if not func.startswith("__") and callable(getattr(self, func, None)) ]
 
 
     @staticmethod
@@ -120,6 +108,8 @@ class GradioModule(BaseProcess):
                 continue
 
 
+        st.write(module_list)
+
         return module_list
 
 
@@ -136,20 +126,9 @@ class GradioModule(BaseProcess):
 
 
     @staticmethod
-    def has_gradio(module):
+    def has_gradio(self):
+        return GradioModule.has_registered_functions(self)
 
-        if isinstance(module, dict):
-            module_cfg = module
-        else:
-            module_cfg =  getattr(module, 'cfg', {})
-
-        gradio_cfg = module_cfg.get('gradio')
-        if gradio_cfg == None:
-            return False
-        elif type(gradio_cfg) == bool:
-            return gradio_cfg
-        elif type(gradio_cfg) in [dict, list, tuple]:
-            return len(gradio_cfg)
 
 
     def suggest_port(self, max_trial_count=10):
@@ -167,7 +146,6 @@ class GradioModule(BaseProcess):
     @staticmethod
     def compile(self, live=False, flagging='never', theme='default', **kwargs):
         print("Just putting on the finishing touches... 🔧🧰")
-        
         for func in GradioModule.find_registered_functions(self):
             registered_fn = getattr(self, func)
             registered_fn()
@@ -186,46 +164,15 @@ class GradioModule(BaseProcess):
 
         print("\nHappy Visualizing... 🚀")
         return gradio.TabbedInterface(demos, names)
+    
 
-
-    @staticmethod
-    def launch_gradio(self,host='0.0.0.0', port=7860, live=False, replace=True, **kwargs):
-        url = SimpleNamespace(**{ 'api': f'{host}:{port}',
-                              'gradio' : f'{host}:{port}'})
-        
-        print('url', url.__dict__)
-
-        allow_flagging = kwargs.get('flagging', 'never')
-
-        gradio_metadata = { 
-                           "host" : host, 
-                           'url': url.gradio,
-                           "live": live,
-                           "port": port,
-                        #    "module" : getfile(self.__class__), 
-                        #    "name" : self.__class__.__name__,
-                            **kwargs
-                            }
-
-        GradioModule.compile(self, live=live, allow_flagging=allow_flagging).launch(server_name= host ,server_port=port) 
-
-
-    def run_module(self, module, **kwargs):
-        module = self.get_object(module)
-        if self.has_gradio(module):
-            gradio_kwargs = dict(host=self.host, port=self.suggest_port(), live=False, replace=True)
-            # module.cfg['gradio'] = gradio_kwargs
-            
-        return module
-
-    def register_fn(self, module,  inputs:Union[dict, list], outputs: Union[dict, list]):
-        return self.get_object(module)
 
     @staticmethod
     def register(inputs, outputs):
         def register_gradio(func):
                
-            def wrap(self, *args, **kwargs):   
+            def wrap(self, *args, **kwargs):  
+                st.write(func)       
                 try:
                     self.registered_gradio_functons
                 except AttributeError:
@@ -243,56 +190,98 @@ class GradioModule(BaseProcess):
             return wrap
         return register_gradio
 
-    # without '__reduce__', the instance is unserializable.
-    def __reduce__(self):
-        deserializer = GradioModule
-        serialized_data = (self.cfg,)
-        return deserializer, serialized_data
 
 
 
-class TestModule(BaseProcess):
-    cfg = dict(module='gradio.module.TestModule', 
-                        gradio=True)
 
-    # def __init__(self, cfg=cfg):
-    @GradioModule.register(inputs=["text", "text", gradio.Radio(["morning", "evening", "night"])], outputs="text")
-    def Hello(self, Lname : str, Fname : str, day : 'list[any]'=["morning", "evening", "night"]) -> str:
-        return "Hello, {} {}".format(Fname, Lname)  
-
-    @GradioModule.register(inputs=["text", "text"], outputs="text")
-    def goodbye(self, Fname : str, Lname : str) -> str:
-        return "Goodbye, {} {}".format(Fname, Lname)  
+class bcolor:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
     
-    @GradioModule.register(inputs=["text", gradio.Checkbox() , gradio.Slider(0, 60)], outputs=["text", "number"])
-    def greet(self, name, is_morning, temperature):
-        salutation = "Good morning" if is_morning else "Good evening"
-        greeting = "%s %s. It is %s degrees today" % (salutation, name, temperature)
-        celsius = (temperature - 32) * 5 / 9
-        return (greeting, round(celsius, 2))
 
 
-    def launch_gradio(self):
-        GradioModule.launch_gradio(self)
+class GradioClient:
+    api = GradioModule()
+
+    find_registered_functions = GradioModule.find_registered_functions
+    compile = GradioModule.compile
+    register = GradioModule.register
+
+    @staticmethod
+    def run(self,host=None, port=7860, live=False, replace=True, **kwargs):
+
+        port = port if port else GradioClient.api.suggest_port()
+        host = host if host else GradioClient.api.host
+        url = SimpleNamespace(**{ 'api': f'{host}:{GradioClient.api.port}',
+                              'gradio' : f'{host}:{port}'})
+        
+        print('url', url.__dict__)
+
+        allow_flagging = kwargs.get('flagging', 'never')
+
+        gradio_metadata = { 
+                           "host" : host, 
+                           'url': url.gradio,
+                           "live": live,
+                           "port": port,
+                        #    "module" : getfile(self.__class__), 
+                        #    "name" : self.__class__.__name__,
+                            **kwargs
+                            }
+
+        GradioClient.api.add_module(port=port, metadata=gradio_metadata)
+
+        GradioClient.compile(self, live=live, allow_flagging=allow_flagging).launch(server_name= host ,server_port=port) 
 
 
 
 
 
 
-# st.write(gr_module) 
-import ray
-ray.shutdown()
-with ray.init(address='auto', namespace='commune'):
-    gr_module = GradioModule.deploy(actor=False)
-    
-    
-    _TestModule = gr_module.run_module(module='gradio.api.module.TestModule')
 
-    # st.write(GradioModule.get_funcs(test_module))
-    # ray.get(test_module.launch_gradio.remote())
-    test_instance = TestModule.deploy(actor=dict(refresh=True, name='test'))
-    # # st.write(GradioClient.run(test_instance))
-    
-    st.write(ray.get(test_instance.launch_gradio.remote()))
+
+
+
+
+if __name__== '__main__':
+    import streamlit as st
+
+    class TestModule(BaseProcess):
+        cfg = dict(module='gradio.module.TestModule')
+
+        def __init__(self, cfg=cfg):
+            pass
+        @GradioClient.register(inputs=["text", "text", gradio.Radio(["morning", "evening", "night"])], outputs="text")
+        def Hello(self, Lname : str, Fname : str, day : 'list[any]'=["morning", "evening", "night"]) -> str:
+            return "Hello, {} {}".format(Fname, Lname)  
+
+        @GradioClient.register(inputs=["text", "text"], outputs="text")
+        def goodbye(self, Fname : str, Lname : str) -> str:
+            return "Goodbye, {} {}".format(Fname, Lname)  
+        
+        @GradioClient.register(inputs=["text", gradio.Checkbox() , gradio.Slider(0, 60)], outputs=["text", "number"])
+        def greet(self, name, is_morning, temperature):
+            salutation = "Good morning" if is_morning else "Good evening"
+            greeting = "%s %s. It is %s degrees today" % (salutation, name, temperature)
+            celsius = (temperature - 32) * 5 / 9
+            return (greeting, round(celsius, 2))
+
+        def run(self):
+            GradioClient.run(self)
+            
+    # st.write(dir(TestModule))  
+    import ray
+
+    ray.shutdown()
+    with ray.init(address='auto', namespace='commune'):
+        test_instance = TestModule.deploy(actor=dict(refresh=False, name='test'))
+        # st.write(GradioClient.run(test_instance))
+        st.write(ray.get(test_instance.run.remote()))
 

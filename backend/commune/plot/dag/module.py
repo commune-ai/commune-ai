@@ -11,8 +11,7 @@ import plotly.express as px
 from mlflow.tracking import MlflowClient
 import datetime
 from streamlit_agraph import agraph, Node, Edge, Config
-
-                    # **kwargs e.g. node_size=1000 or node_color="blue"
+# **kwargs e.g. node_size=1000 or node_color="blue"
                     
 
 class DagModule:
