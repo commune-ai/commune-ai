@@ -2,6 +2,8 @@
 from copy import deepcopy
 import sys
 import brownie
+import plotly.express as px
+
 import os
 import pandas as pd
 from typing import Type
@@ -14,19 +16,19 @@ from commune.contract.address import token_address_map
 import datetime
 import streamlit as st
 
-
-
-
+st.set_page_config(layout="wide")
 
 class ContractModule(ContractBaseModule):
     default_cfg_path = f"contract.treasury.module"
 
     
     def process(self, **kwargs):
+        
         self.build()
         self.token_address_map = token_address_map
         
     def build(self):
+        
 
         # CREATE PORTFOLIO TRADER
         # self.cfg['contract']['args'] = [self.cfg['name']]
@@ -44,7 +46,6 @@ class ContractModule(ContractBaseModule):
         self.checkModeValidity(mode=mode)
         balance = brownie.Wei(balance)
         liquid = self.isLiquidMode(mode)
-        st.write(address)
         self.contract.deposit(address, balance, name, mode, liquid ,{'from':self.account})
     
     def balanceOf(self, address:str, asset:str):
@@ -53,7 +54,21 @@ class ContractModule(ContractBaseModule):
         address = self.account.address
         return self.balanceOf(address=address, asset=asset)
 
+    def st_deposit(self):
+        with st.sidebar.form('Deposit'):
+            token = st.selectbox('Select a Token', list(token_address_map.keys()), 0)
+            mode = st.selectbox('Select a Mode', ['ERC20', 'ERC721', 'TRSRY'], 0)
+            balance = st.number_input('Select a Balance', 0)
+            if st.form_submit_button("Submit"):
+                self.deposit(token, mode, balance)
 
+
+        with st.sidebar.form('WithDrawal'):
+            token = st.selectbox('Select a Token', list(token_address_map.keys()), 0)
+            mode = st.selectbox('Select a Mode', ['ERC20', 'ERC721', 'TRSRY'], 0)
+            balance = st.number_input('Select a Balance', 0)
+            if st.form_submit_button("Submit"):
+                self.deposit(token, mode, balance)
     def getAssets(self):
 
         asset_struct_fields = list(self.contract.assetStates(0).dict().keys())
@@ -78,21 +93,54 @@ class ContractModule(ContractBaseModule):
 
         list(map(lambda kwargs: self.deposit(**kwargs), assets))
 
-        st.write(self.getAssets())
+
+    def st_sidebar(self):
+
+        self.st_deposit()
+
+
+    def st_main(self):
+        df = self.getAssets()
+        
+        with st.expander('Analytics', True):
+            fig = px.pie(df, values='value', names='name', title='Asset Proportions')
+            st.write(fig)
+        with st.expander('Liquidity Proportion', True):
+            fig = px.pie(df, values='value', names='liquid', title='Liquid Proportions')
+            st.write(fig)
+
+        with st.expander('Type Proportion', True):
+            fig = px.pie(df, values='value', names='mode', title='Asset Mode Proportions')
+            st.write(fig)
+
+
+        address2index = {acc.address:i for i, acc in enumerate(self.accounts)}
+        
+
+        with st.sidebar.form('Network'):
+            selected_address = st.selectbox('Select Account: ' , address2index, 0)
+   
+            selected_network = st.selectbox('Select Network: ' , ['local-fork', 'rinkeby', 'moonbeam'], 0)
+            
+            if st.form_submit_button("Submit"):
+                self.setAccount(address2index[selected_address])
 
         
+    def st_run(self):
+        self.st_sidebar()
+        self.st_main()
+    
+                
 if __name__ == "__main__":
 
     tokens = token_address_map
-    st.sidebar.write(tokens)
 
     contract_module = ContractModule.deploy()
     contract_module.run()
     contract_module.simulation()
 
 
-
-    st.write(contract_module.getAssets())
+    contract_module.st_run()
 
     
     # print('FUCK')

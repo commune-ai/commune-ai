@@ -262,6 +262,17 @@ contract CommuneTreasury is Context, ERC165, AccessControlAdapter {
      */
 
 
+    function balanceOfBatch(address user) returns(address[] memory, uint256[] memory) 
+    {
+        address[] memory assets = user2assets[user];
+        uint256[] memory assetBalances = uint256[](assets.length);
+        for (uint i;i<assets.length; i++) {
+            assetBalances[i] = assetStates[asset2index[asset]];
+        }
+
+        return assets, assetBalances
+    }
+
     function getUserValue(address user) public view returns (uint256) {
         // calculate the total user value across assets
         address[] memory assets = user2assets[user];
@@ -362,7 +373,6 @@ contract CommuneTreasury is Context, ERC165, AccessControlAdapter {
         require(account != address(0), "ERC1155: balance query for the zero address");
         return balance2value(asset, _balances[asset][account] );
     }
-
 
 
     function setApprovalForAll(address operator, bool approved) public virtual {
