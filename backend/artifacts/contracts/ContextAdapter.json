@@ -28,25 +28,25 @@
     }
   ],
   "allSourcePaths": {
-    "20": "contracts/utils/context/Context.sol",
-    "21": "contracts/utils/context/ContextAdapter.sol"
+    "10": "contracts/utils/context/Context.sol",
+    "11": "contracts/utils/context/ContextAdapter.sol"
   },
   "ast": {
     "absolutePath": "contracts/utils/context/ContextAdapter.sol",
     "exportedSymbols": {
       "Context": [
-        3163
+        2587
       ],
       "ContextAdapter": [
-        3696
+        2691
       ]
     },
-    "id": 3697,
+    "id": 2692,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3679,
+        "id": 2674,
         "literals": [
           "solidity",
           "^",
@@ -54,17 +54,17 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "85:23:21"
+        "src": "85:23:11"
       },
       {
         "absolutePath": "contracts/utils/context/Context.sol",
         "file": "contracts/utils/context/Context.sol",
-        "id": 3680,
+        "id": 2675,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 3697,
-        "sourceUnit": 3164,
-        "src": "110:45:21",
+        "scope": 2692,
+        "sourceUnit": 2588,
+        "src": "110:45:11",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -75,44 +75,47 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 3696,
+        "id": 2691,
         "linearizedBaseContracts": [
-          3696
+          2691
         ],
         "name": "ContextAdapter",
-        "nameLocation": "175:14:21",
+        "nameLocation": "175:14:11",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
             "functionSelector": "d0496d6a",
-            "id": 3683,
+            "id": 2678,
             "mutability": "mutable",
             "name": "context",
-            "nameLocation": "211:7:21",
+            "nameLocation": "211:7:11",
             "nodeType": "VariableDeclaration",
-            "scope": 3696,
-            "src": "196:22:21",
+            "scope": 2691,
+            "src": "196:22:11",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_Context_$3163",
+              "typeIdentifier": "t_contract$_Context_$2587",
               "typeString": "contract Context"
             },
             "typeName": {
-              "id": 3682,
+              "id": 2677,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 3681,
+                "id": 2676,
                 "name": "Context",
+                "nameLocations": [
+                  "196:7:11"
+                ],
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 3163,
-                "src": "196:7:21"
+                "referencedDeclaration": 2587,
+                "src": "196:7:11"
               },
-              "referencedDeclaration": 3163,
-              "src": "196:7:21",
+              "referencedDeclaration": 2587,
+              "src": "196:7:11",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Context_$3163",
+                "typeIdentifier": "t_contract$_Context_$2587",
                 "typeString": "contract Context"
               }
             },
@@ -120,26 +123,26 @@
           },
           {
             "body": {
-              "id": 3694,
+              "id": 2689,
               "nodeType": "Block",
-              "src": "279:51:21",
+              "src": "279:51:11",
               "statements": [
                 {
                   "expression": {
-                    "id": 3692,
+                    "id": 2687,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 3688,
+                      "id": 2683,
                       "name": "context",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3683,
-                      "src": "289:7:21",
+                      "referencedDeclaration": 2678,
+                      "src": "289:7:11",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Context_$3163",
+                        "typeIdentifier": "t_contract$_Context_$2587",
                         "typeString": "contract Context"
                       }
                     },
@@ -148,12 +151,12 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 3690,
+                          "id": 2685,
                           "name": "contextAddress",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3685,
-                          "src": "308:14:21",
+                          "referencedDeclaration": 2680,
+                          "src": "308:14:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -167,65 +170,66 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 3689,
+                        "id": 2684,
                         "name": "Context",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3163,
-                        "src": "300:7:21",
+                        "referencedDeclaration": 2587,
+                        "src": "300:7:11",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_Context_$3163_$",
+                          "typeIdentifier": "t_type$_t_contract$_Context_$2587_$",
                           "typeString": "type(contract Context)"
                         }
                       },
-                      "id": 3691,
+                      "id": 2686,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "kind": "typeConversion",
                       "lValueRequested": false,
+                      "nameLocations": [],
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "300:23:21",
+                      "src": "300:23:11",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Context_$3163",
+                        "typeIdentifier": "t_contract$_Context_$2587",
                         "typeString": "contract Context"
                       }
                     },
-                    "src": "289:34:21",
+                    "src": "289:34:11",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Context_$3163",
+                      "typeIdentifier": "t_contract$_Context_$2587",
                       "typeString": "contract Context"
                     }
                   },
-                  "id": 3693,
+                  "id": 2688,
                   "nodeType": "ExpressionStatement",
-                  "src": "289:34:21"
+                  "src": "289:34:11"
                 }
               ]
             },
             "functionSelector": "4b1492e5",
-            "id": 3695,
+            "id": 2690,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "connectContext",
-            "nameLocation": "233:14:21",
+            "nameLocation": "233:14:11",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3686,
+              "id": 2681,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3685,
+                  "id": 2680,
                   "mutability": "mutable",
                   "name": "contextAddress",
-                  "nameLocation": "256:14:21",
+                  "nameLocation": "256:14:11",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3695,
-                  "src": "248:22:21",
+                  "scope": 2690,
+                  "src": "248:22:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -233,10 +237,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3684,
+                    "id": 2679,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "248:7:21",
+                    "src": "248:7:11",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -246,27 +250,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "247:24:21"
+              "src": "247:24:11"
             },
             "returnParameters": {
-              "id": 3687,
+              "id": 2682,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "279:0:21"
+              "src": "279:0:11"
             },
-            "scope": 3696,
-            "src": "224:106:21",
+            "scope": 2691,
+            "src": "224:106:11",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 3697,
-        "src": "157:175:21",
+        "scope": 2692,
+        "src": "157:175:11",
         "usedErrors": []
       }
     ],
-    "src": "85:248:21"
+    "src": "85:248:11"
   },
   "bytecode": "",
   "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
@@ -276,7 +280,7 @@
       "enabled": true,
       "runs": 200
     },
-    "version": "0.8.13+commit.abaa5c0e"
+    "version": "0.8.16+commit.07a7930e"
   },
   "contractName": "ContextAdapter",
   "coverageMap": {

@@ -5,6 +5,8 @@ from commune.utils.misc import dict_put, get_object, dict_has
 from commune.process import BaseProcess
 from commune.contract.utils import setup_state
 from copy import deepcopy
+
+
 class ContractBaseModule(BaseProcess):
     abi = {}
     contract = None
@@ -96,14 +98,14 @@ class ContractBaseModule(BaseProcess):
 
 
     @staticmethod
-    def getNetwork(network = "mainnet-fork", launch_rpc=True):
+    def getNetwork(name = "mainnet-fork", launch_rpc=False):
 
         """
         connects to neetwork, project/factory , and a account 
         """
 
         if not network.is_connected():
-            network.connect(network=network, launch_rpc=launch_rpc)
+            network.connect(network=name, launch_rpc=launch_rpc)
 
 
         return network
@@ -125,10 +127,10 @@ class ContractBaseModule(BaseProcess):
 
 
     def getEnvironment(self):
-
-        self.cfg['network'] = self.cfg.get('network', dict(network = "mainnet-fork", launch_rpc=False))
+        self.cfg['network'] = self.cfg.get('network', dict(name = "mainnet-fork", launch_rpc=True))
         self.cfg['account'] = self.cfg.get('account', dict(key = 0, mode='index'))
         self.template_cfg = deepcopy(self.cfg)
+
 
         print(self.cfg['network'], 'BROOOO')
 
@@ -179,5 +181,6 @@ class ContractBaseModule(BaseProcess):
                     parsedOutputs[output_key] = parseStruct(outputs[i])
         
         return parsedOutputs
+
 
 

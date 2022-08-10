@@ -1,381 +1,450 @@
-pragma solidity ^0.8.7;
-import {TransferHelper} from '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
-import {ISushiswapFactory} from 'interfaces/dex/sushiswap/ISushiswapFactory.sol';
-import {ISushiswapRouter} from 'interfaces/dex/sushiswap/ISushiswapRouter.sol';
+// SPDX-License-Identifier: MIT
+// OpenZeppelin Contracts v4.4.1 (token/ERC721/ERC721.sol)
 
-import {DepositableIERC20} from "contracts/token/ERC20/DepositableIERC20.sol";
-import {IERC20} from "interfaces/token/ERC20/IERC20.sol";
-import "./token/DepositNFTAdapter.sol";
-import "contracts/model/base/ModelBase.sol";
-import "contracts/utils/Strings.sol";
-import { NFTOwnerState, NFTState, NFTContractState} from "./token/Structs.sol";
+pragma solidity ^0.8.0;
 
-import {PortfolioState, TokenState} from "./Structs.sol";
-
-// import "contracts/token/ERC20/IERC20.sol";
-
-
-
-contract CommuneTreasury is DepositNFTAdapter {
-  using Strings for string;
-  /* Kovan Addresses */
-
-  event updateStateEvent(PortfolioState state);
-  event SwapEvent( string[] tokenSymbolPath, uint256 amountIn);
-
-  event rebalanceEvent(string symbol, int256 valueChange, uint256 initialValue);
-
-  string public hubToken = 'WETH';
-
-  address payable public sushiswapRouterAddress = payable(0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F);
-  ISushiswapRouter router = ISushiswapRouter(sushiswapRouterAddress);
-
-  address public sushiswapFactoryAddress  = 0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F;
-  ISushiswapFactory factory = ISushiswapFactory(sushiswapFactoryAddress);
-
-  mapping(string=>TokenState) public tokenStates;
-
-  TokenState[] public tokenStatesArray;
-  string[] public tokenSymbols;
-  PortfolioState public state;
-  PortfolioState[] public stateHistory;
-  // map the block to the state of the portfolio
-
-  uint256 public percentBase = 10000;
-  
+import {IERC721Receiver} from "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
+// import {IERC721Metadata} from "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
+import "@openzeppelin/contracts/utils/Address.sol";
+import "@openzeppelin/contracts/utils/Context.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
+import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
+import {AccessControlAdapter} from "contracts/utils/access/AccessControlAdapter.sol";
+import {UserState,AssetState} from "contracts/treasury/Structs.sol";
+import {AssetToken} from "contracts/treasury/token/AssetToken.sol";
+/**
+ * @dev Implementation of https://eips.ethereum.org/EIPS/eip-721[ERC721] Non-Fungible Token Standard, including
+ * the Metadata extension, but not including the Enumerable extension, which is available separately as
+ * {ERC721Enumerable}.
+ */
 
 
-  constructor(
-              string memory _name, 
-              string memory _baseTokenSymbol,
-              string[] memory _tokenSymbols, address[] memory _tokenAddresses) ModelBase(_name){
-
-    this.setBaseToken(_baseTokenSymbol);
-    this.addTokens(_tokenSymbols, _tokenAddresses);
+contract CommuneTreasury is Context, ERC165, AccessControlAdapter {
+    using Address for address;
+    using Strings for uint256;
+    // Token name
+    // Token symbol
+    uint percentBase = 10000;
     
-  }
-  
-  function getStateHistory() view external returns (PortfolioState[] memory) {
-    PortfolioState[] memory stateHistoryOutput = new PortfolioState[](stateHistory.length);
-    for (uint i=0; i<stateHistory.length; i++ ) {
-      stateHistoryOutput[i]=stateHistory[i];
-    }
-    return stateHistoryOutput;
-  }
 
-
-  function setBaseToken(string memory _baseTokenSymbol) public {
-
-    // require(tokenStates[baseTokenSymbol].Address != address(0), 
-    //       'Base token isnt tracked fam, use addTokens to add the token');
-    state.baseTokenSymbol = _baseTokenSymbol;
-  }
-
-  function getTokens() public view returns(string[] memory) {
-    return tokenSymbols;
-  }
-
-
-
-  function addTokens(string[] memory _tokenSymbols, address[] memory _tokenAddresses) public {
+    // maps user address to assetId to asset ammount
     
-    for (uint i=0; i<_tokenSymbols.length; i++) {
-      
-      if (tokenStates[_tokenSymbols[i]].Address == address(0)) {
-        tokenStates[_tokenSymbols[i]].Address = _tokenAddresses[i];
-        tokenStates[_tokenSymbols[i]].symbol = _tokenSymbols[i];
-        tokenSymbols.push(_tokenSymbols[i]);
-        tokenStates[_tokenSymbols[i]].index = i;
+    // asset to user to balance
+    mapping(address=> mapping(address=>uint256)) public _balances;
+    mapping(address=> uint256) public asset2index;
+    
+    mapping(address=> address[]) public user2assets;
+    address[] public users;
+
+
+    AssetState[] public assetStates; 
+
+    mapping(address => mapping(address => uint256)) private _operatorAllowance;
+    mapping(address => mapping(address => bool)) private _operatorApprovals;
+    AssetState public treasuryAssetState;
+
+    /**
+     * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
+     */
+     AssetToken assetToken;
+
+
+
+
+    constructor(string memory _name, string memory _symbol) {
+
+        // treasuryAssetState.name = _name;
+        treasuryAssetState.asset = address(this);
+        assetToken = new AssetToken(address(this), 'treasury');
     }
-    }
 
-  }
-
-  function removeTokens(string[] memory _tokenSymbols) public {
-      for (uint i=0; i<_tokenSymbols.length; i++) {
-        uint tokenSymbolIndex = tokenStates[_tokenSymbols[i]].index;
-        delete tokenSymbols[tokenSymbolIndex];
-        delete tokenStates[_tokenSymbols[i]];
-
-      }
+    function assetExists(address asset) public view returns(bool) {
+        if (assetStates.length == 0) {
+            return false;
+        }
+        return (assetStates[asset2index[asset]].asset == asset);
     }
 
 
-  function rebalancePortfolio(string[] memory _tokenSymbols, uint256[] memory tokenRatios, bool swapBool) public {
-    updateState();
+    function removeAsset(address asset) internal {
 
-    string[] memory path = new string[](2);
-    string memory tokenSymbol;
-    int256 tokenRatioChange; 
-    int256 relTokenRatioChange;
-    for (uint i; i<_tokenSymbols.length; i++) {
-        tokenSymbol = _tokenSymbols[i];
+        // dummy value for oracle
+        uint256 assetIndex = asset2index[asset];
+        assetStates[assetIndex].valueOracle = address(0);
 
-        if (tokenSymbol.equals(state.baseTokenSymbol)) {
-          continue;
+        delete assetStates[assetIndex];
+        delete asset2index[asset];
+
+    }
+
+    function removeUserAsset(address user, address asset) internal {
+
+        // remove asset from user
+        for (uint i; i < user2assets[user].length; i++) {
+            if (user2assets[user][i] == asset) {
+                delete user2assets[user][i];
+            }
+            
+        }
         }
 
-        require(tokenStates[tokenSymbol].Address!=address(0), "The Symbol provided is not in the Portfolio Tokens");
 
-        tokenRatioChange = (int256(tokenRatios[i]) - int256(tokenStates[tokenSymbol].ratio));   
+    function userHasAsset(address user, address asset) internal returns(bool){
+        bool hasAsset = false;
+        for (uint i; i < user2assets[user].length; i++) {
+            if (user2assets[user][i] == asset) {
+                hasAsset=true;
+                break;
+            }
+            
+        }
+        return hasAsset;
+    }
 
-        uint256 tokenBalance = tokenStates[tokenSymbol].balance;
+    function addUserAsset(address user, address asset) internal {
 
+        // remove asset from user
 
-
-
-
-        if (tokenRatioChange<0) { 
-
-          path[0] = tokenSymbol;
-          path[1] = hubToken; 
-
-          relTokenRatioChange = (tokenRatioChange*int256(percentBase))/int256(tokenStates[tokenSymbol].ratio);
-          tokenStates[tokenSymbol].valueChange = (relTokenRatioChange*int256(tokenBalance))/int(percentBase);
-
-
-          swap(path, uint256(-tokenStates[tokenSymbol].valueChange));
-        } else {
-
-          tokenStates[tokenSymbol].valueChange = (tokenRatioChange*int256(state.marketValue))/int(percentBase);
-
-
+        bool hasAsset = false;
+        for (uint i; i < user2assets[user].length; i++) {
+            if (user2assets[user][i] == asset) {
+                hasAsset=true;
+                break;
+            }
+            
+        }
+        // if the user does not have the asset
+        if (!hasAsset) {
+            user2assets[user].push(asset);
+        }
         }
 
-        emit rebalanceEvent(tokenSymbol, tokenStates[tokenSymbol].valueChange, tokenBalance);
 
+    function getAssetOracleValue(address asset) internal returns (uint256) {
+        address oracle = assetStates[asset2index[asset]].valueOracle;
+
+        // get the oracle value per unit
+        return 2;
+    }
+
+    function updateAssets() internal {
+        for (uint i; i<assetStates.length; i++) {
+            uint256 value_per_unit = getAssetOracleValue(assetStates[i].asset);
+            assetStates[i].value = value_per_unit* assetStates[i].balance;
+            assetStates[i].lastUpdateBlock = block.number;
+            treasuryAssetState.value = treasuryAssetState.value + assetStates[i].value; 
+        }
         
-    } 
-
-    for (uint i; i<_tokenSymbols.length; i++) {
-      tokenSymbol = _tokenSymbols[i];
-      if (tokenSymbol.equals(state.baseTokenSymbol)) {
-                continue;
-              }
-      if  (tokenStates[tokenSymbol].valueChange>0) {  
-
-        path[0] = "WETH";
-        path[1] =  tokenSymbol; 
-        swap(path,  uint(tokenStates[tokenSymbol].valueChange));
-      }
     }
-    updateState();
-  }
 
-  function updateState() public {
+    function addAsset(address asset, uint256 balance, string memory name, string memory mode, bool liquid ) public {
+        AssetState memory _assetState;
+        _assetState.asset = asset;
+        _assetState.name = name;
+        _assetState.balance = balance; 
+        _assetState.mode = mode; 
+        _assetState.liquid = liquid; 
 
-    state.marketValue = 0;
-    state.blockNumber = block.number;
+        assetStates.push(_assetState);
+    }
 
-    for (uint i; i<tokenSymbols.length; i++) {
-      string storage tokenSymbol = tokenSymbols[i];
-      uint256 tokenBalance = getTokenBalance(tokenSymbol);
 
-      address[] memory path = new address[](2);
-      path[0]= tokenStates[tokenSymbol].Address;
-      path[1]=  tokenStates[state.baseTokenSymbol].Address;
-      tokenStates[tokenSymbol].balance = tokenBalance;
-      if (tokenBalance> 0 ) {
-        if (path[0] != path[1]) {
-          tokenStates[tokenSymbol].value =router.getAmountsOut(tokenBalance, path)[1];
-        } else {
-          tokenStates[tokenSymbol].value = tokenBalance;
+
+    function deposit(address asset, uint256 balance, string memory name, string memory mode, bool liquid  ) public {
+        if (!assetExists(asset)) {
+            addAsset(asset, balance, name, mode, liquid);
+        }
+        address account = _msgSender();
+        uint256 assetIndex = asset2index[asset];
+        _balances[asset][account] += balance;
+        addUserAsset(account, asset);
+        updateAssets();
+    }
+
+
+
+    function withdraw(address asset, uint256 balance) public {
+        uint256 assetIndex = asset2index[asset];
+        AssetState storage assetState = assetStates[assetIndex];
+        balance = max(assetState.balance, balance);
+        assetState.balance = assetState.balance - balance;
+
+        // if the state has 0 balance, delete the asset
+        if ( assetState.balance == 0) {
+            removeUserAsset(_msgSender(), asset);
+        }
+    }
+
+
+    function _safeTransferFrom(
+        address from,
+        address to,
+        address asset,
+        uint256 amount,
+        bytes memory data
+    ) internal virtual {
+        require(to != address(0), "ERC1155: transfer to the zero address");
+
+        address operator = _msgSender();
+
+        address[] memory asset_array = new address[](1);
+        asset_array[0] = asset;
+
+        uint256[] memory amount_array = new uint256[](1);
+        amount_array[0] = amount;
+
+        _beforeTokenTransfer(operator, from, to, asset_array, amount_array, data);
+
+        uint256 fromBalance = _balances[asset][from];
+        require(fromBalance >= amount, "ERC1155: insufficient balance for transfer");
+        unchecked {
+            _balances[asset][from] = fromBalance - amount;
+        }
+        _balances[asset][to] += amount;
+
+        // emit TransferSingle(operator, from, to, asset, amount);
+
+        // _doSafeTransferAcceptanceCheck(operator, from, to, asset, amount, data);
+    }
+
+
+    /**
+     * @dev See {IERC1155-safeBatchTransferFrom}.
+     */
+    function safeBatchTransferFrom(
+        address from,
+        address to,
+        address[] memory assets,
+        uint256[] memory amounts,
+        bytes memory data
+    ) public virtual {
+        require(
+            from == _msgSender() || isApprovedForAll(from, _msgSender()),
+            "ERC1155: transfer caller is not owner nor approved"
+        );
+        _safeBatchTransferFrom(from, to, assets, amounts, data);
+    }
+
+    function _safeBatchTransferFrom(
+        address from,
+        address to,
+        address[] memory assets,
+        uint256[] memory amounts,
+        bytes memory data
+    ) internal virtual {
+        require(assets.length == amounts.length, "ERC1155: assets and amounts length mismatch");
+        require(to != address(0), "ERC1155: transfer to the zero address");
+
+        address operator = _msgSender();
+
+        _beforeTokenTransfer(operator, from, to, assets, amounts, data);
+
+        for (uint256 i = 0; i < assets.length; ++i) {
+            address asset = assets[i];
+            uint256 amount = amounts[i];
+
+            uint256 fromBalance = _balances[asset][from];
+            require(fromBalance >= amount, "ERC1155: insufficient balance for transfer");
+            unchecked {
+                _balances[asset][from] = fromBalance - amount;
+            }
+            _balances[asset][to] += amount;
         }
 
-        state.marketValue += tokenStates[tokenSymbol].value;
-      }
-    }
-
-    for (uint i; i<tokenSymbols.length; i++) {
-      tokenStates[tokenSymbols[i]].ratio = (tokenStates[tokenSymbols[i]].value*percentBase)/(state.marketValue+1);
-      
-      if (i>=tokenStatesArray.length){
-        tokenStatesArray.push(tokenStates[tokenSymbols[i]]);
-      } else {
-        tokenStatesArray[i] = tokenStates[tokenSymbols[i]];
-      }
-    }
-
-    stateHistory.push(state);
-    
-    emit updateStateEvent(state);
-
-  }
-
-  
-  function getTokenBalance(string memory tokenSymbol) public view returns(uint256 balance) {
-    IERC20 token = IERC20(tokenStates[tokenSymbol].Address);
-    return token.balanceOf(address(this));
-  }
-
-  function swapRatio(string[] memory tokenSymbolPath, uint256 amountInRatio, bool swapBool) public {
-
-    // convert ratio (1000 == 100%) to value of token balance
-     emit SwapEvent(tokenSymbolPath, amountInRatio);
-    
-    if (swapBool) {
-     uint256 amountIn = (getTokenBalance(tokenSymbolPath[0])*amountInRatio)/percentBase;
-
-    emit SwapEvent(tokenSymbolPath, amountIn);
-
-    swap(tokenSymbolPath, amountIn);  
-    }
-      }
-  function swap(string[] memory tokenSymbolPath, 
-                 uint amountIn) public  {
-
-    // address[] memory tokenAddressPath = address()[]
-
-    address[] memory tokenAddressPath = new address[](tokenSymbolPath.length);
-    for (uint i; i<tokenAddressPath.length; i++) {
-      tokenAddressPath[i]= tokenStates[tokenSymbolPath[i]].Address;
-      require(tokenAddressPath[i] != address(0),
-         "you passed a null tokenSymbol that doesnt map to the list of addresses");
-    }
-    
-    emit SwapEvent(tokenSymbolPath, amountIn);
-
-    TransferHelper.safeApprove(tokenAddressPath[0], address(router), amountIn);
-
-    uint deadline = block.timestamp + 10000;
-
-    router.swapExactTokensForTokens(amountIn, 0, tokenAddressPath, address(this),deadline);
-    }
-
-  function wrapETH() public payable{
-    uint ethBalance = address(this).balance;
-    require(ethBalance > 0, "No ETH available to wrap");
-    DepositableIERC20(tokenStates["WETH"].Address).deposit{ value: ethBalance }();
-  }
-
-  function getUserTokenStates(address owner) public view returns (NFTState[] memory){
-      
-      NFTState[] memory nftStates = depositNFT.getAllOwnerTokenStates(owner);
-
-      for (uint i=0; i<nftStates.length; i++) {
-      /* 
-      - we want to know how much deposit was done since the token minted
-      - this shows how much the market value has changed from when the token was invested
-      */ 
-      
-      uint256 depositValueChange = state.depositValue - nftStates[i].portfolio.depositValue;
-
-      require(depositValueChange>=0, " total deposit value should be greater than token deposit value ");
-      // see what the market change was (while removing the future deposits form other users)
-      
-      uint256 marketValueChangeRatio = ((state.marketValue - depositValueChange)*percentBase)/nftStates[i].portfolio.marketValue;
-
-      nftStates[i].marketValue = (marketValueChangeRatio * nftStates[i].depositValue)/percentBase;
+        // emit TransferBatch(operator, from, to, assets, amounts);
 
     }
 
-  return nftStates;
-  }
-
-  function getUserMarketValue() public view returns ( uint256 ) {
-    // get the owner state
-
-    // get the token states that were initially deposited by the owner
-    NFTState[] memory nftStates = depositNFT.getAllOwnerTokenStates(msg.sender);
-
-    uint256 userMarketValue = 0;
-    for (uint i=0; i<nftStates.length; i++) {
-      userMarketValue += nftStates[i].marketValue;
-    }
-    return userMarketValue;
-
-  }
-
-  function getUserDepositValue() public view returns ( uint256 ) {
-    // get the owner state
-
-    // get the token states that were initially deposited by the owner
-    NFTState[] memory nftStates = depositNFT.getAllOwnerTokenStates(msg.sender);
 
 
-    uint256 userDepositValue = 0;
-    for (uint i=0; i<nftStates.length; i++) {
-      userDepositValue += nftStates[i].depositValue;
-    }
-    return userDepositValue;
+    /**
+     * @dev See {IERC165-supportsInterface}.
+     */
 
-  }
 
-  event WithdrawToken(address to, string tokenSymbol, uint256 balance, uint256 tokenBalance);
-
-  function withdraw(uint256 withdrawRatio) public {
-
-    if (withdrawRatio > percentBase) {
-      withdrawRatio=percentBase;
+    function getUserValue(address user) public view returns (uint256) {
+        // calculate the total user value across assets
+        address[] memory assets = user2assets[user];
+        address[] memory _user_array  = new address[](assets.length);
+        for (uint i; i<assets.length; i++) {
+            _user_array[i] = user;
+        }
+        return sumArray(valueOfBatch(_user_array, assets));
     }
 
-    updateState();
-
-    // get the owner state
-    NFTOwnerState memory nftOwnerState = depositNFT.getOwnerState(msg.sender);
-
-    // get the token states that were initially deposited by the owner
-    NFTState[] memory nftStates = getUserTokenStates(msg.sender);
+    // function getUser(address user) public override view returns(UserState memory){
+    //     UserState memory _userState=_userStates[user];
+    //     return _userState;
+    // }
 
 
-    
-    for (uint i=0; i<nftStates.length; i++){
+    function getAssetStates() public view returns(AssetState[] memory){
+        // get the asset state
+        AssetState[] memory _assets = assetStates;
+        return _assets;
+    }
 
-      // calculate the entitled ratio of the 
-      nftStates[i].marketValue = (nftStates[i].marketValue*withdrawRatio)/percentBase;
-      uint256 entitledTreasuryRatio =((nftStates[i].marketValue*percentBase)/state.marketValue);
+    function filterAssetsByMode(address[] memory assets,  string memory mode) public view returns(address[] memory){
+        // filters assets by mode
 
-
-    for (uint j=0; j<tokenSymbols.length; j++ ) {
-      // calculate market value ratio of the depositNFT with portfolio value
-      uint256 tokenBalance = tokenStates[tokenSymbols[j]].balance;
-
-      emit WithdrawToken(msg.sender, tokenSymbols[j],entitledTreasuryRatio , tokenBalance);
-
-      if (tokenBalance>0) {
-
-        uint256 tokenValue = tokenStates[tokenSymbols[j]].value;
-        // get amount of token balance to withdrawal
-        uint256 tokenWithdrawAmount = (tokenBalance*entitledTreasuryRatio)/percentBase;
-        uint256 tokenWithdrawValue = (tokenValue*entitledTreasuryRatio)/percentBase;
+        uint asset_count = 0 ;
+        for (uint i; i<assets.length; i++) {
+            uint assetIndex = asset2index[assets[i]];
+            if (keccak256(abi.encodePacked((assetStates[assetIndex].mode))) == keccak256(abi.encodePacked((mode)))){
+                asset_count++;
+            }
+        }
+        address[] memory filtered_assets =  new address[](asset_count);
         
-        // transfer amount of tokenStates to msg.sender
-        IERC20(tokenStates[tokenSymbols[j]].Address).transfer(msg.sender, tokenWithdrawAmount);
-        nftStates[i].depositValue = (((percentBase - withdrawRatio)*nftStates[i].depositValue)/percentBase);
-        nftStates[i].marketValue = (((percentBase - withdrawRatio)*nftStates[i].marketValue)/percentBase);
-
-
+        for (uint i; i<asset_count; i++) {
+            filtered_assets[i] = assets[i];
         }
-  }
-  if (nftStates[i].depositValue==0){
-    depositNFT.burn(nftOwnerState.tokenIds[i]);
-  }
-  else if (nftStates[i].depositValue>0){
-        nftStates[i].lastUpdateBlock = block.number;
-        depositNFT.updateTokenState(nftOwnerState.tokenIds[i], nftStates[i]);
-  }
+
+        return filtered_assets;
+    }
+
+    function balance2value(address asset , uint256 balance ) public view returns(uint256) {
+        /**
+        this converts the balance of each asse to the market
+        **/
+        //
+
+        uint256 assetId = asset2index[asset];
+        AssetState storage assetState = assetStates[assetId];
+        uint256 balance2market_ratio = (assetState.balance*percentBase)/assetState.value;
+        uint256 balance_market_value = (balance*balance2market_ratio)/percentBase;
+        return balance_market_value;
+    }
+
+
+    function balanceOfBatch(address[] memory accounts, address[] memory assets)
+        public
+        view
+        virtual
+        returns (uint256[] memory)
+    {
+        require(accounts.length == assets.length, "ERC1155: accounts and assets length mismatch");
+
+        uint256[] memory batchBalances = new uint256[](accounts.length);
+
+        for (uint256 i = 0; i < accounts.length; ++i) {
+            batchBalances[i] = balanceOf(accounts[i], assets[i]);
+        }
+
+        return batchBalances;
+    }
+    
+    function valueOfBatch(address[] memory accounts, address[] memory assets)
+        public
+        view
+        virtual
+        
+        returns (uint256[] memory)
+    {
+        require(accounts.length == assets.length, "ERC1155: accounts and assets length mismatch");
+
+        uint256[] memory batchValues = new uint256[](accounts.length);
+
+        for (uint256 i = 0; i < accounts.length; ++i) {
+            batchValues[i] = balance2value(assets[i],balanceOf(accounts[i], assets[i]));
+            
+        }
+
+        return batchValues;
+    }
+
+    function balanceOf(address account, address asset) public view virtual returns (uint256) {
+        require(account != address(0), "ERC1155: balance query for the zero address");
+        return _balances[asset][account];
+    }
+
+    function valueOf(address account, address asset) public view virtual returns (uint256) {
+        require(account != address(0), "ERC1155: balance query for the zero address");
+        return balance2value(asset, _balances[asset][account] );
+    }
+
+
+
+    function setApprovalForAll(address operator, bool approved) public virtual {
+        _setApprovalForAll(_msgSender(), operator, approved);
+    }
+    function _setApprovalForAll(
+        address user,
+        address operator,
+        bool approved
+    ) internal virtual {
+        require(user != operator, "ERC721: approve to caller");
+        _operatorApprovals[user][operator] = approved;
+        // emit ApprovalForAll(user, operator, approved);
+    }
+
+     /**
+     * @dev See {IERC1155-isApprovedForAll}.
+     */
+    function isApprovedForAll(address account, address operator) public view virtual returns (bool) {
+        return _operatorApprovals[account][operator];
+    }
+
+
+    function _beforeTokenTransfer(
+        address operator,
+        address from,
+        address to,
+        address[] memory assets,
+        uint256[] memory amounts,
+        bytes memory data
+    ) internal virtual {}
+
+    function sumArray(uint256[] memory array) public view returns(uint256){
+        uint256 total_sum = 0;
+
+        for (uint i; i< array.length ; i++) {
+            total_sum = total_sum + array[i];
+        }
+        return total_sum;
+    }
+
+    function max(uint256 a, uint256 b) internal pure returns (uint256) {
+        return a >= b ? a : b;
+    }
+
 }
 
-  }
-
-  function deposit() public payable {
-
-        require(msg.value>0, "msg.value is 0 fam");
-        wrapETH();
-        updateState();
 
 
-        state.depositValue = state.depositValue + msg.value;
-        NFTState memory nftState;
 
-        // when minting, the deposit value and current value are the same
-        nftState.depositValue = msg.value;
-        nftState.marketValue = nftState.depositValue;
+    /**
+     * @dev Returns whether `spender` is allowed to manage `assetId`.
+     *
+     * Requirements:
+     *
+     * - `assetId` must exist.
+     */
 
-        // use block to track the last timestamp
-        nftState.lastUpdateBlock = block.number;
-        nftState.portfolio = state;
-        depositNFT.mint(msg.sender, nftState);
-    }
 
-}
+    // function addAllowance(address spender, uint256 asset, uint256 value) public  returns (bool) {
+    //     _addAllowance(_msgSender(), spender, asset, value)
+    // }
+    // function _addAllowance(address user, address spender, uint256 asset, uint256 value) internal {
+    //     _operatorAllowance[user][spender][asset] = _operatorAllowance[user][spender][asset] + value;
+    // }
+
+
+    // function removeAllowance(address spender, uint256 asset, uint256 value) public  returns (bool) {
+    //     _removeAllowance(_msgSender(), spender, asset, value);
+    // }
+
+    // function _removeAllowance(address user, address spender, uint256 asset, uint256 value) internal view virtual returns (bool) {
+        
+    //     uint256 current_allowance = _operatorAllowance[user][spender][asset];
+    //     if (value >= current_allowance) {
+    //          _operatorAllowance[user][spender][asset] = 0;
+    //     } else {
+    //         _operatorAllowance[user][spender][asset] = _operatorAllowance[user][spender][asset] - value;
+    //     }
+    // }
+
+
+    // function getAllowance(address user, address spender, uint256 asset) internal view virtual returns (bool) {
+    //     return _operatorAllowance[user][spender][asset];
+    // }

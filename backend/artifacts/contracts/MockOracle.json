@@ -1,0 +1,305 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name_",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "symbol_",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "allSourcePaths": {
+    "6": "contracts/oracle/mockOracle.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/oracle/mockOracle.sol",
+    "exportedSymbols": {
+      "AccessControlAdapter": [
+        1313
+      ],
+      "Context": [
+        1344
+      ],
+      "ContextAdapter": [
+        2037
+      ],
+      "IAccessControl": [
+        2107
+      ],
+      "IAccessControlAdapter": [
+        2126
+      ],
+      "IERC20": [
+        1429
+      ],
+      "MockOracle": [
+        13
+      ]
+    },
+    "id": 14,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "90:23:6"
+      },
+      {
+        "absolutePath": "interfaces/token/ERC20/IERC20.sol",
+        "file": "interfaces/token/ERC20/IERC20.sol",
+        "id": 2,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 14,
+        "sourceUnit": 1430,
+        "src": "115:43:6",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "contracts/utils/context/Context.sol",
+        "file": "contracts/utils/context/Context.sol",
+        "id": 3,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 14,
+        "sourceUnit": 1345,
+        "src": "159:45:6",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "contracts/utils/access/AccessControlAdapter.sol",
+        "file": "contracts/utils/access/AccessControlAdapter.sol",
+        "id": 4,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 14,
+        "sourceUnit": 1314,
+        "src": "205:57:6",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "MockOracle",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 13,
+        "linearizedBaseContracts": [
+          13
+        ],
+        "name": "MockOracle",
+        "nameLocation": "274:10:6",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 11,
+              "nodeType": "Block",
+              "src": "350:16:6",
+              "statements": []
+            },
+            "id": 12,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 9,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6,
+                  "mutability": "mutable",
+                  "name": "name_",
+                  "nameLocation": "320:5:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12,
+                  "src": "306:19:6",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 5,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "306:6:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 8,
+                  "mutability": "mutable",
+                  "name": "symbol_",
+                  "nameLocation": "341:7:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12,
+                  "src": "327:21:6",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 7,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "327:6:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "305:44:6"
+            },
+            "returnParameters": {
+              "id": 10,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "350:0:6"
+            },
+            "scope": 13,
+            "src": "294:72:6",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 14,
+        "src": "265:103:6",
+        "usedErrors": []
+      }
+    ],
+    "src": "90:278:6"
+  },
+  "bytecode": "608060405234801561001057600080fd5b506040516101a13803806101a183398101604081905261002f916100f1565b5050610154565b634e487b7160e01b600052604160045260246000fd5b600082601f83011261005d57600080fd5b81516001600160401b038082111561007757610077610036565b604051601f8301601f19908116603f0116810190828211818310171561009f5761009f610036565b816040528381526020925086838588010111156100bb57600080fd5b600091505b838210156100dd57858201830151818301840152908201906100c0565b600093810190920192909252949350505050565b6000806040838503121561010457600080fd5b82516001600160401b038082111561011b57600080fd5b6101278683870161004c565b9350602085015191508082111561013d57600080fd5b5061014a8582860161004c565b9150509250929050565b603f806101626000396000f3fe6080604052600080fdfea2646970667358221220bef22bfcff97a3f942cf314e2f8e03ca45b04dfb9506595de6622798e5b6a4fc64736f6c63430008100033",
+  "bytecodeSha1": "2fd3400b8daeafbb405b344c84df7a247deb4554",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.16+commit.07a7930e"
+  },
+  "contractName": "MockOracle",
+  "coverageMap": {
+    "branches": {
+      "6": {}
+    },
+    "statements": {
+      "6": {}
+    }
+  },
+  "dependencies": [],
+  "deployedBytecode": "6080604052600080fdfea2646970667358221220bef22bfcff97a3f942cf314e2f8e03ca45b04dfb9506595de6622798e5b6a4fc64736f6c63430008100033",
+  "deployedSourceMap": "265:103:6:-:0;;;;;",
+  "language": "Solidity",
+  "natspec": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "offset": [
+    265,
+    368
+  ],
+  "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xBE CALLCODE 0x2B 0xFC SELFDESTRUCT SWAP8 LOG3 0xF9 TIMESTAMP 0xCF BALANCE 0x4E 0x2F DUP15 SUB 0xCA GASLIMIT 0xB0 0x4D 0xFB SWAP6 MOD MSIZE 0x5D 0xE6 PUSH3 0x2798E5 0xB6 LOG4 0xFC PUSH5 0x736F6C6343 STOP ADDMOD LT STOP CALLER ",
+  "pcMap": {
+    "0": {
+      "offset": [
+        265,
+        368
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x80"
+    },
+    "2": {
+      "fn": null,
+      "offset": [
+        265,
+        368
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x40"
+    },
+    "4": {
+      "fn": null,
+      "offset": [
+        265,
+        368
+      ],
+      "op": "MSTORE",
+      "path": "6"
+    },
+    "5": {
+      "fn": null,
+      "offset": [
+        265,
+        368
+      ],
+      "op": "PUSH1",
+      "path": "6",
+      "value": "0x0"
+    },
+    "7": {
+      "fn": null,
+      "offset": [
+        265,
+        368
+      ],
+      "op": "DUP1",
+      "path": "6"
+    },
+    "8": {
+      "fn": null,
+      "offset": [
+        265,
+        368
+      ],
+      "op": "REVERT",
+      "path": "6"
+    }
+  },
+  "sha1": "aa74b069f0cbd9d9137fbc1a217ca852d06d209c",
+  "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts v4.4.1 (token/ERC20/ERC20.sol)\n\npragma solidity ^0.8.0;\n\nimport \"interfaces/token/ERC20/IERC20.sol\";\nimport \"contracts/utils/context/Context.sol\";\nimport \"contracts/utils/access/AccessControlAdapter.sol\";\n\n\ncontract MockOracle  {\n \n    constructor(string memory name_, string memory symbol_) {\n        \n    }\n}",
+  "sourceMap": "265:103:6:-:0;;;294:72;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;265:103;;14:127:15;75:10;70:3;66:20;63:1;56:31;106:4;103:1;96:15;130:4;127:1;120:15;146:840;200:5;253:3;246:4;238:6;234:17;230:27;220:55;;271:1;268;261:12;220:55;294:13;;-1:-1:-1;;;;;356:10:15;;;353:36;;;369:18;;:::i;:::-;444:2;438:9;412:2;498:13;;-1:-1:-1;;494:22:15;;;518:2;490:31;486:40;474:53;;;542:18;;;562:22;;;539:46;536:72;;;588:18;;:::i;:::-;628:10;624:2;617:22;663:2;655:6;648:18;685:4;675:14;;730:3;725:2;720;712:6;708:15;704:24;701:33;698:53;;;747:1;744;737:12;698:53;769:1;760:10;;779:133;793:2;790:1;787:9;779:133;;;881:14;;;877:23;;871:30;850:14;;;846:23;;839:63;804:10;;;;779:133;;;954:1;932:15;;;928:24;;;921:35;;;;936:6;146:840;-1:-1:-1;;;;146:840:15:o;991:562::-;1090:6;1098;1151:2;1139:9;1130:7;1126:23;1122:32;1119:52;;;1167:1;1164;1157:12;1119:52;1194:16;;-1:-1:-1;;;;;1259:14:15;;;1256:34;;;1286:1;1283;1276:12;1256:34;1309:61;1362:7;1353:6;1342:9;1338:22;1309:61;:::i;:::-;1299:71;;1416:2;1405:9;1401:18;1395:25;1379:41;;1445:2;1435:8;1432:16;1429:36;;;1461:1;1458;1451:12;1429:36;;1484:63;1539:7;1528:8;1517:9;1513:24;1484:63;:::i;:::-;1474:73;;;991:562;;;;;:::o;:::-;265:103:6;;;;;;",
+  "sourcePath": "contracts/oracle/mockOracle.sol",
+  "type": "contract"
+}

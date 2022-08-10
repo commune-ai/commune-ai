@@ -5,19 +5,20 @@ pragma solidity ^0.8.0;
 
 struct UserState {
     address user;
-    uint256[] assets;
-    uint256[] balances;
+    address[] assets;
     uint256 lastUpdateBlock;
 }
 
+
 struct AssetState {
+    address asset;
     string name;
+    string mode;
     uint256 balance;
     uint256 value;
-    address asset;
-    bytes valueOracle;
-    // options ERC20, ERC721, 
-    string type;
+    address valueOracle;
+    bool liquid;
+    uint256 lastUpdateBlock;
     bytes metaData;
 }
 

@@ -1,11 +1,19 @@
 module: contract.model.portfolio.token.depositNFT.module.ContractModule
 
-name: 'TOKEN'
-symbol: 'TKN'
+name: 'Commune'
+symbol: 'C1'
+simulate: true
+
+network:
+  name : development
+  launch_rpc: False
 
 contract: 
-  name: "DepositNFT"
+  name: "CommuneTreasury"
   address: null
+  args: [
+    local_copy(name), local_copy(symbol)
+  ]
 
 
 sub_module: {}
