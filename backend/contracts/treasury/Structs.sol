@@ -11,14 +11,14 @@ struct UserState {
 
 
 struct AssetState {
-    address asset;
-    string name;
-    string mode;
-    uint256 balance;
-    uint256 value;
-    address valueOracle;
-    bool liquid;
-    uint256 lastUpdateBlock;
-    bytes metaData;
+    address asset; // address of the asset
+    string name; // name of the asset
+    string mode; //what is the mode of the asset [ERC20,ERC721,Treasury]
+    uint256 balance; // balance 
+    uint256 value; // what is the value 
+    address valueOracle; // what is the current price
+    bool liquid; // is the asset liquid
+    uint256 lastUpdateBlock; // when was the value updated
+    bytes metaData; // additional metadata
 }
 

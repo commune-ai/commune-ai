@@ -36,6 +36,8 @@ restart:
 graphql_api: 
 	uvicorn commune.api.graphql.main:app --reload --port 8000 --host 0.0.0.0 --app-dir=/app
 
+bittensor:
+	streamlit run commune/bittensor/module.py
 
 pip_freeze:
 	pip freeze > requirements.txt

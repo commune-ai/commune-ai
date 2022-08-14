@@ -80,13 +80,7 @@ services:
     working_dir: ${MODEL_WDIR}
     env_file: 
       - .env
-    # deploy:
-    #   resources:
-    #      reservations:
-    #        devices:
-    #        - driver: nvidia
-    #          count: 'all'
-    #          capabilities: [gpu]
+
     command: bash -c "./scripts/startup.sh; tail -F anything"
     # links:
     #   - s3

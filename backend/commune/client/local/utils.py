@@ -11,10 +11,14 @@ def str_is_dict(input_str):
         print('ERROR: Not a dict buddy')
         raise e
 
-def ensure_dir_path(dir_path):
+def ensure_path(path):
     """
     ensures a dir_path exists, otherwise, it will create it 
     """
+    if os.path.isfile(path):
+        dir_path = os.path.dirname(path)
+    elif os.path.isdir(path):
+        dir_path = path
     if not os.path.isdir(dir_path):
         os.makedirs(dir_path)
 

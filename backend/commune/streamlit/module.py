@@ -237,7 +237,6 @@ class StreamlitPlotModule:
 
 
 if __name__ == '__main__':
-    st.set_page_config(layout="wide")
     from sklearn.datasets import load_iris
     import pandas as pd
     st_plt = StreamlitPlotModule()

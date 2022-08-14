@@ -16,7 +16,7 @@ from commune.contract.address import token_address_map
 import datetime
 import streamlit as st
 
-st.set_page_config(layout="wide")
+# st.set_page_config(layout="wide")
 
 class ContractModule(ContractBaseModule):
     default_cfg_path = f"contract.treasury.module"
@@ -68,7 +68,7 @@ class ContractModule(ContractBaseModule):
             mode = st.selectbox('Select a Mode', ['ERC20', 'ERC721', 'TRSRY'], 0)
             balance = st.number_input('Select a Balance', 0)
             if st.form_submit_button("Submit"):
-                self.deposit(token, mode, balance)
+                self.withdraw(token, mode, balance)
     def getAssets(self):
 
         asset_struct_fields = list(self.contract.assetStates(0).dict().keys())

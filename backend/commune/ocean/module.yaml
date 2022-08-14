@@ -1,4 +1,4 @@
-module: 'bittensor.BitModule'
+module: 'ocean.OceanModule'
 # clients
 client: get_cfg(client.manager)
 

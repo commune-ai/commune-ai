@@ -46,7 +46,7 @@ class BitModule(BaseProcess):
         # self.sync_network(network=network, block=block)
         self._network = cfg.get('network')
         self._block = cfg.get('block')
-        self.sync()
+        st.write(self._network, self._block)
         self.plot = StreamlitPlotModule()
 
 
@@ -55,6 +55,7 @@ class BitModule(BaseProcess):
     def block(self):
         if self._block is None:
             return self.current_block
+        
         return self._block
 
     @block.setter
@@ -75,6 +76,7 @@ class BitModule(BaseProcess):
 
     @block.setter
     def block(self, block):
+
         self._block = block
 
     @property
@@ -83,10 +85,15 @@ class BitModule(BaseProcess):
 
     @network.setter
     def network(self, network):
-        assert network in self._NETWORKS
-        if network != self.network:
-            self.sync()
+        assert network in self.networks
+
+        if self._network == None:
             self._network = network
+        elif network != self.network:
+            self._network = network
+
+        else:
+            raise NotImplemented
             
 
     @property
@@ -98,6 +105,7 @@ class BitModule(BaseProcess):
         return self.subtensor.max_n
 
     def sync(self, force_sync=False):
+        st.write(self._network)
         self.force_sync = force_sync
         # Fetch data from URL here, and then clean it up.
         self.get_subtensor()
@@ -264,10 +272,14 @@ class BitModule(BaseProcess):
             network2idx = {n:n_idx for n_idx, n in  enumerate(self.networks)}
             default_idx = network2idx['nakamoto']
             network = st.selectbox('Select Network', self.networks,default_idx)
-            block = st.number_input('Select Block', 0,self.current_block, self.block)
+            block = st.number_input('Select Block', 0,self.current_block, self.current_block)
             submitted = st.form_submit_button("Sync")
 
-
+            if submitted:
+                self.block = block
+                self.network = network
+                self.sync()
+                
         # ''')
 
     def st_metrics(self):
@@ -287,7 +299,6 @@ class BitModule(BaseProcess):
             metric_show = 'Total '+ metric[0].upper() + metric[1:].lower()
             # st_fn = 
             metric_value = self.agg_param(metric)
-            st.write()
             fn_args_list.append([metric_show, metric_value])
             fn_list.append(lambda name, value: st.metric(name, value ))
 
@@ -379,7 +390,7 @@ class BitModule(BaseProcess):
 
     def st_relationmap(self):
         with st.expander('Relation Map'):
-            metric = st.selectbox('Select a ', ['weights', 'bonds'], 0)
+            metric = st.selectbox('Select a Matric', ['weights', 'bonds'], 0)
             z = self.graph_state[metric].tolist()
             fig = self.plot.imshow(z, text_auto=True, title=f'Relation Map of {metric.upper()}')
             fig.update_layout(autosize=True, width=1000, height=1000)
@@ -411,7 +422,6 @@ class BitModule(BaseProcess):
 
     def st_run(self):
         
-        st.set_page_config(layout="wide")
         self.st_sidebar()
         self.st_main()
 
@@ -444,6 +454,8 @@ class BitModule(BaseProcess):
                 self.set_graph_state()
 
 if __name__ == '__main__':
+
+    st.set_page_config(layout="wide")
     
 
     BitModule.deploy(actor=False).st_run()
