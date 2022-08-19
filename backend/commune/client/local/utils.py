@@ -35,7 +35,7 @@ def load_json(path, handle_error = True):
 
 def write_json(path, data):
         # Directly from dictionary
-    ensure_dir_path(os.path.dirname(path))
+    ensure_path(os.path.dirname(path))
     if isinstance(data, dict):
         with open(path, 'w') as outfile:
             json.dump(data, outfile)

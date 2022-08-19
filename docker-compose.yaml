@@ -58,7 +58,6 @@ services:
       server /data
     volumes:
       - ./dbdata/s3:/data
-
   backend:
     build:
       context: ./backend
@@ -80,14 +79,14 @@ services:
     working_dir: ${MODEL_WDIR}
     env_file: 
       - .env
-
+    # deploy:
+    #   resources:
+    #      reservations:
+    #        devices:
+    #        - driver: nvidia
+    #          count: 'all'
+    #          capabilities: [gpu]
     command: bash -c "./scripts/startup.sh; tail -F anything"
-    # links:
-    #   - s3
-    #   - postgres
-    #   - mlflow
-    #   - mongo
-    #   - frontend
   ganache:
     container_name: ganache
     ports: 
@@ -98,7 +97,6 @@ services:
     env_file: 
       - .env
     command: bash -c "./scripts/setup.sh"
-  
   frontend:
     container_name: frontend
     build:
@@ -113,8 +111,6 @@ services:
     ports:
       - 3000:3000
     command: "npm start"
-
-
   subtensor:
     container_name: subtensor
     image: opentensorfdn/subtensor:latest
