@@ -1,5 +1,5 @@
 # Use nvidia/cuda image
-FROM nvidia/cuda:11.2.1-base
+FROM nvidia/cuda:11.2.1-ubuntu22.04
 
 
 ENV PYTHONUNBUFFERED 1

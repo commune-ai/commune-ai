@@ -8,7 +8,9 @@ from commune.process.base import BaseProcess
 from inspect import getfile
 import socket
 from commune.utils.misc import SimpleNamespace
+
 class GradioModule(BaseProcess):
+    gradio=True
     default_cfg_path =  'gradio.module'
 
 
@@ -280,8 +282,8 @@ if __name__== '__main__':
     import ray
 
     ray.shutdown()
-    with ray.init(address='auto', namespace='commune'):
-        test_instance = TestModule.deploy(actor=dict(refresh=False, name='test'))
-        # st.write(GradioClient.run(test_instance))
-        st.write(ray.get(test_instance.run.remote()))
+    # with ray.init(address='auto', namespace='commune'):
+    #     test_instance = TestModule.deploy(actor=dict(refresh=False, name='test'))
+    #     # st.write(GradioClient.run(test_instance))
+    #     st.write(ray.get(test_instance.run.remote()))
 
